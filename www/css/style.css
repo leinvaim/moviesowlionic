@@ -1,0 +1,14 @@
+/* Empty. Add your own CSS if you like */
+.item.wrap, .item-content.wrap {
+white-space: normal;
+}
+/*#poster {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("path/to/img");
+    background-repeat: no-repeat;
+    background-size: contain;
+}*/

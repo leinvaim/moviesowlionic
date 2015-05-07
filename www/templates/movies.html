@@ -1,0 +1,9 @@
+<ion-view view-title="{{cinemaLocation}}">
+    <ion-content>
+        <div class="row" ng-repeat="row in movies">
+            <ion-item class="col col-50" ng-repeat="movie in row" href="#/movie/{{movie.id}}">
+                <img ng-src="{{movie.poster}}" style="height:150px; width:auto;">
+            </ion-item>
+        </div>
+    </ion-content>
+</ion-view>

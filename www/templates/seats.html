@@ -1,0 +1,7 @@
+<ion-view view-title="seats">
+    <ion-content>
+        <div class="row" ng-repeat="row in movies">
+            <a class="col col-50" ng-repeat="movie in row" href="#/movie/{{movie.id}}">{{movie.title}}</a>
+        </div>
+    </ion-content>
+</ion-view>
