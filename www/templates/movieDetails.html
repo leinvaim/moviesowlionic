@@ -15,18 +15,19 @@
                     Run Time: {{movie.run_time}}
                 </div>
                 <div class="row">
-                    Run Time: {{movie.synopsis}}
+                    Director:
+                    <br/> {{movie.director}}
+                </div>
+                <div class="row wrap">
+                    Casts:
+                    <br/> {{movie.cast}}
                 </div>
             </div>
         </div>
         <ion-list>
-            <ion-item>
-                Director:
-                <br/> {{movie.director}}
-            </ion-item>
             <ion-item class="wrap">
-                Casts:
-                <br/> {{movie.cast}}
+                Synopsis
+                <br/>{{movie.synopsis}}
             </ion-item>
             <ion-item ng-repeat="session in sessionsInfo">
                 <div class="row">

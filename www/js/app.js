@@ -1,10 +1,22 @@
 // Ionic Starter App
 
+console.log('APP JS LOADED!!!');
+
+var seconds2 = new Date().getTime() / 1000;
+
+console.log('seconds ' + seconds);
+
+console.log('IT TOOK ' + (seconds2 - seconds) + ' seconds');
+
+angular.module('templates', []);
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('starter', ['ionic'])
-    .config(function($stateProvider, $urlRouterProvider) {
+
+var app = angular.module('cats', ['ionic', 'ngCordova', 'templates']);
+
+    app.config(function($stateProvider, $urlRouterProvider) {
+        console.log('config running, adding routes!');
         $urlRouterProvider.otherwise('/')
         $stateProvider
             .state('home', {
@@ -28,9 +40,9 @@ angular.module('starter', ['ionic'])
                 controller: 'ShowingsCtrl'
             })
     })
-    .run(function($ionicPlatform, $state) {
-
+    .run(function($ionicPlatform, $state, $templateCache) {
         $ionicPlatform.ready(function() {
+            console.log('device is now ready!');
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
             // for form inputs)
             if (window.cordova && window.cordova.plugins.Keyboard) {
@@ -81,20 +93,19 @@ angular.module('starter', ['ionic'])
             });
         });
 
-        function getCinemaSize (totalSeats) {
+        function getCinemaSize(totalSeats) {
             if (totalSeats > 200) {
                 return 'Large';
-            }
-            else if (totalSeats >150) {
+            } else if (totalSeats > 150) {
                 return 'Medium';
-            } 
-            else {
+            } else {
                 return 'Small';
             }
 
         }
-        function getFullness (totalSeats, takenSeats) {
-            var percentage = parseInt(takenSeats/totalSeats*100);
+
+        function getFullness(totalSeats, takenSeats) {
+            var percentage = parseInt(takenSeats / totalSeats * 100);
             if (percentage > 80) {
                 return 'Full';
             } else if (percentage > 30) {
@@ -113,4 +124,11 @@ angular.module('starter', ['ionic'])
         $http.get('http://api.moviesowl.com/v1/cinemas').then(function(response) {
             $scope.cinemas = response.data.data;
         });
+    });
+
+
+
+    angular.element(document).ready(function() {
+        console.log('Bootstrap app now!');
+      angular.bootstrap(document, ['cats']);
     });
