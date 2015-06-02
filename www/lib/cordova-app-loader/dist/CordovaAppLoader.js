@@ -292,9 +292,12 @@ var CordovaAppLoader =
 	};
 
 	AppLoader.prototype.update = function(reload){
+        console.log('is update ready?', this._updateReady);
 	  if(this._updateReady) {
 	    // update manifest
+
 	    localStorage.setItem('manifest',JSON.stringify(this.newManifest));
+          console.log('setting manifest', localStorage.getItem('manifest'));
 	    if(reload !== false) location.reload();
 	    return true;
 	  }

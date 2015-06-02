@@ -1,0 +1,37 @@
+{
+  "files": {
+    "loader": {
+      "version": "726b6e72c37e053b022adda6a7aa273d4ef24f2f",
+      "filename": "lib/cordova-app-loader/dist/cordova-app-loader-complete.js"
+    },
+    "update": {
+      "version": "d0802ab5b17cbccb3cc219b7e74b57168ecd15fb",
+      "filename": "autoupdate.js"
+    },
+    "ionic": {
+      "version": "a9473b7e5353613bfa1d1b8005ff8af6fb6eb43b",
+      "filename": "lib/ionic/js/ionic.bundle.js"
+    },
+    "template": {
+      "version": "42d8b125a2a57e0bb20a78285551fc5be166299a",
+      "filename": "js/templates.js"
+    },
+    "app": {
+      "version": "c90417b3f3178aed6876efe09d8b71b282fcd5b7",
+      "filename": "js/app.js"
+    },
+    "style": {
+      "version": "8546d73365196a88f8bbc1f73671e48412fa3254",
+      "filename": "css/style.css"
+    }
+  },
+  "load": [
+    "lib/cordova-app-loader/dist/cordova-app-loader-complete.js",
+    "autoupdate.js",
+    "lib/ionic/js/ionic.bundle.js",
+    "js/templates.js",
+    "js/app.js",
+    "css/style.css"
+  ],
+  "version": "073941f945a75b1626cd174254c4df477eeff698"
+}

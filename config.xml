@@ -14,8 +14,9 @@
   <author email="hi@ionicframework" href="http://ionicframework.com/">
         Ionic Framework Team
     </author>
-  <content src="craigmcnamara.com"/>
+  <content src="index.html"/>
   <access origin="*"/>
+    <allow-navigation href="http://*/*" />
   <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>
   <preference name="DisallowOverscroll" value="true"/>

@@ -211,8 +211,11 @@ AppLoader.prototype.canUpdate = function(){
 AppLoader.prototype.download = function(onprogress){
   var self = this;
   if(!self.canDownload()) {
+      console.log('cant download');
     return new Promise(function(resolve){ resolve(null); });
   }
+
+    console.log('downloading...');
   // we will delete files, which will invalidate the current manifest...
   localStorage.removeItem('manifest');
   // only attempt this once - set 'last_update_files'
@@ -245,9 +248,11 @@ AppLoader.prototype.download = function(onprogress){
 };
 
 AppLoader.prototype.update = function(reload){
+    console.log('is update ready?', this._updateReady);
   if(this._updateReady) {
     // update manifest
     localStorage.setItem('manifest',JSON.stringify(this.newManifest));
+      console.log('new manifest', localStorage.getItem('manifest'));
     if(reload !== false) location.reload();
     return true;
   }
