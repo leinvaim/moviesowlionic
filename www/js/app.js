@@ -95,18 +95,38 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             //    //});
             //    //
             //
-            //    loader.check()
-            //        .then(function(){
-            //            console.log('check done');
-            //            return loader.download();
-            //        })
-            //        .then(function(){
-            //            console.log('download done');
-            //            return loader.update();
-            //        },function(err){
-            //            console.error('Auto-update error:',err);
-            //        });
-            //
+            //    loader.check().then(function (updateAvailable) {
+            //        console.log(updateAvailable);
+            //        if (updateAvailable)
+            //        {
+            //            loader.download()
+            //                .then(
+            //                function (manifest)
+            //                {
+            //                    console.log(manifest);
+            //                    loader.update();  // we can update the app
+            //                },
+            //                function (failedDownloadUrlArray)
+            //                {
+            //                    console.log(failedDownloadUrlArray);
+            //                }
+            //            )
+            //        }
+            //    });
+
+
+                //loader.check()
+                //    .then(function(){
+                //        console.log('check done');
+                //        return loader.download();
+                //    })
+                //    .then(function(){
+                //        console.log('download done');
+                //        return loader.update();
+                //    },function(err){
+                //        console.error('Auto-update error:',err);
+                //    });
+
             //}
             //
             //
@@ -209,13 +229,15 @@ app.config(function ($stateProvider, $urlRouterProvider) {
     });
 
 
+//angular.element(document).ready(function () {
+//    console.log('Bootstrap app now!');
+//    console.log(angular.element(document).find('body').html());
+//    angular.bootstrap(document, ['cats']);
+//});
+
 //document.addEventListener('deviceready', onDeviceReady, false);
 //function onDeviceReady() {
-    angular.element(document).ready(function () {
-        console.log('Bootstrap app now!');
-        console.log(angular.element(document).find('body').html());
-        angular.bootstrap(document, ['cats']);
-    });
+//
 //}
 
 
