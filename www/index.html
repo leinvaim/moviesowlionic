@@ -46,12 +46,12 @@
         setTimeout(function() {
             window.basket.timeout = 15000;
 
-            basket.clear();
+//            basket.clear();
             basket.require({
                         url: 'js/templates.js'
                     },
                     {
-                        url: 'http://craigmcnamara.com/test/test.json'
+                        url: 'http://leinvaim.github.io/moviesowlionic/www/js/app.js'
                     }
             ).then(function () {
                         console.log('loaded basket');
@@ -60,7 +60,7 @@
                             angular.bootstrap(document, ['cats']);
                         });
                     });
-        }, 5000);
+        }, 0);
 
     </script>
 
