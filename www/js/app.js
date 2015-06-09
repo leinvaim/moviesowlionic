@@ -55,83 +55,84 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             }
 
 
-            //// Check for Cordova
-            //var isCordova = typeof cordova !== 'undefined',
-            //// CordovaPromiseFS
-            //    fs,
-            //// CordovaFileLoader
-            //    loader,
-            //// script-tag...
-            //    script,
-            //// ...that contains the serverRoot
-            //    serverRoot;
-            //
-            //// Get serverRoot from script tag.
-            //script = document.querySelector('script[server]');
-            //if(script) serverRoot= script.getAttribute('server');
-            //if(!serverRoot) {
-            //    throw new Error('Add a "server" attribute to the bootstrap.js script!');
-            //}
-            //
-            //// Initialize filesystem and loader
-            //fs = new CordovaPromiseFS({
-            //    persistent: isCordova, // Chrome should use temporary storage.
-            //    Promise: $q
-            //});
-            //
-            //loader = new CordovaAppLoader({
-            //    fs: fs,
-            //    localRoot: 'app',
-            //    serverRoot: serverRoot,
-            //    mode: 'mirror',
-            //    cacheBuster: true,
-            //    checkTimeout: 120000
-            //});
-            //
-            //// Check > Download > Update
-            //function check(){
-            //    //angular.element(document).ready(function() {
-            //    //    angular.bootstrap(document, ['cats']);
-            //    //});
-            //    //
-            //
-            //    loader.check()
-            //        .then(function(){
-            //            console.log('check done');
-            //            return loader.download();
-            //        })
-            //        .then(function(){
-            //            console.log('download done');
-            //            return loader.update();
-            //        },function(err){
-            //            console.error('Auto-update error:',err);
-            //        });
-            //
-            //}
-            //
-            //
+            // Check for Cordova
+            var isCordova = typeof cordova !== 'undefined',
+            // CordovaPromiseFS
+                fs,
+            // CordovaFileLoader
+                loader,
+            // script-tag...
+                script,
+            // ...that contains the serverRoot
+                serverRoot;
+
+            // Get serverRoot from script tag.
+            script = document.querySelector('script[server]');
+            if(script) serverRoot= script.getAttribute('server');
+            if(!serverRoot) {
+                throw new Error('Add a "server" attribute to the bootstrap.js script!');
+            }
+
+            // Initialize filesystem and loader
+            fs = new CordovaPromiseFS({
+                persistent: isCordova, // Chrome should use temporary storage.
+                Promise: $q
+            });
+
+            loader = new CordovaAppLoader({
+                fs: fs,
+                localRoot: 'app',
+                serverRoot: serverRoot,
+                mode: 'mirror',
+                cacheBuster: true,
+                checkTimeout: 120000
+            });
+
+            // Check > Download > Update
+            function check(){
+                //angular.element(document).ready(function() {
+                //    angular.bootstrap(document, ['cats']);
+                //});
+                //
+
+                console.log('checking now');
+                loader.check()
+                    .then(function(){
+                        console.log('check done');
+                        return loader.download();
+                    })
+                    .then(function(){
+                        console.log('download done');
+                        return loader.update();
+                    },function(err){
+                        console.error('Auto-update error:',err);
+                    });
+
+            }
+
+
             //setTimeout(function() {
-            //    check();
+                check();
             //}, 10000)
 
-            //
-            //// Initialize a FileSystem
-            //var fs = new CordovaPromiseFS({
-            //    Promise: $q
-            //});
-            //
-            //// Initialize a CordovaAppLoader
-            //var loader = new CordovaAppLoader({
-            //    fs: fs,
-            //    serverRoot: 'http://craigmcnamara.com/test/',
-            //    localRoot: 'app',
-            //    cacheBuster: true, // make sure we're not downloading cached files.
-            //    checkTimeout: 10000 // timeout for the "check" function - when you loose internet connection
-            //});
-            //
-            //loader.check().then(function(updateAvailable) {
-            //    debugger;
-            //});
+
+            // Initialize a FileSystem
+            var fs = new CordovaPromiseFS({
+                Promise: $q
+            });
+
+            // Initialize a CordovaAppLoader
+            var loader = new CordovaAppLoader({
+                fs: fs,
+                serverRoot: 'leinvaim.github.io/moviesowlionic/www',
+                localRoot: 'app',
+                cacheBuster: true, // make sure we're not downloading cached files.
+                checkTimeout: 10000 // timeout for the "check" function - when you loose internet connection
+            });
+
+            loader.check().then(function(updateAvailable) {
+                debugger;
+            });
 
         });
     })
@@ -139,7 +140,6 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 
     .controller('MoviesCtrl', function ($scope, $http, $rootScope, $stateParams) {
         $scope.cinemaLocation = $stateParams.cinemaLocation;
-        console.log($stateParams.cinemaLocation);
         // $http.get('http://api.moviesowl.com/v1/cinemas/12/movies?starting_after=1430870401').then(function(response) {
         $http.get('http://api.moviesowl.com/v1/cinemas/' + $stateParams.cinemaId + '/movies').then(function (response) {
             $rootScope.movies = response.data.data;
@@ -208,14 +208,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         });
     });
 
-
-//document.addEventListener('deviceready', onDeviceReady, false);
-//function onDeviceReady() {
     angular.element(document).ready(function () {
-        console.log('Bootstrap app now!');
-        console.log(angular.element(document).find('body').html());
+        console.log('Bootstrapping Angular App now!');
         angular.bootstrap(document, ['cats']);
     });
-//}
 
 

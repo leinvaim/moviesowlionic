@@ -45,9 +45,6 @@
 // Step 2: After fetching manifest (localStorage or XHR), load it
     function loadManifest(manifest, fromLocalStorage, timeout) {
 
-        console.log('loading manifest', fromLocalStorage);
-        console.log('loading manifest', manifest);
-
         // Safety timeout. If BOOTSTRAP_OK is not defined,
         // it will delete the 'localStorage' version and revert to factory settings.
         if (fromLocalStorage) {

@@ -34,38 +34,38 @@
 //    // Check > Download > Update
 //    function check(){
 //        //angular.element(document).ready(function() {
-        //    angular.bootstrap(document, ['cats']);
-        //});
-        //
-        //loader.check()
-        //    .then(function(){
-        //        console.log('check done');
-        //        return loader.download();
-        //    })
-        //    .then(function(){
-        //        console.log('download done');
-        //        return loader.update();
-        //    },function(err){
-        //        console.error('Auto-update error:',err);
-        //    });
-
-    //}
-
-    // Couple events:
-
-    // 1. On launch
-    //check();
-    //
-    //// 2. Cordova: On resume
-    //fs.deviceready.then(function(){
-    //    document.addEventListener('resume',check);
-    //});
-    //
-    //// 3. Chrome: On page becomes visible again
-    //function handleVisibilityChange() {
-    //    if (!document.webkitHidden) {
-    //        check();
-    //    }
-    //}
-    //document.addEventListener("webkitvisibilitychange", handleVisibilityChange, false);
+//            angular.bootstrap(document, ['cats']);
+//        });
+//
+//        loader.check()
+//            .then(function(){
+//                console.log('check done');
+//                return loader.download();
+//            })
+//            .then(function(){
+//                console.log('download done');
+//                return loader.update();
+//            },function(err){
+//                console.error('Auto-update error:',err);
+//            });
+//
+//    }
+//
+//    Couple events:
+//
+//    1. On launch
+//    check();
+//
+//    // 2. Cordova: On resume
+//    fs.deviceready.then(function(){
+//        document.addEventListener('resume',check);
+//    });
+//
+//    // 3. Chrome: On page becomes visible again
+//    function handleVisibilityChange() {
+//        if (!document.webkitHidden) {
+//            check();
+//        }
+//    }
+//    document.addEventListener("webkitvisibilitychange", handleVisibilityChange, false);
 //})();
