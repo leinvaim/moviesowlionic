@@ -1,13 +1,5 @@
 // Ionic Starter App
 
-console.log('APP JS LOADED!!!');
-
-var seconds2 = new Date().getTime() / 1000;
-
-console.log('seconds ' + seconds);
-
-console.log('IT TOOK ' + (seconds2 - seconds) + ' seconds');
-
 angular.module('templates', []);
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
