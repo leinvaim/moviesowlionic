@@ -7,8 +7,8 @@ angular.module('templates', []);
 
 var app = angular.module('cats', ['ionic', 'ngCordova', 'templates']);
 
-app.config(function($stateProvider, $urlRouterProvider) {
-        console.log('config running, adding routes!');
+    app.config(function($stateProvider, $urlRouterProvider) {
+        console.log('Config running, adding routes!');
         $urlRouterProvider.otherwise('/')
         $stateProvider
             .state('home', {
@@ -39,12 +39,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
     })
     .run(function($ionicPlatform, $state, $templateCache) {
         $ionicPlatform.ready(function() {
-            console.log('device is now ready!');
+            console.log('Device is now ready in angular!');
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
             // for form inputs)
-            if (window.cordova && window.cordova.plugins.Keyboard) {
-                cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-            }
+            // if (window.cordova && window.cordova.plugins.Keyboard) {
+            //     cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+            // }
             if (window.StatusBar) {
                 StatusBar.styleDefault();
             }
@@ -118,14 +118,41 @@ app.config(function($stateProvider, $urlRouterProvider) {
     })
     .controller('CinemasCtrl', function($scope, $http) {
 
-        $http.get('http://api.moviesowl.com/v1/cinemas').then(function(response) {
-            $scope.cinemas = response.data.data;
-        });
+            console.log('In cinemas controller');
+
+            $scope.doRefresh = doRefresh;
+
+            activate();
+
+            ////
+
+            function activate() {
+                $http.get('http://api.moviesowl.com/v1/cinemas').then(function(response) {
+                    $scope.cinemas = response.data.data;
+                });
+                console.log('im here!');
+            }
+
+            function doRefresh() {
+                console.log('Reloading from Github');
+                // use basket to reload from github
+                basket.clear();
+
+                var files = [{
+                    url: 'http://leinvaim.github.io/moviesowlionic/www/js/app.js',
+                    key: 'js/app.js',
+                    execute: false
+                }, {
+                    url: 'http://leinvaim.github.io/moviesowlionic/www/js/templates.js',
+                    key: 'js/templates.js',
+                    execute: false
+                }];
+
+                basket.require.apply(null, files).then(function() {
+                    $scope.$broadcast('scroll.refreshComplete');
+                    window.location.reload();
+                });
+
+
+            }
     });
-
-
-
-angular.element(document).ready(function() {
-    console.log('Bootstrap app now!');
-    angular.bootstrap(document, ['cats']);
-});
