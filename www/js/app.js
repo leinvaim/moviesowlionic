@@ -53,15 +53,19 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
 
 .controller('MoviesCtrl', function($scope, $http, $rootScope, $stateParams) {
-        $scope.cinemaLocation = $stateParams.cinemaLocation;
-        console.log($stateParams.cinemaLocation);
-        // $http.get('http://api.moviesowl.com/v1/cinemas/12/movies?starting_after=1430870401').then(function(response) {
-        $http.get('http://api.moviesowl.com/v1/cinemas/' + $stateParams.cinemaId + '/movies').then(function(response) {
-            $rootScope.movies = response.data.data;
-            $scope.movies = _.chunk($rootScope.movies, 2);
-        });
-    })
-    .controller('MovieDetailsCtrl', function($scope, $stateParams, $rootScope, $http) {
+    $scope.cinemaLocation = $stateParams.cinemaLocation;
+    console.log($stateParams.cinemaLocation);
+    // $http.get('http://api.moviesowl.com/v1/cinemas/12/movies?starting_after=1430870401').then(function(response) {
+    $http.get('http://api.moviesowl.com/v1/cinemas/' + $stateParams.cinemaId + '/movies').then(function(response) {
+        $rootScope.movies = response.data.data;
+        $scope.movies = _.chunk($rootScope.movies, 2);
+    });
+})
+
+/*****************************
+    Movie Details Controller
+*****************************/
+.controller('MovieDetailsCtrl', function($scope, $stateParams, $rootScope, $http) {
         $scope.movie = _.find($rootScope.movies, function(movie) {
             return movie.id == $stateParams.movieId;
         });
@@ -116,6 +120,9 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
 
     })
+    /*****************************
+        Seats Controller
+    *****************************/
     .controller('SeatsCtrl', function($scope, $http, $stateParams) {
 
         $http.get('http://api.moviesowl.com/v1/showings/' + $stateParams.showId).then(function(response) {
@@ -128,6 +135,9 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
         });
     })
+    /*****************************
+        Cinemas Controller
+    *****************************/
     .controller('CinemasCtrl', function($scope, $http) {
 
         console.log('In cinemas controller');
