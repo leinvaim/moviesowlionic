@@ -23,16 +23,19 @@ app.config(function($stateProvider, $urlRouterProvider) {
             })
             .state('movie', {
                 url: '/movie/:movieId',
+                cache: false,
                 templateUrl: 'templates/movieDetails.html',
                 controller: 'MovieDetailsCtrl'
             })
             .state('showings', {
                 url: '/showings/:showId',
+                cache: false,
                 templateUrl: 'templates/showings.html',
                 controller: 'ShowingsCtrl'
             })
             .state('seats', {
                 url: '/seats/:showId',
+                cache: false,
                 templateUrl: 'templates/seats.html',
                 controller: 'SeatsCtrl'
             })
@@ -52,7 +55,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
     })
 
 
-.controller('MoviesCtrl', function($scope, $http, $rootScope, $stateParams) {
+.controller('MoviesCtrl', function($scope, $http, $rootScope, $stateParams, selectedMovieService, $state) {
     $scope.cinemaLocation = $stateParams.cinemaLocation;
     console.log($stateParams.cinemaLocation);
     // $http.get('http://api.moviesowl.com/v1/cinemas/12/movies?starting_after=1430870401').then(function(response) {
@@ -60,47 +63,70 @@ app.config(function($stateProvider, $urlRouterProvider) {
         $rootScope.movies = response.data.data;
         $scope.movies = _.chunk($rootScope.movies, 2);
     });
+    $scope.selectMovie = function(movie) {
+        selectedMovieService.setMovie(movie);
+        $state.go('movie', {
+            movieId: movie.id
+        });
+    }
 })
 
 /*****************************
     Movie Details Controller
 *****************************/
-.controller('MovieDetailsCtrl', function($scope, $stateParams, $rootScope, $http) {
-        $scope.movie = _.find($rootScope.movies, function(movie) {
-            return movie.id == $stateParams.movieId;
-        });
-        var sessionIds = _.pluck($scope.movie.showings.data, 'id');
-        console.log(sessionIds);
-        $scope.sessionsInfo = [];
+.controller('MovieDetailsCtrl', function($scope, $stateParams, $http, selectedMovieService, showingsDataService, 
+    $state) {
+        // $scope.movie = _.find($rootScope.movies, function(movie) {
+        //     return movie.id == $stateParams.movieId;
+        // });
+        $scope.movie = selectedMovieService.selectedMovie;
+        $scope.showingsData = $scope.movie.showings.data;
 
-        _.forEach(sessionIds, function(sessionId) {
-            $http.get('http://api.moviesowl.com/v1/showings/' + sessionId).then(function(response) {
+        _.forEach($scope.showingsData, function(showing) {
+            $http.get('http://api.moviesowl.com/v1/showings/' + showing.id).then(function(response) {
                 var tempSeats = response.data;
                 var seatsInfo = response.data.seats;
-                var totalNumOfSeats = tempSeats.seats_count;
+                var totalNumOfSeats = 0;
                 var takenSeats = 0;
                 for (var row = 0; row < seatsInfo.length; row++) {
                     for (var col = 0; col < seatsInfo[row].length; col++) {
+                        if (seatsInfo[row][col] === 'available') {
+                            totalNumOfSeats++;
+                        }
                         if (seatsInfo[row][col] === 'taken') {
+                            totalNumOfSeats++;
                             takenSeats += 1;
                         }
                     }
                 }
-                tempSeats.totalNumOfSeats = totalNumOfSeats;
-                tempSeats.cinemaSize = getCinemaSize(totalNumOfSeats);
-                tempSeats.fullness = getFullness(totalNumOfSeats, takenSeats);
-                $scope.sessionsInfo.push(tempSeats);
-                console.log($scope.sessionsInfo);
+
+                showing.totalNumOfSeats = totalNumOfSeats;
+                showing.cinemaSize = getCinemaSize(totalNumOfSeats);
+                showing.fullness = getFullness(totalNumOfSeats, takenSeats);
+                showing.seats = seatsInfo;
+                showingsDataService.setShowingsData($scope.showingsData);
             });
         });
+        $scope.openSeatView = function(sessionId) {
+            var seatsData = _.find($scope.showingsData, function(showing) {
+                return showing.id === parseInt(sessionId);
+            });
+            if (seatsData.seats) {
+                console.log('am i here');
+                $state.go('seats', {
+                    showId: sessionId
+                });
+            }
+        }
 
         function getCinemaSize(totalSeats) {
-            if (totalSeats > 200) {
-                return 'Large';
-            } else if (totalSeats > 150) {
+            console.log(totalSeats);
+            if (totalSeats < 150) {
+                return 'Small';
+            } else if (totalSeats < 200) {
                 return 'Medium';
             } else {
-                return 'Small';
+                return 'Large';
             }
 
         }
@@ -123,17 +149,23 @@ app.config(function($stateProvider, $urlRouterProvider) {
     /*****************************
         Seats Controller
     *****************************/
-    .controller('SeatsCtrl', function($scope, $http, $stateParams) {
+    .controller('SeatsCtrl', function($scope, $http, $stateParams, showingsDataService) {
 
-        $http.get('http://api.moviesowl.com/v1/showings/' + $stateParams.showId).then(function(response) {
-            //  $http.get('http://api.moviesowl.com/v1/showings/141061').then(function(response) {
-            var seatsData = response.data;
-            $scope.seatingPlan = seatsData.seats;
-            var numOfSeatInRow = $scope.seatingPlan[0].length;
-            $scope.seatWidth = 100 / numOfSeatInRow;
-            console.log(seatsData);
+        //$http.get('http://api.moviesowl.com/v1/showings/' + $stateParams.showId).then(function(response) {
+        //  $http.get('http://api.moviesowl.com/v1/showings/141061').then(function(response) {
 
+        var seatsData = _.find(showingsDataService.showingsData, function(showing) {
+            return showing.id === parseInt($stateParams.showId);
         });
+        console.log(seatsData);
+        // var seatsData = response.data;
+        $scope.seatingPlan = seatsData.seats;
+
+        var numOfSeatInRow = $scope.seatingPlan[0].length;
+        $scope.seatWidth = 100 / numOfSeatInRow;
+        console.log(seatsData);
+
+        // });
     })
     /*****************************
         Cinemas Controller
@@ -176,5 +208,36 @@ app.config(function($stateProvider, $urlRouterProvider) {
             });
 
 
+        }
+    })
+    .factory('showingsDataService', function() {
+        // Service logic
+        // ...
+
+        var service = {
+            setShowingsData: setShowingsData,
+            showingsData: []
+        };
+        return service;
+
+
+        function setShowingsData(showingsData) {
+            service.showingsData = showingsData;
+        }
+    })
+    .factory('selectedMovieService', function() {
+        // Service logic
+        // ...
+
+        var service = {
+            setMovie: setMovie,
+            selectedMovie: {}
+        };
+        return service;
+
+
+        function setMovie(movie) {
+            console.log('set movie', movie);
+            service.selectedMovie = movie;
         }
     });

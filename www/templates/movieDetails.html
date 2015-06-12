@@ -30,7 +30,7 @@
                 <br/>{{movie.synopsis}}
             </ion-item>
 
-            <ion-item ng-repeat="session in sessionsInfo" href="#/seats/{{session.id}}">
+            <ion-item ng-repeat="session in showingsData" ng-click="openSeatView(session.id)">
                 <div class="row" >
                     <div class="col col-20" style="text-align:left;">{{session.start_time*1000| date:'h:mma' }}</div>
                     <div class="col col-40" ng-show="session.screen_type === 'standard'">
