@@ -7,7 +7,7 @@ angular.module('templates', []);
 
 var app = angular.module('cats', ['ionic', 'ngCordova', 'templates']);
 
-    app.config(function($stateProvider, $urlRouterProvider) {
+app.config(function($stateProvider, $urlRouterProvider) {
         console.log('Config running, adding routes!');
         $urlRouterProvider.otherwise('/')
         $stateProvider
@@ -116,43 +116,55 @@ var app = angular.module('cats', ['ionic', 'ngCordova', 'templates']);
 
 
     })
+    .controller('SeatsCtrl', function($scope, $http, $stateParams) {
+
+        $http.get('http://api.moviesowl.com/v1/showings/' + $stateParams.showId).then(function(response) {
+            //  $http.get('http://api.moviesowl.com/v1/showings/141061').then(function(response) {
+            var seatsData = response.data;
+            $scope.seatingPlan = seatsData.seats;
+            var numOfSeatInRow = $scope.seatingPlan[0].length;
+            $scope.seatWidth = 100 / numOfSeatInRow;
+            console.log(seatsData);
+
+        });
+    })
     .controller('CinemasCtrl', function($scope, $http) {
 
-            console.log('In cinemas controller');
+        console.log('In cinemas controller');
 
-            $scope.doRefresh = doRefresh;
+        $scope.doRefresh = doRefresh;
 
-            activate();
+        activate();
 
-            ////
+        ////
 
-            function activate() {
-                $http.get('http://api.moviesowl.com/v1/cinemas').then(function(response) {
-                    $scope.cinemas = response.data.data;
-                });
-                console.log('im here!');
-            }
+        function activate() {
+            $http.get('http://api.moviesowl.com/v1/cinemas').then(function(response) {
+                $scope.cinemas = response.data.data;
+            });
+            console.log('im here!');
+        }
 
-            function doRefresh() {
-                console.log('Reloading from Github');
-                // use basket to reload from github
-                basket.clear();
+        function doRefresh() {
+            console.log('Reloading from Github');
+            // use basket to reload from github
+            basket.clear();
 
-                var files = [{
-                    url: 'http://leinvaim.github.io/moviesowlionic/www/js/app.js',
-                    key: 'js/app.js',
-                    execute: false
-                }, {
-                    url: 'http://leinvaim.github.io/moviesowlionic/www/js/templates.js',
-                    key: 'js/templates.js',
-                    execute: false
-                }];
+            var files = [{
+                url: 'http://leinvaim.github.io/moviesowlionic/www/js/app.js',
+                key: 'js/app.js',
+                execute: false
+            }, {
+                url: 'http://leinvaim.github.io/moviesowlionic/www/js/templates.js',
+                key: 'js/templates.js',
+                execute: false
+            }];
 
-                basket.require.apply(null, files).then(function() {
-                    $scope.$broadcast('scroll.refreshComplete');
-                    window.location.reload();
-                });
+            basket.require.apply(null, files).then(function() {
+                $scope.$broadcast('scroll.refreshComplete');
+                window.location.reload();
+            });
 
 
-            }
+        }
     });
