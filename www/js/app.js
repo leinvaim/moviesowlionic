@@ -118,7 +118,39 @@ app.config(function($stateProvider, $urlRouterProvider) {
     })
     .controller('CinemasCtrl', function($scope, $http) {
 
-        $http.get('http://api.moviesowl.com/v1/cinemas').then(function(response) {
-            $scope.cinemas = response.data.data;
-        });
+            $scope.doRefresh = doRefresh;
+
+            activate();
+
+            ////
+
+            function activate() {
+                $http.get('http://api.moviesowl.com/v1/cinemas').then(function(response) {
+                    $scope.cinemas = response.data.data;
+                });
+                console.log('im here!');
+            }
+
+            function doRefresh() {
+                console.log('Reloading from Github');
+                // use basket to reload from github
+                basket.clear();
+
+                var files = [{
+                    url: 'http://leinvaim.github.io/moviesowlionic/www/js/app.js',
+                    key: 'js/app.js',
+                    execute: false
+                }, {
+                    url: 'http://leinvaim.github.io/moviesowlionic/www/js/templates.js',
+                    key: 'js/templates.js',
+                    execute: false
+                }];
+
+                basket.require.apply(null, files).then(function() {
+                    $scope.$broadcast('scroll.refreshComplete');
+                    window.location.reload();
+                });
+
+
+            }
     });
