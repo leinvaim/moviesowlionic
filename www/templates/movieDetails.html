@@ -29,8 +29,9 @@
                 Synopsis
                 <br/>{{movie.synopsis}}
             </ion-item>
-            <ion-item ng-repeat="session in sessionsInfo">
-                <div class="row">
+
+            <ion-item ng-repeat="session in sessionsInfo" href="#/seats/{{session.id}}">
+                <div class="row" >
                     <div class="col col-20" style="text-align:left;">{{session.start_time*1000| date:'h:mma' }}</div>
                     <div class="col col-40" ng-show="session.screen_type === 'standard'">
                         <span ng-show="session.showing_type ==='3D'">

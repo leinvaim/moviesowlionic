@@ -7,7 +7,7 @@ angular.module('templates', []);
 
 var app = angular.module('cats', ['ionic', 'ngCordova', 'templates']);
 
-    app.config(function($stateProvider, $urlRouterProvider) {
+app.config(function($stateProvider, $urlRouterProvider) {
         console.log('config running, adding routes!');
         $urlRouterProvider.otherwise('/')
         $stateProvider
@@ -30,6 +30,11 @@ var app = angular.module('cats', ['ionic', 'ngCordova', 'templates']);
                 url: '/showings/:showId',
                 templateUrl: 'templates/showings.html',
                 controller: 'ShowingsCtrl'
+            })
+            .state('seats', {
+                url: '/seats/:showId',
+                templateUrl: 'templates/seats.html',
+                controller: 'SeatsCtrl'
             })
     })
     .run(function($ionicPlatform, $state, $templateCache) {
@@ -120,7 +125,7 @@ var app = angular.module('cats', ['ionic', 'ngCordova', 'templates']);
 
 
 
-    angular.element(document).ready(function() {
-        console.log('Bootstrap app now!');
-      angular.bootstrap(document, ['cats']);
-    });
+angular.element(document).ready(function() {
+    console.log('Bootstrap app now!');
+    angular.bootstrap(document, ['cats']);
+});
