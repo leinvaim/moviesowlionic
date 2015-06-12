@@ -7,8 +7,8 @@
             <div ng-repeat="row in seatingPlan track by $index" style="padding-left:1%">
                 <div ng-repeat="seat in row track by $index" style="position:relative;float: left; width:{{seatWidth}}%; padding-bottom:{{seatWidth}}%;">
                     <div ng-show="seat === 'available'" style="position:absolute; background-color:blue; top:10%; bottom:0; right:10%; left:0;"></div>
-                    <div ng-show="seat === 'taken'" style="position:absolute; line-height:100%; color:red; top:10% ;bottom:0 ;right:10% ;left:0; border: 1px solid">
-                    	<img src="img/seat-taken.png" style="display:block; width: 100%;">
+                    <div ng-show="seat === 'taken'" style="position:absolute; line-height:100%; color:red; top:10% ;bottom:0 ;right:10% ;left:0; border: 1px solid;">
+                    	<img src="img/seat-taken.png" style="display:block; max-width: 100%;">
                 	</div>
                 </div>
             </div>
