@@ -30,15 +30,15 @@
                 <br/>{{movie.synopsis}}
             </ion-item>
 
-            <ion-item ng-repeat="session in showingsData" ng-click="openSeatView(session.id)">
+            <ion-item ng-repeat="session in showingsData" ng-click="openSeatView(session.id)" style="padding:5px;">
                 <div class="row" >
-                    <div class="col col-20" style="text-align:left;">{{session.start_time*1000| date:'h:mma' }}</div>
-                    <div class="col col-40" ng-show="session.screen_type === 'standard'">
+                    <div class="col col-25" style="text-align:left;">{{session.start_time*1000| date:'h:mma' }}</div>
+                    <div class="col col-35" ng-show="session.screen_type === 'standard'">
                         <span ng-show="session.showing_type ==='3D'">
                             3D
                         </span> {{session.cinemaSize}}
                     </div>
-                    <div class="col col-40" ng-hide="session.screen_type === 'standard'">
+                    <div class="col col-35" ng-hide="session.screen_type === 'standard'">
                         <span ng-show="session.showing_type ==='3D'">
                             3D
                         </span>
