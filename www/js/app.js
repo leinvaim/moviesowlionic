@@ -122,10 +122,3 @@ app.config(function($stateProvider, $urlRouterProvider) {
             $scope.cinemas = response.data.data;
         });
     });
-
-
-
-angular.element(document).ready(function() {
-    console.log('Bootstrap app now!');
-    angular.bootstrap(document, ['cats']);
-});
