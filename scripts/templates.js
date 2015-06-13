@@ -3,7 +3,7 @@ angular.module('moviesowlApp').run(['$templateCache', function($templateCache) {
 
   $templateCache.put('templates/cinemas.html',
     "<ion-view view-title=\"Cinemas\"><!-- if you dont put ion content, the first ion item will be hidden under ion-navbar\n" +
-    " \t--><ion-content><ion-refresher pulling-text=\"Pull to update app...\" on-refresh=\"doRefresh()\"></ion-refresher><h1>FROM GITHUB</h1><ion-list><ion-item ng-repeat=\"cinema in cinemas\" href=\"#/movies/{{cinema.id}}/?cinemaLocation={{cinema.location}}\">{{cinema.location}}</ion-item></ion-list><button class=\"button button-full button-balanced\" ng-click=\"reset()\">Reset</button> <button class=\"button button-full button-balanced\" ng-click=\"doRefresh()\">Update</button></ion-content></ion-view>"
+    " \t--><ion-content><ion-refresher pulling-text=\"Pull to update app...\" on-refresh=\"doRefresh()\"></ion-refresher><h1>FROM</h1><ion-list><ion-item ng-repeat=\"cinema in cinemas\" href=\"#/movies/{{cinema.id}}/?cinemaLocation={{cinema.location}}\">{{cinema.location}}</ion-item></ion-list><button class=\"button button-full button-balanced\" ng-click=\"reset()\">Reset</button> <button class=\"button button-full button-balanced\" ng-click=\"doRefresh()\">Update</button></ion-content></ion-view>"
   );
 
 
@@ -13,7 +13,7 @@ angular.module('moviesowlApp').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('templates/movies.html',
-    "<ion-view view-title=\"{{cinemaLocation}}\"><ion-content><div class=\"row\" ng-repeat=\"row in movies\"><div class=\"col col-50\" ng-repeat=\"movie in row\"><div style=\"width:100%; height:100%; background-color:white\" ng-click=\"selectMovie(movie)\"><!-- <a href=\"#/movie/{{movie.id}}\"> --><img ng-src=\"{{movie.poster}}\" style=\"width:100%\"><div>{{movie.tomato_meter}}</div><!--  </a> --></div></div></div></ion-content></ion-view>"
+    "<ion-view view-title=\"{{cinemaLocation}}\"><ion-content><ion-refresher pulling-text=\"Pull to update movies.\" on-refresh=\"doRefresh()\" spinner=\"bubbles\"></ion-refresher><div class=\"row\" ng-repeat=\"row in movies\" ng-hide=\"hasNoMovies\"><div class=\"col col-50\" ng-repeat=\"movie in row\"><div style=\"width:100%; height:100%; background-color:white\" ng-click=\"selectMovie(movie)\"><!-- <a href=\"#/movie/{{movie.id}}\"> --><img ng-src=\"{{movie.poster}}\" style=\"width:100%\"><div>{{movie.tomato_meter}}</div><!--  </a> --></div></div></div><div ng-show=\"hasNoMovies\">No more movies available today. Come back tomorrow :)</div></ion-content></ion-view>"
   );
 
 
