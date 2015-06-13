@@ -13,6 +13,7 @@ angular.module('moviesowlApp')
         console.log('In cinemas controller');
 
         $scope.doRefresh = doRefresh;
+        $scope.update = update;
         $scope.reset = reset;
 
         activate();
@@ -24,6 +25,7 @@ angular.module('moviesowlApp')
                 $scope.cinemas = response.data.data;
             });
             console.log('im here!');
+            $scope.$broadcast('scroll.refreshComplete');
         }
 
         function reload() {
@@ -39,7 +41,7 @@ angular.module('moviesowlApp')
             reload();
         }
 
-        function doRefresh() {
+        function update() {
             console.log('Reloading from Github');
             // use basket to reload from github
             basket.clear();
@@ -66,7 +68,9 @@ angular.module('moviesowlApp')
             }, function() {
                 console.log('Failed to get from Github!');
             });
+        }
 
-
+        function doRefresh() {
+            activate();
         }
     });
