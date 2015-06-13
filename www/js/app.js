@@ -55,13 +55,18 @@ app.config(function($stateProvider, $urlRouterProvider) {
     })
 
 
-.controller('MoviesCtrl', function($scope, $http, $rootScope, $stateParams, selectedMovieService, $state) {
+.controller('MoviesCtrl', function($scope, $http, $rootScope, $stateParams, selectedMovieService, $state,
+    $ionicLoading) {
     $scope.cinemaLocation = $stateParams.cinemaLocation;
     console.log($stateParams.cinemaLocation);
+    $ionicLoading.show({
+        template: '<ion-spinner class="bubbles-energized"></ion-spinner>'
+    });
     // $http.get('http://api.moviesowl.com/v1/cinemas/12/movies?starting_after=1430870401').then(function(response) {
     $http.get('http://api.moviesowl.com/v1/cinemas/' + $stateParams.cinemaId + '/movies').then(function(response) {
         $rootScope.movies = response.data.data;
         $scope.movies = _.chunk($rootScope.movies, 2);
+        $ionicLoading.hide();
     });
     $scope.selectMovie = function(movie) {
         selectedMovieService.setMovie(movie);
@@ -74,8 +79,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
 /*****************************
     Movie Details Controller
 *****************************/
-.controller('MovieDetailsCtrl', function($scope, $stateParams, $http, selectedMovieService, showingsDataService, 
-    $state) {
+.controller('MovieDetailsCtrl', function($scope, $stateParams, $http, selectedMovieService, showingsDataService,
+        $state) {
         // $scope.movie = _.find($rootScope.movies, function(movie) {
         //     return movie.id == $stateParams.movieId;
         // });
@@ -163,7 +168,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
         var numOfSeatInRow = $scope.seatingPlan[0].length;
         $scope.seatWidth = 100 / numOfSeatInRow;
-        console.log(seatsData);
+        // console.log(seatsData);
 
         // });
     })
