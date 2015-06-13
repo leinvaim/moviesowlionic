@@ -8,42 +8,59 @@
  * Controller of the moviesowlApp
  */
 angular.module('moviesowlApp')
-  .controller('MovieDetailsCtrl', function($scope, $stateParams, $rootScope, $http) {
-        $scope.movie = _.find($rootScope.movies, function(movie) {
-            return movie.id == $stateParams.movieId;
-        });
-        var sessionIds = _.pluck($scope.movie.showings.data, 'id');
-        console.log(sessionIds);
-        $scope.sessionsInfo = [];
+  .controller('MovieDetailsCtrl', function($scope, $stateParams, $http, selectedMovieService, showingsDataService,
+        $state) {
+        // $scope.movie = _.find($rootScope.movies, function(movie) {
+        //     return movie.id == $stateParams.movieId;
+        // });
+        $scope.movie = selectedMovieService.selectedMovie;
+        $scope.showingsData = $scope.movie.showings.data;
 
-        _.forEach(sessionIds, function(sessionId) {
-            $http.get('http://api.moviesowl.com/v1/showings/' + sessionId).then(function(response) {
+        _.forEach($scope.showingsData, function(showing) {
+            $http.get('http://api.moviesowl.com/v1/showings/' + showing.id).then(function(response) {
                 var tempSeats = response.data;
                 var seatsInfo = response.data.seats;
-                var totalNumOfSeats = tempSeats.seats_count;
+                var totalNumOfSeats = 0;
                 var takenSeats = 0;
                 for (var row = 0; row < seatsInfo.length; row++) {
                     for (var col = 0; col < seatsInfo[row].length; col++) {
+                        if (seatsInfo[row][col] === 'available') {
+                            totalNumOfSeats++;
+                        }
                         if (seatsInfo[row][col] === 'taken') {
+                            totalNumOfSeats++;
                             takenSeats += 1;
                         }
                     }
                 }
-                tempSeats.totalNumOfSeats = totalNumOfSeats;
-                tempSeats.cinemaSize = getCinemaSize(totalNumOfSeats);
-                tempSeats.fullness = getFullness(totalNumOfSeats, takenSeats);
-                $scope.sessionsInfo.push(tempSeats);
-                console.log($scope.sessionsInfo);
+
+                showing.totalNumOfSeats = totalNumOfSeats;
+                showing.cinemaSize = getCinemaSize(totalNumOfSeats);
+                showing.fullness = getFullness(totalNumOfSeats, takenSeats);
+                showing.seats = seatsInfo;
+                showingsDataService.setShowingsData($scope.showingsData);
             });
         });
+        $scope.openSeatView = function(sessionId) {
+            var seatsData = _.find($scope.showingsData, function(showing) {
+                return showing.id === parseInt(sessionId);
+            });
+            if (seatsData.seats) {
+                console.log('am i here');
+                $state.go('seats', {
+                    showId: sessionId
+                });
+            }
+        }
 
         function getCinemaSize(totalSeats) {
-            if (totalSeats > 200) {
-                return 'Large';
-            } else if (totalSeats > 150) {
+            console.log(totalSeats);
+            if (totalSeats < 150) {
+                return 'Small';
+            } else if (totalSeats < 200) {
                 return 'Medium';
             } else {
-                return 'Small';
+                return 'Large';
             }
 
         }

@@ -11,7 +11,9 @@ angular.module('moviesowlApp')
     .controller('CinemasCtrl', function($scope, $http) {
 
         console.log('In cinemas controller');
+
         $scope.doRefresh = doRefresh;
+
         activate();
 
         ////
