@@ -30,7 +30,7 @@ angular.module('moviesowlApp')
             console.log('Reloading in 2 seconds');
             setTimeout(function() {
                 window.location.reload();
-            }, 8000);
+            }, 1000);
         }
 
         function reset() {
