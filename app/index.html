@@ -49,7 +49,9 @@
 
     <!-- build:template:dist
     <script>
-    
+
+    console.log(basket.get('scripts/templates.js'));
+
     var files = [{
         url: 'scripts/scripts.js'
     }, {
@@ -57,7 +59,9 @@
     }];
 
 console.log('Device is ready, time to load app files');
-basket.require.apply(null, files).then(function() {
+basket.require.apply(null, files).then(function(files) {
+    console.log('INDEX FILES:');
+    console.log(files);
     console.log('Loaded required files, bootstrapping now');
     angular.element(document).ready(function() {
         angular.bootstrap(document, ['moviesowlApp']);

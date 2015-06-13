@@ -30,7 +30,7 @@ angular.module('moviesowlApp')
             console.log('Reloading in 2 seconds');
             setTimeout(function() {
                 window.location.reload();
-            }, 2000);
+            }, 8000);
         }
 
         function reset() {
@@ -58,7 +58,9 @@ angular.module('moviesowlApp')
                 console.log('New files cached, about to reload');
                 console.log('Templates:');
                 console.log(basket.get('scripts/templates.js'));
+                console.log('RELOAD FILES:');
                 console.log(stuff);
+                
                 $scope.$broadcast('scroll.refreshComplete');
                 reload();
             }, function() {

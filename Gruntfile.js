@@ -48,7 +48,8 @@ module.exports = function(grunt) {
 
         ngtemplates: {
             moviesowlApp: {
-                src: '<%= yeoman.dist %>/templates/**/*.html',
+                cwd: '<%= yeoman.dist %>',
+                src: 'templates/**/*.html',
                 dest: '<%= yeoman.dist %>/scripts/templates.js'
             }
         },
