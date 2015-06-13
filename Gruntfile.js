@@ -35,6 +35,17 @@ module.exports = function(grunt) {
             src: '**/*'
         },
 
+        processhtml: {
+            options: {
+                // Task-specific options go here.
+            },
+            dist: {
+                files: {
+                    'www/index.html': ['www/index.html']
+                }
+            },
+        },
+
         // Environment Variables for Angular App
         // This creates an Angular Module that can be injected via ENV
         // Add any desired constants to the ENV objects below.
@@ -557,7 +568,8 @@ module.exports = function(grunt) {
         'cssmin',
         'uglify',
         'usemin',
-        'htmlmin'
+        'processhtml:dist',
+        // 'htmlmin'
     ]);
 
     grunt.registerTask('coverage', ['karma:continuous',

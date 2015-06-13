@@ -32,6 +32,8 @@
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
     <!-- your app's js -->
+
+    <!-- build:remove:dist -->
     <!-- build:js scripts/scripts.js -->
     <script src="scripts/app.js"></script>
     <script src="scripts/configuration.js"></script>
@@ -43,15 +45,45 @@
     <script src="scripts/services/showingsdataservice.js"></script>
     <script src="scripts/services/selectedmovieservice.js"></script>
     <!-- endbuild -->
+    <!-- /build -->
+
+    <!-- build:template:dist
+    <script>
+    basket.clear();
+
+    var files = [{
+        url: 'scripts/scripts.js'
+    }];
+
+console.log('Device is ready, time to load app files');
+basket.require.apply(null, files).then(function() {
+    console.log('Loaded required files, bootstrapping now');
+    angular.element(document).ready(function() {
+        angular.bootstrap(document, ['moviesowlApp']);
+    });
+}, function(reason) {
+    console.log('Failed to load files!', reason);
+});
+    </script>
+    /build -->
+    
 </head>
 
-<body ng-app="moviesowlApp">
+<body>
     <ion-nav-bar class="bar-positive">
         <ion-nav-back-button class="button-clear">
             <i class="ion-arrow-left-c"></i> Back
         </ion-nav-back-button>
     </ion-nav-bar>
     <ion-nav-view></ion-nav-view>
+
+    <!-- build:remove:dist -->
+    <script>
+    angular.element(document).ready(function() {
+        angular.bootstrap(document, ['moviesowlApp']);
+    });
+    </script>
+    <!-- /build -->
 </body>
 
 </html>

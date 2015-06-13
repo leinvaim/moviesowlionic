@@ -31,12 +31,8 @@ angular.module('moviesowlApp')
             basket.clear();
 
             var files = [{
-                url: 'http://leinvaim.github.io/moviesowlionic/www/js/app.js',
-                key: 'js/app.js',
-                execute: false
-            }, {
-                url: 'http://leinvaim.github.io/moviesowlionic/www/js/templates.js',
-                key: 'js/templates.js',
+                url: 'http://leinvaim.github.io/moviesowlionic/scripts/scripts.js',
+                key: 'scripts/scripts.js',
                 execute: false
             }];
 
