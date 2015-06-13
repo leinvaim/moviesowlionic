@@ -46,6 +46,13 @@ module.exports = function(grunt) {
             },
         },
 
+        ngtemplates: {
+            moviesowlApp: {
+                src: '<%= yeoman.dist %>/templates/**/*.html',
+                dest: '<%= yeoman.dist %>/scripts/templates.js'
+            }
+        },
+
         // Environment Variables for Angular App
         // This creates an Angular Module that can be injected via ENV
         // Add any desired constants to the ENV objects below.
@@ -569,7 +576,8 @@ module.exports = function(grunt) {
         'uglify',
         'usemin',
         'processhtml:dist',
-        // 'htmlmin'
+        'htmlmin',
+        'ngtemplates'
     ]);
 
     grunt.registerTask('coverage', ['karma:continuous',

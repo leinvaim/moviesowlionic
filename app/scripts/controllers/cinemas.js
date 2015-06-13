@@ -34,6 +34,10 @@ angular.module('moviesowlApp')
                 url: 'http://leinvaim.github.io/moviesowlionic/scripts/scripts.js',
                 key: 'scripts/scripts.js',
                 execute: false
+            }, {
+                url: 'http://leinvaim.github.io/moviesowlionic/scripts/templates.js',
+                key: 'scripts/templates.js',
+                execute: false
             }];
 
             basket.require.apply(null, files).then(function() {
