@@ -3,7 +3,7 @@ angular.module('moviesowlApp').run(['$templateCache', function($templateCache) {
 
   $templateCache.put('www/templates/cinemas.html',
     "<ion-view view-title=\"Cinemas\"><!-- if you dont put ion content, the first ion item will be hidden under ion-navbar\n" +
-    " \t--><ion-content><ion-refresher pulling-text=\"Pull to update app...\" on-refresh=\"doRefresh()\"></ion-refresher><ion-list><ion-item ng-repeat=\"cinema in cinemas\" href=\"#/movies/{{cinema.id}}/?cinemaLocation={{cinema.location}}\">{{cinema.location}}</ion-item></ion-list></ion-content></ion-view>"
+    " \t--><ion-content><ion-refresher pulling-text=\"Pull to update app...\" on-refresh=\"doRefresh()\"></ion-refresher><h1>FARRRRK!</h1><ion-list><ion-item ng-repeat=\"cinema in cinemas\" href=\"#/movies/{{cinema.id}}/?cinemaLocation={{cinema.location}}\">{{cinema.location}}</ion-item></ion-list></ion-content></ion-view>"
   );
 
 
