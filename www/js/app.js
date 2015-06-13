@@ -60,7 +60,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
     $scope.cinemaLocation = $stateParams.cinemaLocation;
     console.log($stateParams.cinemaLocation);
     $ionicLoading.show({
-        template: '<ion-spinner class="bubbles-energized"></ion-spinner>'
+        template: '<ion-spinner class="bubbles"></ion-spinner>'
     });
     // $http.get('http://api.moviesowl.com/v1/cinemas/12/movies?starting_after=1430870401').then(function(response) {
     $http.get('http://api.moviesowl.com/v1/cinemas/' + $stateParams.cinemaId + '/movies').then(function(response) {
