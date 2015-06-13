@@ -8,10 +8,12 @@
  * Controller of the moviesowlApp
  */
 angular.module('moviesowlApp')
-  .controller('SeatsCtrl', function($scope, $http, $stateParams, showingsDataService) {
+    .controller('SeatsCtrl', function($scope, $http, $stateParams, showingsDataService) {
 
         //$http.get('http://api.moviesowl.com/v1/showings/' + $stateParams.showId).then(function(response) {
         //  $http.get('http://api.moviesowl.com/v1/showings/141061').then(function(response) {
+
+        $scope.doRefresh = doRefresh;
 
         var seatsData = _.find(showingsDataService.showingsData, function(showing) {
             return showing.id === parseInt($stateParams.showId);
@@ -23,5 +25,15 @@ angular.module('moviesowlApp')
         var numOfSeatInRow = $scope.seatingPlan[0].length;
         $scope.seatWidth = 100 / numOfSeatInRow;
         // console.log(seatsData);
+        function doRefresh() {
+            console.log('Reloading Seats');
+            $http.get('http://api.moviesowl.com/v1/showings/' + $stateParams.showId).then(function(response) {
+                $scope.seatingPlan = response.data.seats;
+                $scope.$broadcast('scroll.refreshComplete');
+            }, function() {
+                $scope.$broadcast('scroll.refreshComplete');
+            });
 
-  });
+        }
+
+    });
