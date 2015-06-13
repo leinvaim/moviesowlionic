@@ -51,7 +51,7 @@ angular.module('moviesowlApp')
                     showId: sessionId
                 });
             }
-        }
+        };
 
         function getCinemaSize(totalSeats) {
             console.log(totalSeats);
