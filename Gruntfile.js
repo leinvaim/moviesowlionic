@@ -580,6 +580,11 @@ module.exports = function(grunt) {
         'ngtemplates'
     ]);
 
+    grunt.registerTask('deploy', [
+        'compress',
+        'gh-pages'
+    ]);
+
     grunt.registerTask('coverage', ['karma:continuous',
         'connect:coverage:keepalive'
     ]);
