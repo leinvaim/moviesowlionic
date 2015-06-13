@@ -8,11 +8,14 @@
                 on-refresh="doRefresh()">
         </ion-refresher>
 
+        <h1>FARRRRK 333</h1>
         <ion-list>
             <ion-item ng-repeat="cinema in cinemas" href="#/movies/{{cinema.id}}/?cinemaLocation={{cinema.location}}">
                 {{cinema.location}}
             </ion-item>
         </ion-list>
 
+        <button class="button button-full button-balanced" ng-click="reset()">Reset</button>
+        <button class="button button-full button-balanced" ng-click="doRefresh()">Update</button>
     </ion-content>
 </ion-view>

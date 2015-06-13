@@ -13,6 +13,7 @@ angular.module('moviesowlApp')
         console.log('In cinemas controller');
 
         $scope.doRefresh = doRefresh;
+        $scope.reset = reset;
 
         activate();
 
@@ -23,6 +24,19 @@ angular.module('moviesowlApp')
                 $scope.cinemas = response.data.data;
             });
             console.log('im here!');
+        }
+
+        function reload() {
+            console.log('Reloading in 2 seconds');
+            setTimeout(function() {
+                window.location.reload();
+            }, 2000);
+        }
+
+        function reset() {
+            console.log('Resetting');
+            basket.clear();
+            reload();
         }
 
         function doRefresh() {
@@ -40,9 +54,15 @@ angular.module('moviesowlApp')
                 execute: false
             }];
 
-            basket.require.apply(null, files).then(function() {
+            basket.require.apply(null, files).then(function(stuff) {
+                console.log('New files cached, about to reload');
+                console.log('Templates:');
+                console.log(basket.get('scripts/templates.js'));
+                console.log(stuff);
                 $scope.$broadcast('scroll.refreshComplete');
-                window.location.reload();
+                reload();
+            }, function() {
+                console.log('Failed to get from Github!');
             });
 
 
