@@ -7,8 +7,6 @@
                 pulling-text="Pull to update app..."
                 on-refresh="doRefresh()">
         </ion-refresher>
-
-        <h1>FROM</h1>
         <ion-list>
             <ion-item ng-repeat="cinema in cinemas" href="#/movies/{{cinema.id}}/?cinemaLocation={{cinema.location}}">
                 {{cinema.location}}
