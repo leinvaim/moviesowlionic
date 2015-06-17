@@ -1,9 +1,6 @@
 <ion-view view-title="{{cinemaLocation}}">
     <ion-content>
-        <ion-refresher 
-        pulling-text="Pull to update movies." 
-        on-refresh="doRefresh()"
-        spinner="bubbles">
+        <ion-refresher pulling-text="Pull to update movies." on-refresh="doRefresh()" spinner="bubbles">
         </ion-refresher>
         <div class="row" ng-repeat="row in movies" ng-hide="hasNoMovies">
             <div class="col col-50" ng-repeat="movie in row">
