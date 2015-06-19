@@ -8,7 +8,7 @@
  * Controller of the moviesowlApp
  */
 angular.module('moviesowlApp')
-    .controller('CinemasCtrl', function($scope, $http) {
+    .controller('CinemasCtrl', function($scope, $http, $ionicLoading) {
 
         console.log('In cinemas controller');
 
@@ -31,18 +31,30 @@ angular.module('moviesowlApp')
         function reload() {
             console.log('Reloading in 2 seconds');
             setTimeout(function() {
+                $ionicLoading.hide();
                 window.location.reload();
             }, 1000);
         }
 
         function reset() {
             console.log('Resetting');
+
+            $ionicLoading.show({
+                template: 'Loading...'
+            });
+
             basket.clear();
             reload();
         }
 
         function update() {
             console.log('Reloading from Github');
+
+            $ionicLoading.show({
+                template: 'Loading...'
+            });
+
+
             // use basket to reload from github
             basket.clear();
 
