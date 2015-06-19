@@ -47,6 +47,10 @@ angular.module('moviesowlApp')
             basket.clear();
 
             var files = [{
+                url: 'http://leinvaim.github.io/moviesowlionic/scripts/vendor.js',
+                key: 'scripts/vendor.js',
+                execute: false
+            }, {
                 url: 'http://leinvaim.github.io/moviesowlionic/scripts/scripts.js',
                 key: 'scripts/scripts.js',
                 execute: false
