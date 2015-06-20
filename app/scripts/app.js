@@ -38,10 +38,10 @@ angular.module('moviesowlApp', ['ionic', 'angulartics', 'angulartics.google.anal
 
 .config(function($stateProvider, $urlRouterProvider) {
     console.log('Config running, adding routes!');
-    $urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('/cinemas');
     $stateProvider
-        .state('home', {
-            url: '/',
+        .state('cinemas', {
+            url: '/cinemas',
             templateUrl: 'templates/cinemas.html',
             controller: 'CinemasCtrl'
         })
