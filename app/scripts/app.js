@@ -5,10 +5,15 @@
     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
 
+var uuid = '92bf24a5-20e5-4181-9778-2835f28c52d8';
+if(window.device) {
+    uuid = window.device.uuid;
+}
+
 ga('create', 'UA-51312192-5', {
     'storage' : 'none', // no cookies
     'cookieDomain' :'none', // no domain
-    'clientId':'92bf24a5-20e5-4181-9778-2835f28c52d8'
+    'clientId': uuid
 });
 ga('set', 'checkProtocolTask', null);
 //ga('send', 'pageview', {'page': '/my/phone'});
