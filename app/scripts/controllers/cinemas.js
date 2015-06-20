@@ -12,6 +12,7 @@ angular.module('moviesowlApp')
 
         console.log('In cinemas controller');
 
+        $scope.uuid = uuid;
         $scope.doRefresh = doRefresh;
         $scope.update = update;
         $scope.reset = reset;
