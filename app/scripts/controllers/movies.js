@@ -26,18 +26,36 @@ angular.module('moviesowlApp')
                 '/movies').then(function(response) {
                 $rootScope.movies = response.data.data; //I dont actually use this anymore
 
-                $scope.goodMovies = _.chunk(_.filter($rootScope.movies, function(movie) {
-                    return movie.tomato_meter >= 70;
-                }), 2);
-                $scope.fineMovies = _.chunk(_.filter($rootScope.movies, function(movie) {
-                    return movie.tomato_meter >= 50 && movie.tomato_meter < 70;
-                }), 2);
-                $scope.badMovies = _.chunk(_.filter($rootScope.movies, function(movie) {
-                    return movie.tomato_meter < 50 && movie.tomato_meter >= 0;
-                }), 2);
-                $scope.noRatingMovies = _.chunk(_.filter($rootScope.movies, function(movie) {
-                    return movie.tomato_meter < 0;
-                }), 2);
+                $scope.groups = [
+                    {
+                        name: 'Great Movies',
+                        style: 'balanced',
+                        movies: _.chunk(_.filter($rootScope.movies, function(movie) {
+                            return movie.tomato_meter >= 70;
+                        }), 2)
+                    },
+                    {
+                        name: 'Fine Movies',
+                        style: 'energized',
+                        movies: _.chunk(_.filter($rootScope.movies, function(movie) {
+                            return movie.tomato_meter >= 50 && movie.tomato_meter < 70;
+                        }), 2)
+                    },
+                    {
+                        name: 'Bad Movies',
+                        style: 'assertive',
+                        movies: _.chunk(_.filter($rootScope.movies, function(movie) {
+                            return movie.tomato_meter < 50 && movie.tomato_meter >= 0;
+                        }), 2)
+                    },
+                    {
+                        name: 'No Rating Movies',
+                        style: 'dark',
+                        movies: _.chunk(_.filter($rootScope.movies, function(movie) {
+                            return movie.tomato_meter < 0;
+                        }), 2)
+                    }
+                ];
 
                 $scope.hasNoMovies = false;
                 if (response.data.data.length < 1) {
@@ -66,10 +84,7 @@ angular.module('moviesowlApp')
 
         function doRefresh() {
             console.log('Reloading Movies');
-            $scope.goodMovies = [];
-            $scope.fineMovies = [];
-            $scope.badMovies = [];
-            $scope.noRatingMovies = [];
+            $scope.groups = [];
             loadMovies();
         }
     });
