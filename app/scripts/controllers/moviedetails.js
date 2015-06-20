@@ -8,7 +8,7 @@
  * Controller of the moviesowlApp
  */
 angular.module('moviesowlApp')
-  .controller('MovieDetailsCtrl', function($scope, $stateParams, $http, selectedMovieService, showingsDataService,
+    .controller('MovieDetailsCtrl', function($scope, $stateParams, $http, selectedMovieService, showingsDataService,
         $state) {
         // $scope.movie = _.find($rootScope.movies, function(movie) {
         //     return movie.id == $stateParams.movieId;
@@ -67,10 +67,12 @@ angular.module('moviesowlApp')
         }
 
         function getFullness(totalSeats, takenSeats) {
-            var percentage = parseInt(takenSeats / totalSeats * 100);
-            if (!percentage) {
+            if (totalSeats === 0 && takenSeats === 0) {
                 return 'not available';
             }
+
+            var percentage = parseInt(takenSeats / totalSeats * 100);
+
             if (percentage > 80) {
                 return 'Full';
             } else if (percentage > 30) {
@@ -79,4 +81,4 @@ angular.module('moviesowlApp')
                 return percentage + '% Full';
             }
         }
-  });
+    });
