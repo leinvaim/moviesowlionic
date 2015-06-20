@@ -11,7 +11,7 @@ ga('create', 'UA-51312192-5', {
     'clientId':'92bf24a5-20e5-4181-9778-2835f28c52d8'
 });
 ga('set', 'checkProtocolTask', null);
-ga('send', 'pageview', {'page': '/my/phone'});
+//ga('send', 'pageview', {'page': '/my/phone'});
 
 
 // Ionic Starter App
@@ -19,7 +19,7 @@ ga('send', 'pageview', {'page': '/my/phone'});
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('moviesowlApp', ['ionic'])
+angular.module('moviesowlApp', ['ionic', 'angulartics', 'angulartics.google.analytics'])
 
 .run(function($ionicPlatform) {
     $ionicPlatform.ready(function() {
