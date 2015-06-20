@@ -1,11 +1,11 @@
 <ion-view view-title="{{cinemaLocation}}">
-    <ion-content>
+    <ion-content ion-sticky>
         <ion-refresher pulling-text="Pull to update movies." on-refresh="doRefresh()" spinner="bubbles">
         </ion-refresher>
-        <div class="item item-divider bar bar-balanced">
-            <h1 class="title">Good Movies</h1>
-        </div>
         <div ng-hide="hasNoMovies">
+            <div class="item item-divider bar bar-balanced">
+                <h1 class="title">Good Movies</h1>
+            </div>
             <div class="row" ng-repeat="row in goodMovies">
                 <div class="col col-50" ng-repeat="movie in row">
                     <div style="width:100%; height:100%; background-color:white;" ng-click="selectMovie(movie)">
