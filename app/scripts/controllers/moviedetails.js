@@ -68,6 +68,9 @@ angular.module('moviesowlApp')
 
         function getFullness(totalSeats, takenSeats) {
             var percentage = parseInt(takenSeats / totalSeats * 100);
+            if (!percentage) {
+                return 'not available';
+            }
             if (percentage > 80) {
                 return 'Full';
             } else if (percentage > 30) {
