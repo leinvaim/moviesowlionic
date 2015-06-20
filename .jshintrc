@@ -60,6 +60,7 @@
        "cordova": false,
        "StatusBar": false,
        "basket": false,
-       "_": false
+       "_": false,
+      "ga": false
     }
 }

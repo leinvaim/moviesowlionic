@@ -1,21 +1,7 @@
 'use strict';
 
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
 
-var uuid = '92bf24a5-20e5-4181-9778-2835f28c52d8';
-if(window.device) {
-    uuid = window.device.uuid;
-}
 
-ga('create', 'UA-51312192-5', {
-    'storage' : 'none', // no cookies
-    'cookieDomain' :'none', // no domain
-    'clientId': uuid
-});
-ga('set', 'checkProtocolTask', null);
 //ga('send', 'pageview', {'page': '/my/phone'});
 
 
@@ -28,6 +14,7 @@ angular.module('moviesowlApp', ['ionic', 'angulartics', 'angulartics.google.anal
 
 .run(function($ionicPlatform) {
     $ionicPlatform.ready(function() {
+
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
         if (window.cordova && window.cordova.plugins.Keyboard) {

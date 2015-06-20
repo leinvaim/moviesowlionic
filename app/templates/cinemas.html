@@ -1,6 +1,10 @@
 <ion-view view-title="Cinemas">
     <!-- if you dont put ion content, the first ion item will be hidden under ion-navbar
  	-->
+    <div>
+        {{ uuid }}
+    </div>
+
 
     <ion-content>
         <ion-refresher
@@ -15,8 +19,6 @@
 
         <button class="button button-full button-balanced" ng-click="reset()">Reset</button>
         <button class="button button-full button-balanced" ng-click="update()">Update</button>
-        <div>
-            {{ uuid }}
-        </div>
+
     </ion-content>
 </ion-view>
