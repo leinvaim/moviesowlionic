@@ -84,7 +84,6 @@ angular.module('moviesowlApp')
 
         function doRefresh() {
             console.log('Reloading Movies');
-            $scope.groups = [];
             loadMovies();
         }
     });
