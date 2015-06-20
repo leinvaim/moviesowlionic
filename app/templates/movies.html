@@ -8,6 +8,7 @@
                     <!-- <a href="#/movie/{{movie.id}}"> -->
                     <img ng-src="{{movie.poster}}" style="width:100%;">
                     <div>{{movie.tomato_meter}}</div>
+                    <span am-time-ago="{{movie.showings.data[0].start_time}}" am-preprocess="unix"> </span>
                     <!--  </a> -->
                 </div>
             </div>
