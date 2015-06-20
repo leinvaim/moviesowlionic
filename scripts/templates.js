@@ -3,7 +3,7 @@ angular.module('moviesowlApp').run(['$templateCache', function($templateCache) {
 
   $templateCache.put('templates/cinemas.html',
     "<ion-view view-title=\"Cinemas\"><!-- if you dont put ion content, the first ion item will be hidden under ion-navbar\n" +
-    " \t--><ion-content><ion-refresher pulling-text=\"Pull to update app...\" on-refresh=\"doRefresh()\"></ion-refresher><ion-list><ion-item ng-repeat=\"cinema in cinemas\" href=\"#/movies/{{cinema.id}}/?cinemaLocation={{cinema.location}}\">{{cinema.location}}</ion-item></ion-list><button class=\"button button-full button-balanced\" ng-click=\"reset()\">Reset</button> <button class=\"button button-full button-balanced\" ng-click=\"update()\">Update</button><div>{{ uuid }}</div></ion-content></ion-view>"
+    " \t--><div>{{ uuid }}</div><ion-content><ion-refresher pulling-text=\"Pull to update app...\" on-refresh=\"doRefresh()\"></ion-refresher><ion-list><ion-item ng-repeat=\"cinema in cinemas\" href=\"#/movies/{{cinema.id}}/?cinemaLocation={{cinema.location}}\">{{cinema.location}}</ion-item></ion-list><button class=\"button button-full button-balanced\" ng-click=\"reset()\">Reset</button> <button class=\"button button-full button-balanced\" ng-click=\"update()\">Update</button></ion-content></ion-view>"
   );
 
 
