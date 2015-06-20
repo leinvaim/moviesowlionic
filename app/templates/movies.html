@@ -1,9 +1,9 @@
 <ion-view view-title="{{cinemaLocation}}">
-    <ion-content ion-sticky>
+    <ion-content>
         <ion-refresher pulling-text="Pull to update movies." on-refresh="doRefresh()" spinner="bubbles">
         </ion-refresher>
         <div ng-hide="hasNoMovies">
-            <div class="item item-divider bar bar-balanced" ng-if="goodMovies.length > 0">
+            <div class="item bar bar-balanced" ng-if="goodMovies.length > 0">
                 <h1 class="title">Good Movies</h1>
             </div>
             <div class="row" ng-repeat="row in goodMovies">
