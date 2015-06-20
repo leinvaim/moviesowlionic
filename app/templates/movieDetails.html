@@ -48,8 +48,14 @@
                             VMAX
                         </span>
                     </div>
-                    <div class="col col-40" style="text-align:right;">
+                    <div class="col col-40" style="text-align:right;" ng-show="session.fullness.length > 0">
                         {{session.fullness}}
+                    </div>
+                    <div class="col col-40" style="text-align:right;" ng-hide="session.fullness.length > 0">
+                        <div class="custom-spinner">
+                            <div class="dot1"></div>
+                            <div class="dot2"></div>
+                        </div>
                     </div>
                 </div>
             </ion-item>
