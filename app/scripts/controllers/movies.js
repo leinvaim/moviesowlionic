@@ -66,6 +66,10 @@ angular.module('moviesowlApp')
 
         function doRefresh() {
             console.log('Reloading Movies');
+            $scope.goodMovies = [];
+            $scope.fineMovies = [];
+            $scope.badMovies = [];
+            $scope.noRatingMovies = [];
             loadMovies();
         }
     });
