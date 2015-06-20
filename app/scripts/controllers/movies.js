@@ -25,7 +25,20 @@ angular.module('moviesowlApp')
             $http.get('http://api.moviesowl.com/v1/cinemas/' + $stateParams.cinemaId +
                 '/movies').then(function(response) {
                 $rootScope.movies = response.data.data; //I dont actually use this anymore
-                $scope.movies = _.chunk($rootScope.movies, 2);
+
+                $scope.goodMovies = _.chunk(_.filter($rootScope.movies, function(movie) {
+                    return movie.tomato_meter >= 70;
+                }), 2);
+                $scope.fineMovies = _.chunk(_.filter($rootScope.movies, function(movie) {
+                    return movie.tomato_meter >= 50 && movie.tomato_meter < 70;
+                }), 2);
+                $scope.badMovies = _.chunk(_.filter($rootScope.movies, function(movie) {
+                    return movie.tomato_meter < 50 && movie.tomato_meter >= 0;
+                }), 2);
+                $scope.noRatingMovies = _.chunk(_.filter($rootScope.movies, function(movie) {
+                    return movie.tomato_meter < 0;
+                }), 2);
+
                 $scope.hasNoMovies = false;
                 if (response.data.data.length < 1) {
                     $scope.hasNoMovies = true;
