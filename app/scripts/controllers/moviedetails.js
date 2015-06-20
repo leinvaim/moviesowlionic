@@ -45,7 +45,8 @@ angular.module('moviesowlApp')
             var seatsData = _.find($scope.showingsData, function(showing) {
                 return showing.id === parseInt(sessionId);
             });
-            if (seatsData.seats) {
+
+            if (seatsData.seats && seatsData.seats.length > 0) {
                 console.log('am i here');
                 $state.go('seats', {
                     showId: sessionId
