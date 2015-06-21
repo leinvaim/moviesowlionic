@@ -52,11 +52,12 @@ angular.module('moviesowlApp', ['ionic', 'angulartics', 'angulartics.google.anal
             StatusBar.styleDefault();
         }
     });
+
+
 }])
 
 .config(["$stateProvider", "$urlRouterProvider", function($stateProvider, $urlRouterProvider) {
     console.log('Config running, adding routes!');
-    console.log('Is this working?!!?');
     $urlRouterProvider.otherwise('/cinemas');
     $stateProvider
         .state('cinemas', {
