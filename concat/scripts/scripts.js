@@ -440,7 +440,7 @@ angular.module('moviesowlApp')
                 console.log(stuff);
 
                 $scope.$broadcast('scroll.refreshComplete');
-                reload();
+                //reload();
             }, function() {
                 console.log('Failed to get from Github!');
             });
