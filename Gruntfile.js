@@ -376,7 +376,7 @@ module.exports = function (grunt) {
             dist: {
                 files: [{
                     expand: true,
-                    cwd: '<%= yeoman.dist %>/<%= yeoman.styles %>',
+                    cwd: '.temp/<%= yeoman.styles %>',
                     src: ['*.css'],
                     dest: '<%= yeoman.dist %>/<%= yeoman.styles %>'
                 }]
