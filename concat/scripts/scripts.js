@@ -242,26 +242,32 @@ angular.module('moviesowlApp')
             // use basket to reload from github
             basket.clear();
 
+            var time = new Date().getTime();
             var files = [{
                 url: 'http://leinvaim.github.io/moviesowlionic/scripts/vendor.js',
                 key: 'scripts/vendor.js',
-                execute: false
+                execute: false,
+                unique: time
             }, {
                 url: 'http://leinvaim.github.io/moviesowlionic/scripts/scripts.js',
                 key: 'scripts/scripts.js',
-                execute: false
+                execute: false,
+                unique: time
             }, {
                 url: 'http://leinvaim.github.io/moviesowlionic/scripts/templates.js',
                 key: 'scripts/templates.js',
-                execute: false
+                execute: false,
+                unique: time
             }, {
                 url: 'http://leinvaim.github.io/moviesowlionic/styles/vendor.css',
                 key: 'styles/vendor.css',
-                execute: false
+                execute: false,
+                unique: time
             }, {
                 url: 'http://leinvaim.github.io/moviesowlionic/styles/style.css',
                 key: 'styles/style.css',
-                execute: false
+                execute: false,
+                unique: time
             }];
 
             console.log('Files to load');
