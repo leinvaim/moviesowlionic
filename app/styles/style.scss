@@ -1,6 +1,11 @@
 /* Empty. Add your own CSS if you like */
 .item.wrap, .item-content.wrap {
-white-space: normal;
+  white-space: normal;
+}
+
+
+.item-content {
+  background-color: red !important;
 }
 /*#poster {
     position: absolute;
@@ -13,54 +18,54 @@ white-space: normal;
     background-size: contain;
 }*/
 .blink_me {
-    -webkit-animation-name: blinker;
-    -webkit-animation-duration: 2s;
-    -webkit-animation-timing-function: linear;
-    -webkit-animation-iteration-count: infinite;
-    -moz-animation-name: blinker;
-    -moz-animation-duration: 2s;
-    -moz-animation-timing-function: linear;
-    -moz-animation-iteration-count: infinite;
-    animation-name: blinker;
-    animation-duration: 2s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
+  -webkit-animation-name: blinker;
+  -webkit-animation-duration: 2s;
+  -webkit-animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+  -moz-animation-name: blinker;
+  -moz-animation-duration: 2s;
+  -moz-animation-timing-function: linear;
+  -moz-animation-iteration-count: infinite;
+  animation-name: blinker;
+  animation-duration: 2s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
 }
 
 @-moz-keyframes blinker {
-    0% {
-        opacity: 1.0;
-    }
-    50% {
-        opacity: 0.5;
-    }
-    100% {
-        opacity: 1.0;
-    }
+  0% {
+    opacity: 1.0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1.0;
+  }
 }
 
 @-webkit-keyframes blinker {
-    0% {
-        opacity: 1.0;
-    }
-    50% {
-        opacity: 0.5;
-    }
-    100% {
-        opacity: 1.0;
-    }
+  0% {
+    opacity: 1.0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1.0;
+  }
 }
 
 @keyframes blinker {
-    0% {
-        opacity: 1.0;
-    }
-    50% {
-        opacity: 0.5;
-    }
-    100% {
-        opacity: 1.0;
-    }
+  0% {
+    opacity: 1.0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1.0;
+  }
 }
 
 .custom-spinner {
@@ -81,7 +86,7 @@ white-space: normal;
   top: 0;
   background-color: #333;
   border-radius: 100%;
-  
+
   -webkit-animation: bounce 2.0s infinite ease-in-out;
   animation: bounce 2.0s infinite ease-in-out;
 }
@@ -102,11 +107,11 @@ white-space: normal;
 }
 
 @keyframes bounce {
-  0%, 100% { 
+  0%, 100% {
     transform: scale(0.0);
     -webkit-transform: scale(0.0);
-  } 50% { 
-    transform: scale(1.0);
-    -webkit-transform: scale(1.0);
-  }
+  } 50% {
+      transform: scale(1.0);
+      -webkit-transform: scale(1.0);
+    }
 }
