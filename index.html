@@ -1,15 +1,22 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no,width=device-width"><title></title><link rel="stylesheet" href="styles/vendor.css"><link href="styles/style.css" rel="stylesheet"><!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no,width=device-width"><title></title><!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
     <link href="styles/ionic.app.css" rel="stylesheet">
-    --><script src="scripts/basket-full.js"></script><!-- ionic/angularjs js --><!-- cordova script (this will be a 404 during development) --><script src="cordova.js"></script><!-- your app's js --><script>console.log(basket.get('scripts/templates.js'));
-    var files = [{
+    --><script src="scripts/basket-full.js"></script><!-- ionic/angularjs js --><!-- cordova script (this will be a 404 during development) --><script src="cordova.js"></script><!-- your app's js --><script>var files = {
+    js: [{
     url: 'scripts/vendor.js'
     }, {
     url: 'scripts/scripts.js'
     }, {
     url: 'scripts/templates.js'
-    }];
+    }],
+    css: [{
+    url: 'styles/vendor.css', execute: false
+    }, {
+    url: 'styles/style.css', execute: false
+    }]
+    };
+    console.log(basket.get('scripts/templates.js'));
     console.log('Device is ready, time to load app files');
-    basket.require.apply(null, files).then(function(files) {
+    basket.require.apply(null, files.js).then(function(files) {
     console.log('INDEX FILES:');
     console.log(files);
     console.log('Loaded required files, bootstrapping now');
@@ -18,6 +25,22 @@
     });
     }, function(reason) {
     console.log('Failed to load files!', reason);
+    });
+    basket.require.apply(null, files.css).then(function(responses) {
+    console.log('css');
+    console.log(responses);
+    for(var i = 0; i < responses.length; i++) {
+    // HACK: function parameters for the promise method don't appear to be documented, but they contain the responses for now.
+    var css = responses[i].data;
+    console.log('adding css files');
+    _stylesheet.appendStyleSheet(css, function(err, style) {
+    if (err) {
+    console.error(err);
+    } else {
+    console.log("Stylesheet successfully load via basket.js");
+    }
+    });
+    }
     });</script><body><ion-nav-bar class="bar-positive"><ion-nav-back-button class="button-clear"><i class="ion-arrow-left-c"></i> Back</ion-nav-back-button></ion-nav-bar><ion-nav-view></ion-nav-view><script>//
 //        ga('create', 'UA-51312192-5', 'auto');
 //        ga('send', 'pageview');</script>
