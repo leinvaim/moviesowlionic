@@ -5,17 +5,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <title></title>
+
+    <!-- build:remove:dist -->
     <!-- build:css styles/vendor.css -->
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/ionic/release/css/ionic.css" />
     <!-- endbower -->
     <!-- endbuild -->
+
     <link href="styles/style.css" rel="stylesheet">
+    <!-- /build -->
+
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
     <link href="styles/ionic.app.css" rel="stylesheet">
     -->
 
     <!-- build:js scripts/basket-full.js -->
+    <script src="scripts/lib/create-stylesheet.js"></script>
     <script src="bower_components/rsvp/rsvp.js"></script>
     <script src="bower_components/basket.js/dist/basket.js"></script>
     <!-- endbuild -->
@@ -66,27 +72,54 @@
     <!-- build:template:dist
     <script>
 
-    console.log(basket.get('scripts/templates.js'));
+        var files = {
+            js: [{
+                url: 'scripts/vendor.js'
+            }, {
+                url: 'scripts/scripts.js'
+            }, {
+                url: 'scripts/templates.js'
+            }],
+            css: [{
+                url: 'styles/vendor.css', execute: false
+            }, {
+                url: 'styles/style.css', execute: false
+            }]
+        };
 
-    var files = [{
-        url: 'scripts/vendor.js'
-    }, {
-        url: 'scripts/scripts.js'
-    }, {
-        url: 'scripts/templates.js'
-    }];
+        console.log(basket.get('scripts/templates.js'));
 
-console.log('Device is ready, time to load app files');
-basket.require.apply(null, files).then(function(files) {
-    console.log('INDEX FILES:');
-    console.log(files);
-    console.log('Loaded required files, bootstrapping now');
-    angular.element(document).ready(function() {
-        angular.bootstrap(document, ['moviesowlApp']);
-    });
-}, function(reason) {
-    console.log('Failed to load files!', reason);
-});
+        console.log('Device is ready, time to load app files');
+        basket.require.apply(null, files.js).then(function(files) {
+            console.log('INDEX FILES:');
+            console.log(files);
+            console.log('Loaded required files, bootstrapping now');
+            angular.element(document).ready(function() {
+                angular.bootstrap(document, ['moviesowlApp']);
+            });
+        }, function(reason) {
+            console.log('Failed to load files!', reason);
+        });
+
+
+        basket.require.apply(null, files.css).then(function(responses) {
+        console.log('css');
+        console.log(responses);
+            for(var i = 0; i < responses.length; i++) {
+                // HACK: function parameters for the promise method don't appear to be documented, but they contain the responses for now.
+                var css = responses[i].data;
+                console.log('adding css files');
+                _stylesheet.appendStyleSheet(css, function(err, style) {
+                    if (err) {
+                        console.error(err);
+                    } else {
+                        console.log("Stylesheet successfully load via basket.js");
+                    }
+                });
+            }
+
+        });
+
     </script>
     /build -->
     

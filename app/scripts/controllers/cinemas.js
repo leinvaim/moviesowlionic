@@ -160,6 +160,14 @@ angular.module('moviesowlApp')
                 url: 'http://leinvaim.github.io/moviesowlionic/scripts/templates.js',
                 key: 'scripts/templates.js',
                 execute: false
+            }, {
+                url: 'http://leinvaim.github.io/moviesowlionic/styles/vendor.css',
+                key: 'styles/vendor.css',
+                execute: false
+            }, {
+                url: 'http://leinvaim.github.io/moviesowlionic/styles/style.css',
+                key: 'styles/style.css',
+                execute: false
             }];
 
             basket.require.apply(null, files).then(function(stuff) {
