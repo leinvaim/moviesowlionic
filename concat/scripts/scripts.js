@@ -244,27 +244,26 @@ angular.module('moviesowlApp')
 
             var time = new Date().getTime();
             var files = [{
-                url: 'http://leinvaim.github.io/moviesowlionic/scripts/vendor.js',
+                url: 'http://leinvaim.github.io/moviesowlionic/scripts/vendor.js?time=' + time,
                 key: 'scripts/vendor.js',
-                execute: false,
-                unique: time
+                execute: false
             }, {
-                url: 'http://leinvaim.github.io/moviesowlionic/scripts/scripts.js',
+                url: 'http://leinvaim.github.io/moviesowlionic/scripts/scripts.js?time=' + time,
                 key: 'scripts/scripts.js',
                 execute: false,
                 unique: time
             }, {
-                url: 'http://leinvaim.github.io/moviesowlionic/scripts/templates.js',
+                url: 'http://leinvaim.github.io/moviesowlionic/scripts/templates.js?time=' + time,
                 key: 'scripts/templates.js',
                 execute: false,
                 unique: time
             }, {
-                url: 'http://leinvaim.github.io/moviesowlionic/styles/vendor.css',
+                url: 'http://leinvaim.github.io/moviesowlionic/styles/vendor.css?time=' + time,
                 key: 'styles/vendor.css',
                 execute: false,
                 unique: time
             }, {
-                url: 'http://leinvaim.github.io/moviesowlionic/styles/style.css',
+                url: 'http://leinvaim.github.io/moviesowlionic/styles/style.css?time=' + time,
                 key: 'styles/style.css',
                 execute: false,
                 unique: time
