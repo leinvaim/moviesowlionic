@@ -429,6 +429,9 @@ angular.module('moviesowlApp')
                 execute: false
             }];
 
+            console.log('Files to load');
+            console.log(files);
+
             basket.require.apply(null, files).then(function(stuff) {
                 console.log('New files cached, about to reload');
                 console.log('Templates:');
