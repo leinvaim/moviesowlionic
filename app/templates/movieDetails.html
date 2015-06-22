@@ -9,9 +9,6 @@
                     {{movie.title}}
                 </div>
                 <div class="row">
-                    Rotten Tomatoes: {{movie.tomato_meter}}
-                </div>
-                <div class="row">
                     Run Time: {{movie.run_time}}
                 </div>
                 <div class="row">
@@ -26,6 +23,11 @@
         </div>
         <ion-list>
             <ion-item class="wrap">
+                <div>Rotten Tomatoes</div>
+                <img src="images/{{rottenLogo}}" style="width:25px;">
+                {{movie.tomato_meter}}%
+            </ion-item>
+            <ion-item class="wrap">
                 Synopsis
                 <br/>{{movie.synopsis}}
             </ion-item>
@@ -33,18 +35,18 @@
                 <div class="row">
                     <div class="col col-25" style="text-align:left;">{{session.start_time*1000| date:'h:mma' }}</div>
                     <div class="col col-35" ng-show="session.screen_type === 'standard'">
-                        <span ng-show="session.showing_type ==='3D'" style="color:red; font-weight:600;">
+                        <span ng-show="session.showing_type ==='3D'" style="color:red; font-weight:bold;">
                             3D
                         </span> {{session.cinemaSize}}
                     </div>
                     <div class="col col-35" ng-hide="session.screen_type === 'standard'">
-                        <span ng-show="session.showing_type ==='3D'" style="color:red; font-weight:600;">
+                        <span ng-show="session.showing_type ==='3D'" style="color:red; font-weight:bold;">
                             3D
                         </span>
-                        <span ng-show="session.screen_type ==='gold class'" style="color:goldenrod; font-weight:600">
+                        <span ng-show="session.screen_type ==='gold class'" style="color:goldenrod; font-weight:bold">
                             Gold Class
                         </span>
-                        <span ng-show="session.screen_type ==='vmax'" style="color:blue; font-weight:600;">
+                        <span ng-show="session.screen_type ==='vmax'" style="color:blue; font-weight:bold;">
                             VMAX
                         </span>
                     </div>

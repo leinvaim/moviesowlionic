@@ -28,21 +28,21 @@ angular.module('moviesowlApp')
 
                 $scope.groups = [
                     {
-                        name: 'Great Movies',
+                        name: 'Good Movies',
                         style: 'balanced',
                         movies: _.chunk(_.filter($rootScope.movies, function(movie) {
                             return movie.tomato_meter >= 70;
                         }), 2)
                     },
                     {
-                        name: 'Fine Movies',
+                        name: 'Less Good Movies',
                         style: 'energized',
                         movies: _.chunk(_.filter($rootScope.movies, function(movie) {
                             return movie.tomato_meter >= 50 && movie.tomato_meter < 70;
                         }), 2)
                     },
                     {
-                        name: 'Bad Movies',
+                        name: 'Not Good Movies',
                         style: 'assertive',
                         movies: _.chunk(_.filter($rootScope.movies, function(movie) {
                             return movie.tomato_meter < 50 && movie.tomato_meter >= 0;

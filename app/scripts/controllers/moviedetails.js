@@ -16,6 +16,18 @@ angular.module('moviesowlApp')
         $scope.movie = selectedMovieService.selectedMovie;
         $scope.showingsData = $scope.movie.showings.data;
 
+        if ($scope.movie.tomato_meter < 60) {
+            $scope.rottenLogo = 'rotten.png';
+        }
+        if ($scope.movie.tomato_meter > 59) {
+            $scope.rottenLogo = 'fresh.png';
+        }
+        if ($scope.movie.tomato_meter > 74) {
+            $scope.rottenLogo = 'CF_240x240.png';
+        }
+
+
+
         _.forEach($scope.showingsData, function(showing) {
             $http.get('http://api.moviesowl.com/v1/showings/' + showing.id).then(function(response) {
                 var tempSeats = response.data;
