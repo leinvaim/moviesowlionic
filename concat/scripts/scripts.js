@@ -319,21 +319,21 @@ angular.module('moviesowlApp')
 
                 $scope.groups = [
                     {
-                        name: 'Great Movies',
+                        name: 'Good Movies',
                         style: 'balanced',
                         movies: _.chunk(_.filter($rootScope.movies, function(movie) {
                             return movie.tomato_meter >= 70;
                         }), 2)
                     },
                     {
-                        name: 'Fine Movies',
+                        name: 'Less Good Movies',
                         style: 'energized',
                         movies: _.chunk(_.filter($rootScope.movies, function(movie) {
                             return movie.tomato_meter >= 50 && movie.tomato_meter < 70;
                         }), 2)
                     },
                     {
-                        name: 'Bad Movies',
+                        name: 'Not Good Movies',
                         style: 'assertive',
                         movies: _.chunk(_.filter($rootScope.movies, function(movie) {
                             return movie.tomato_meter < 50 && movie.tomato_meter >= 0;
@@ -396,6 +396,18 @@ angular.module('moviesowlApp')
         // });
         $scope.movie = selectedMovieService.selectedMovie;
         $scope.showingsData = $scope.movie.showings.data;
+
+        if ($scope.movie.tomato_meter < 60) {
+            $scope.rottenLogo = 'rotten.png';
+        }
+        if ($scope.movie.tomato_meter > 59) {
+            $scope.rottenLogo = 'fresh.png';
+        }
+        if ($scope.movie.tomato_meter > 74) {
+            $scope.rottenLogo = 'CF_240x240.png';
+        }
+
+
 
         _.forEach($scope.showingsData, function(showing) {
             $http.get('http://api.moviesowl.com/v1/showings/' + showing.id).then(function(response) {
