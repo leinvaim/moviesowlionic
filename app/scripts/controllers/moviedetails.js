@@ -17,13 +17,13 @@ angular.module('moviesowlApp')
         $scope.showingsData = $scope.movie.showings.data;
 
         if ($scope.movie.tomato_meter < 60) {
-            $scope.rottenLogo = 'rotten.png';
+            $scope.rottenLogo = 'http://leinvaim.github.io/moviesowlionic/images/rotten.png';
         }
         if ($scope.movie.tomato_meter > 59) {
-            $scope.rottenLogo = 'fresh.png';
+            $scope.rottenLogo = 'http://leinvaim.github.io/moviesowlionic/images/fresh.png';
         }
         if ($scope.movie.tomato_meter > 74) {
-            $scope.rottenLogo = 'CF_240x240.png';
+            $scope.rottenLogo = 'http://leinvaim.github.io/moviesowlionic/images/CF_240x240.png';
         }
 
 
