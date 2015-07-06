@@ -1,6 +1,7 @@
 <ion-modal-view>
     <ion-header-bar>
         <h1 class="title">Cinemas</h1>
+        <button class="button button-outline button-dark" ng-click="closeModalOnly()">Done</button>
     </ion-header-bar>
     <ion-content>
         <label ng-repeat="cinema in cinemas" class="item item-radio item-icon-right" ng-click="closeModal(cinema)">
