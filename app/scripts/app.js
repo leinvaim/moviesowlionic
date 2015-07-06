@@ -31,15 +31,15 @@ angular.module('moviesowlApp', ['ionic', 'angulartics', 'angulartics.google.anal
 
 .config(function($stateProvider, $urlRouterProvider) {
     console.log('Config running, adding routes!');
-    $urlRouterProvider.otherwise('/cinemas');
+    $urlRouterProvider.otherwise('/movies');
     $stateProvider
-        .state('cinemas', {
-            url: '/cinemas',
-            templateUrl: 'templates/cinemas.html',
-            controller: 'CinemasCtrl'
-        })
+        // .state('cinemas', {
+        //     url: '/cinemas',
+        //     templateUrl: 'templates/cinemas.html',
+        //     controller: 'CinemasCtrl'
+        // })
         .state('movies', {
-            url: '/movies/:cinemaId/?cinemaLocation',
+            url: '/movies',
             templateUrl: 'templates/movies.html',
             controller: 'MoviesCtrl'
         })

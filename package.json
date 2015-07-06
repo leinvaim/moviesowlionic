@@ -46,7 +46,8 @@
     "plist": "1.1.0",
     "ripple-emulator": "~0.9.24",
     "time-grunt": "~1.0.0",
-    "win-spawn": "^2.0.0"
+    "win-spawn": "^2.0.0",
+    "grunt-manfiest": "~0.4.2"
   },
   "engines": {
     "node": ">=0.10.0"
