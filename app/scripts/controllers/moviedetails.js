@@ -16,15 +16,15 @@ angular.module('moviesowlApp')
         $scope.movie = selectedMovieService.selectedMovie;
         $scope.showingsData = $scope.movie.showings.data;
 
-        // if ($scope.movie.tomato_meter < 60) {
-        //     $scope.rottenLogo = 'http://leinvaim.github.io/moviesowlionic/images/rotten.png';
-        // }
-        // if ($scope.movie.tomato_meter > 59) {
-        //     $scope.rottenLogo = 'http://leinvaim.github.io/moviesowlionic/images/fresh.png';
-        // }
-        // if ($scope.movie.tomato_meter > 74) {
-        //     $scope.rottenLogo = 'http://leinvaim.github.io/moviesowlionic/images/CF_240x240.png';
-        // }
+        if ($scope.movie.tomato_meter < 60) {
+            $scope.rottenLogo = 'images/rotten.png';
+        }
+        if ($scope.movie.tomato_meter > 59) {
+            $scope.rottenLogo = 'images/fresh.png';
+        }
+        if ($scope.movie.tomato_meter > 74) {
+            $scope.rottenLogo = 'images/CF_240x240.png';
+        }
 
 
 
