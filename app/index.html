@@ -5,30 +5,24 @@
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <title></title>
-
     <!-- build:remove:dist -->
     <!-- build:css styles/vendor.css -->
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/ionic/release/css/ionic.css" />
     <!-- endbower -->
     <!-- endbuild -->
-
     <!-- build:css(.tmp) styles/style.css -->
     <link href="styles/style.css" rel="stylesheet">
     <!-- endbuild -->
-
     <!-- /build -->
-
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
     <link href="styles/ionic.app.css" rel="stylesheet">
     -->
-
     <!-- build:js scripts/basket-full.js -->
     <script src="scripts/lib/create-stylesheet.js"></script>
     <script src="bower_components/rsvp/rsvp.js"></script>
     <script src="bower_components/basket.js/dist/basket.js"></script>
     <!-- endbuild -->
-
     <!-- ionic/angularjs js -->
     <!-- build:remove:dist -->
     <!-- build:js scripts/vendor.js -->
@@ -52,11 +46,9 @@
     <!-- endbower -->
     <!-- endbuild -->
     <!-- /build -->
-
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
     <!-- your app's js -->
-
     <!-- build:remove:dist -->
     <!-- build:js scripts/scripts.js -->
     <script src="scripts/tracking.js"></script>
@@ -70,9 +62,9 @@
     <script src="scripts/services/showingsdataservice.js"></script>
     <script src="scripts/services/selectedmovieservice.js"></script>
     <script src="scripts/services/cinemaslist.js"></script>
+    <script src="scripts/directives/ngbgslideshow.js"></script>
     <!-- endbuild -->
     <!-- /build -->
-
     <!-- build:template:dist
     <script>
 
@@ -126,17 +118,15 @@
 
     </script>
     /build -->
-    
 </head>
 
 <body>
-    <ion-nav-bar class="bar-positive">
+    <ion-nav-bar class="bar-dark">
         <ion-nav-back-button class="button-clear">
             <i class="ion-arrow-left-c"></i> Back
         </ion-nav-back-button>
     </ion-nav-bar>
     <ion-nav-view></ion-nav-view>
-
     <!-- build:remove:dist -->
     <script>
     angular.element(document).ready(function() {
@@ -144,14 +134,10 @@
     });
     </script>
     <!-- /build -->
-
-
     <script>
-
-//
-//        ga('create', 'UA-51312192-5', 'auto');
-//        ga('send', 'pageview');
-
+    //
+    //        ga('create', 'UA-51312192-5', 'auto');
+    //        ga('send', 'pageview');
     </script>
 </body>
 

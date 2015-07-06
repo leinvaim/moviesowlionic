@@ -30,13 +30,16 @@ angular.module('moviesowlApp')
         $scope.openModal = function() {
             $scope.modal.show();
         };
+
         $scope.closeModal = function(cinemaObj) {
             window.localStorage.cinema = angular.toJson(cinemaObj);
             $scope.modal.hide();
             loadMovies();
         };
 
-        console.log('localstorage', window.localStorage);
+        $scope.closeModalOnly = function(cinemaObj) {
+            $scope.modal.hide();
+        };
         if (window.localStorage.cinema) {
 
             //start loading movies
@@ -85,7 +88,7 @@ angular.module('moviesowlApp')
                         return movie.tomato_meter < 0;
                     }), 2)
                 }];
-
+                
                 $scope.hasNoMovies = false;
                 if (response.data.data.length < 1) {
                     $scope.hasNoMovies = true;
