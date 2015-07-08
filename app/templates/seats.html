@@ -1,15 +1,19 @@
-<ion-view view-title="View Seats">
+<ion-view view-title="{{movie.title}}">
+    <img src="{{ movie.poster }}" class="background-image-two">
     <ion-content>
         <ion-refresher pulling-text="Pull to update seats view." on-refresh="doRefresh()" spinner="bubbles">
         </ion-refresher>
-        <div style="text-align: center;">
+        <div style="text-align: center; font-size:1.2em; color: white;" class="padding">
+            Session Time: {{session.start_time*1000| date:'h:mma' }}
+        </div>
+        <div style="text-align: center;" class="padding">
             <div style="margin:20px 5%; padding:1%; background-color:black; color:white;">
                 <strong class="blink_me">SCREEN</strong>
             </div>
             <div ng-repeat="row in seatingPlan track by $index" style="padding-left:1%">
                 <div ng-repeat="seat in row track by $index" style="position:relative;float: left; width:{{seatWidth}}%; padding-bottom:{{seatWidth}}%;">
-                    <div ng-show="seat === 'available'" style="position:absolute; background-color:blue; top:10%; bottom:2%; right:10%; left:0;"></div>
-                    <div ng-show="seat === 'taken'" style="position:absolute; line-height:100%; color:red; top:10% ;bottom:0 ;right:10% ;left:0; border: 1px solid;">
+                    <div ng-show="seat === 'available'" class="emptySeat" style="top:10%; bottom:2%; right:10%; left:0;"></div>
+                    <div ng-show="seat === 'taken'" class="filledSeat" style="line-height:100%; top:10% ;bottom:0 ;right:10% ;left:0; border: 1px solid;">
                         <img src="images/seat-taken.png" style="display:block; max-width: 100%;">
                     </div>
                 </div>

@@ -146,17 +146,18 @@
     filter: blur(10px) brightness(0.2);
 }
 
-.background-image {
+.background-image-bright {
     // background-image: url('../img/background/image.jpg');
+    position: absolute;
     top: -10%;
     left: -10%;
-    background-size: cover;
-    background-attachment: fixed;
-    -webkit-filter: blur(10px) brightness(0.2);
-    -moz-filter: blur(10px) brightness(0.2);
-    -o-filter: blur(10px) brightness(0.2);
-    -ms-filter: blur(10px) brightness(0.2);
-    filter: blur(10px) brightness(0.2);
+    width: 120%;
+    height: 120%;
+    -webkit-filter: blur(10px) brightness(0.9) opacity(0.2);
+    -moz-filter: blur(10px) brightness(0.9) opacity(0.2);
+    -o-filter: blur(10px) brightness(0.9) opacity(0.2);
+    -ms-filter: blur(10px) brightness(0.9) opacity(0.2);
+    filter: blur(10px) brightness(0.9) opacity(0.2);
 }
 
 .content {
@@ -220,22 +221,37 @@
     color: white;
 }
 
+.emptySeat {
+    position: absolute;
+    background-color: #DDDDDD;
+}
+
+.filledSeat {
+    color:red;
+    position:absolute;
+   // border: 1px solid red;
+}
+
+
 .scale-in {
     -webkit-transform: scale(0.0);
     transform: scale(0.0);
     opacity: 0;
 }
+
 .scale-in.ng-enter,
 .scale-in > .ng-enter {
-    -webkit-transition: all cubic-bezier(.1, .7, .1, 1) 1000ms;
-    transition: all cubic-bezier(.1, .7, .1, 1) 1000ms;
+    -webkit-transition: all cubic-bezier(.1, .7, .1, 1) 800ms;
+    transition: all cubic-bezier(.1, .7, .1, 1) 800ms;
 }
+
 .scale-in.ng-enter-active,
 .scale-in > .ng-enter-active {
     -webkit-transform: scale(1);
     transform: scale(1);
     opacity: 1;
 }
+
 .scale-in.ng-leave,
 .scale-in > .ng-leave {
     -webkit-transition: all ease-in-out 250ms;
