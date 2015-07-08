@@ -1,9 +1,77 @@
-<ion-view view-title="showings">
+<ion-view>
+    <!-- <div class="background-image" style="background-image: url('{{movie.poster}}');">
+    </div> -->
+    <ion-nav-title>
+        {{movie.title}}
+    </ion-nav-title>
+    <img src="{{ movie.poster }}" class="background-image-two">
     <ion-content>
-        <ion-list>
-            <ion-item ng-repeat="item in items">
-                Hello, {{item}}!
-            </ion-item>
-        </ion-list>
+        <div class="content">
+            <!--  <div class="row">
+                <div class="col">
+                    <img src="{{movie.poster}}" style="max-height:100%; max-width:100%;">
+                </div>
+                <div class="col">
+                    <div class="row">
+                        {{movie.title}}
+                    </div>
+                    <div class="row">
+                        Run Time: {{movie.run_time}}
+                    </div>
+                    <div class="row">
+                        Director:
+                        <br/> {{movie.director}}
+                    </div>
+                    <div class="row wrap">
+                        Casts:
+                        <br/> {{movie.cast}}
+                    </div>
+                </div>
+            </div> -->
+            <ion-list>
+                <ion-item class="ratingCell">
+                    <div>Rotten Tomatoes</div>
+                    <img src="{{rottenLogo}}" style="width:25px;"> {{movie.tomato_meter}}%
+                </ion-item>
+                <div ng-click="openModal()">
+                    <img src="{{movie.poster}}" style="height:180px; max-width:100%;">
+                </div>
+                <!--                 <ion-item class="wrap" style="background-color: transparent; color: white;">
+                    Synopsis
+                    <br/>{{movie.synopsis}}
+                </ion-item> -->
+                <div class="todaySessionText">Today's Sessions</div>
+                <ion-item ng-repeat="session in showingsData" ng-click="openSeatView(session.id)" class="sessionsCell">
+                    <div class="row">
+                        <div class="col col-25" style="text-align:left; font-weight:bold;">{{session.start_time*1000| date:'h:mma' }}</div>
+                        <div class="col col-35" ng-show="session.screen_type === 'standard'">
+                            <span ng-show="session.showing_type ==='3D'" style="color:red; font-weight:bold;">
+                            3D
+                        </span> {{session.cinemaSize}}
+                        </div>
+                        <div class="col col-35" ng-hide="session.screen_type === 'standard'">
+                            <span ng-show="session.showing_type ==='3D'" style="color:red; font-weight:bold;">
+                            3D
+                        </span>
+                            <span ng-show="session.screen_type ==='gold class'" style="color:rgb(255, 237, 54); font-weight:bold">
+                            Gold Class
+                        </span>
+                            <span ng-show="session.screen_type ==='vmax'" style="color:rgb(68, 156, 255); font-weight:bold;">
+                            VMAX
+                        </span>
+                        </div>
+                        <div class="col col-40" style="text-align:right;" ng-show="session.fullness.length > 0">
+                            {{session.fullness}}
+                        </div>
+                        <div class="col col-40" style="text-align:right;" ng-hide="session.fullness.length > 0">
+                            <div class="custom-spinner">
+                                <div class="dot1"></div>
+                                <div class="dot2"></div>
+                            </div>
+                        </div>
+                    </div>
+                </ion-item>
+            </ion-list>
+        </div>
     </ion-content>
 </ion-view>

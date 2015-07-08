@@ -108,7 +108,7 @@ angular.module('moviesowlApp')
 
         $scope.selectMovie = function(movie) {
             selectedMovieService.setMovie(movie);
-            $state.go('movie', {
+            $state.go('showings', {
                 movieId: movie.id
             });
         };

@@ -25,7 +25,7 @@ angular.module('moviesowlApp', ['ionic', 'angulartics', 'angulartics.google.anal
             //StatusBar.styleDefault();
             console.log('statusbar', StatusBar);
             StatusBar.overlaysWebView(true);
-            StatusBar.style(1) //Light
+            StatusBar.style(1); //Light
         }
     });
 
@@ -52,7 +52,7 @@ angular.module('moviesowlApp', ['ionic', 'angulartics', 'angulartics.google.anal
             controller: 'MovieDetailsCtrl'
         })
         .state('showings', {
-            url: '/showings/:showId',
+            url: '/showings/:movieId',
             templateUrl: 'templates/showings.html',
             controller: 'ShowingsCtrl'
         })

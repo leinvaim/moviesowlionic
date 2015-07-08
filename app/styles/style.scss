@@ -4,6 +4,10 @@
 .item-content.wrap {
     white-space: normal;
 }
+
+.wrap {
+    white-space: normal;
+}
 /*#poster {
     position: absolute;
     top: 0;
@@ -129,12 +133,12 @@
     }
 }
 
-.background-image {
-    // background-image: url('../img/background/image.jpg');
-    width: 100vw;
-    height: 100vh;
-    background-size: cover;
-    background-attachment: fixed;
+.background-image-two {
+    position: absolute;
+    top: -10%;
+    left: -10%;
+    width: 120%;
+    height: 120%;
     -webkit-filter: blur(10px) brightness(0.3);
     -moz-filter: blur(10px) brightness(0.3);
     -o-filter: blur(10px) brightness(0.3);
@@ -142,11 +146,98 @@
     filter: blur(10px) brightness(0.3);
 }
 
+.background-image {
+    // background-image: url('../img/background/image.jpg');
+    top: -10%;
+    left: -10%;
+    background-size: cover;
+    background-attachment: fixed;
+    -webkit-filter: blur(10px) brightness(0.2);
+    -moz-filter: blur(10px) brightness(0.2);
+    -o-filter: blur(10px) brightness(0.2);
+    -ms-filter: blur(10px) brightness(0.2);
+    filter: blur(10px) brightness(0.2);
+}
+
 .content {
     position: absolute;
     z-index: 9999;
     top: 0;
-    color: white !important ;
+    color: white !important;
     // margin-left: 20px;
     // margin-right: 20px;
+}
+
+.ratingCell {
+    background-color: transparent;
+    color: white;
+    width: 101vw;
+    border-top: none;
+    border-bottom-style: groove;
+    border-bottom-width: thin;
+    border-color: darkgray;
+    text-align: center;
+}
+
+.todaySessionText {
+    margin-top: 5px;
+    font-size: 1.25em;
+    margin-bottom: 5px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.sessionsCell {
+    border-bottom-style: groove;
+    border-bottom-width: thin;
+    border-color: darkgray;
+    padding: 5px;
+    background-color: transparent;
+    color: white;
+}
+
+.movieDetailsHeading {
+    background-color: transparent;
+    color: white;
+    font-weight: bold;
+    opacity: 0.5;
+    border: none;
+}
+
+.movieDetails {
+    background-color: transparent;
+    color: white;
+    border: none;
+}
+
+.container-details {
+    background-color: transparent;
+    border-style: groove;
+}
+
+.detailsTitle {
+    background-color: transparent;
+    color: white;
+}
+
+.scale-in {
+    -webkit-transform: scale(0.0);
+    transform: scale(0.0);
+    opacity: 0;
+}
+.scale-in.ng-enter,
+.scale-in > .ng-enter {
+    -webkit-transition: all cubic-bezier(.1, .7, .1, 1) 1000ms;
+    transition: all cubic-bezier(.1, .7, .1, 1) 1000ms;
+}
+.scale-in.ng-enter-active,
+.scale-in > .ng-enter-active {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: 1;
+}
+.scale-in.ng-leave,
+.scale-in > .ng-leave {
+    -webkit-transition: all ease-in-out 250ms;
+    transition: all ease-in-out 250ms;
 }
