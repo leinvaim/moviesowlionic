@@ -22,10 +22,10 @@ angular.module('moviesowlApp', ['ionic', 'angulartics', 'angulartics.google.anal
             cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
         }
         if (window.StatusBar) {
-            //StatusBar.styleDefault();
-            console.log('statusbar', StatusBar);
-            StatusBar.overlaysWebView(true);
-            StatusBar.style(1); //Light
+            StatusBar.styleDefault();
+            //console.log('statusbar', StatusBar);
+            //StatusBar.overlaysWebView(true);
+            //StatusBar.style(1); //Light
         }
     });
 
