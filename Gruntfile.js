@@ -31,28 +31,32 @@ module.exports = function(grunt) {
         manifest: {
             generate: {
                 options: {
-                    basePath: '../',
-                    // cache: ['js/app.js', 'css/style.css'],
-                    network: ['http://*', 'https://*'],
-                    fallback: ['/ /offline.html'],
-                    // exclude: ['js/jquery.min.js'],
-                    // preferOnline: true,
+                    basePath: '<%= yeoman.dist %>',
+                    cache: [],
+                    network: ['*'],
+                    //network: ['http://*', 'https://*'],
+                    //fallback: ['/ /offline.html'],
+                    //exclude: ['js/jquery.min.js'],
+                    //preferOnline: true,
                     verbose: true,
-                    // timestamp: true,
+                    //timestamp: true,
                     hash: true,
-                    master: ['index.html'],
-                    process: function(path) {
-                        return path.substring('build/'.length);
-                    }
+                    master: ['index.html']
+                    //process: function (path) {
+                    //    return path.substring('build/'.length);
+                    //}
                 },
                 src: [
-                    '<%= yeoman.dist %>/templates/*.html',
-                    '<%= yeoman.dist %>/scripts/*.js',
-                    '<%= yeoman.dist %>/styles/*.css',
+                    'templates/*.html',
+                    'scripts/*.js',
+                    'styles/*.css',
+                    'images/*',
+                    'fonts/*'
                 ],
                 dest: '<%= yeoman.dist %>/manifest.appcache'
             }
         },
+
 
 
         'gh-pages': {
@@ -649,7 +653,8 @@ module.exports = function(grunt) {
         'usemin',
         'processhtml:dist',
         'htmlmin',
-        'ngtemplates'
+        'ngtemplates',
+        'manifest'
     ]);
 
 
