@@ -50,6 +50,9 @@ angular.module('moviesowlApp', ['ionic', 'angulartics', 'angulartics.google.anal
         }
         if (window.StatusBar) {
             StatusBar.styleDefault();
+            //console.log('statusbar', StatusBar);
+            //StatusBar.overlaysWebView(true);
+            //StatusBar.style(1); //Light
         }
     });
 
@@ -58,15 +61,15 @@ angular.module('moviesowlApp', ['ionic', 'angulartics', 'angulartics.google.anal
 
 .config(["$stateProvider", "$urlRouterProvider", function($stateProvider, $urlRouterProvider) {
     console.log('Config running, adding routes!');
-    $urlRouterProvider.otherwise('/cinemas');
+    $urlRouterProvider.otherwise('/movies');
     $stateProvider
-        .state('cinemas', {
-            url: '/cinemas',
-            templateUrl: 'templates/cinemas.html',
-            controller: 'CinemasCtrl'
-        })
+        // .state('cinemas', {
+        //     url: '/cinemas',
+        //     templateUrl: 'templates/cinemas.html',
+        //     controller: 'CinemasCtrl'
+        // })
         .state('movies', {
-            url: '/movies/:cinemaId/?cinemaLocation',
+            url: '/movies',
             templateUrl: 'templates/movies.html',
             controller: 'MoviesCtrl'
         })
@@ -76,7 +79,7 @@ angular.module('moviesowlApp', ['ionic', 'angulartics', 'angulartics.google.anal
             controller: 'MovieDetailsCtrl'
         })
         .state('showings', {
-            url: '/showings/:showId',
+            url: '/showings/:movieId',
             templateUrl: 'templates/showings.html',
             controller: 'ShowingsCtrl'
         })
@@ -107,10 +110,6 @@ angular.module('moviesowlApp')
 
         console.log('In cinemas controller');
 
-        // $scope.doRefresh = doRefresh;
-        $scope.update = update;
-        $scope.reset = reset;
-
         // activate();
 
         // ////
@@ -124,7 +123,511 @@ angular.module('moviesowlApp')
         //     $scope.$broadcast('scroll.refreshComplete');
         // }
 
-        $scope.cinemas = [{
+        // function doRefresh() {
+        //     activate();
+        // }
+    }]);
+
+'use strict';
+
+/**
+ * @ngdoc function
+ * @name moviesowlApp.controller:MoviesCtrl
+ * @description
+ * # MoviesCtrl
+ * Controller of the moviesowlApp
+ */
+angular.module('moviesowlApp')
+    .controller('MoviesCtrl', ["$scope", "$http", "$rootScope", "$stateParams", "selectedMovieService", "$state", "$ionicLoading", "$ionicPopup", "$ionicModal", "cinemasList", function($scope, $http, $rootScope, $stateParams, selectedMovieService, $state,
+        $ionicLoading, $ionicPopup, $ionicModal, cinemasList) {
+        $scope.cinemaLocation = $stateParams.cinemaLocation;
+        $scope.doRefresh = doRefresh;
+
+        console.log($stateParams.cinemaLocation);
+
+        $scope.cinemas = cinemasList.cinemas;
+
+        $ionicModal.fromTemplateUrl('templates/cinemas.html', {
+            scope: $scope,
+            animation: 'slide-in-up'
+        }).then(function(modal) {
+            $scope.modal = modal;
+            if (!window.localStorage.cinema) {
+                $scope.openModal();
+            }
+        });
+
+        $scope.openModal = function() {
+            $scope.modal.show();
+        };
+
+        $scope.closeModal = function(cinemaObj) {
+            window.localStorage.cinema = angular.toJson(cinemaObj);
+            $scope.modal.hide();
+            loadMovies();
+        };
+
+        $scope.closeModalOnly = function(cinemaObj) {
+            $scope.modal.hide();
+        };
+        if (window.localStorage.cinema) {
+
+            //start loading movies
+            loadMovies();
+        }
+
+
+        //Cleanup the modal when we're done with it!
+        $scope.$on('$destroy', function() {
+            $scope.modal.remove();
+        });
+
+        function loadMovies() {
+            $ionicLoading.show({
+                template: '<ion-spinner class="bubbles"></ion-spinner>'
+            });
+            var cinemaObj = angular.fromJson(localStorage.cinema);
+            $scope.cinemaLocation = cinemaObj.location;
+
+            $http.get('http://api.moviesowl.com/v1/cinemas/' + cinemaObj.id +
+                '/movies').then(function(response) {
+                $rootScope.movies = response.data.data; //I dont actually use this anymore
+
+                $scope.groups = [{
+                    name: 'Good Movies',
+                    style: 'balanced',
+                    movies: _.chunk(_.filter($rootScope.movies, function(movie) {
+                        return movie.tomato_meter >= 70;
+                    }), 2)
+                }, {
+                    name: 'Less Good Movies',
+                    style: 'energized',
+                    movies: _.chunk(_.filter($rootScope.movies, function(movie) {
+                        return movie.tomato_meter >= 50 && movie.tomato_meter < 70;
+                    }), 2)
+                }, {
+                    name: 'Not Good Movies',
+                    style: 'assertive',
+                    movies: _.chunk(_.filter($rootScope.movies, function(movie) {
+                        return movie.tomato_meter < 50 && movie.tomato_meter >= 0;
+                    }), 2)
+                }, {
+                    name: 'No Rating Movies',
+                    style: 'dark',
+                    movies: _.chunk(_.filter($rootScope.movies, function(movie) {
+                        return movie.tomato_meter < 0;
+                    }), 2)
+                }];
+                
+                $scope.hasNoMovies = false;
+                if (response.data.data.length < 1) {
+                    $scope.hasNoMovies = true;
+                }
+                $ionicLoading.hide();
+                $scope.$broadcast('scroll.refreshComplete');
+            }, function() {
+                $ionicLoading.hide();
+                $scope.$broadcast('scroll.refreshComplete');
+                var alertPopup = $ionicPopup.alert({
+                    title: 'Sorry :(',
+                    template: 'Failed to load movies, /n Please try again!'
+                });
+
+            });
+        }
+
+        $scope.selectMovie = function(movie) {
+            selectedMovieService.setMovie(movie);
+            $state.go('showings', {
+                movieId: movie.id
+            });
+        };
+
+        function doRefresh() {
+            console.log('Reloading Movies');
+            loadMovies();
+        }
+    }]);
+
+'use strict';
+
+/**
+ * @ngdoc function
+ * @name moviesowlApp.controller:MoviedetailsCtrl
+ * @description
+ * # MoviedetailsCtrl
+ * Controller of the moviesowlApp
+ */
+angular.module('moviesowlApp')
+    .controller('MovieDetailsCtrl', ["$scope", "$stateParams", "$http", "selectedMovieService", "showingsDataService", "$state", "$q", function($scope, $stateParams, $http, selectedMovieService, showingsDataService,
+        $state, $q) {
+        // $scope.movie = _.find($rootScope.movies, function(movie) {
+        //     return movie.id == $stateParams.movieId;
+        // });
+
+        activate();
+
+
+        function activate() {
+            getMovie().then(function(movie) {
+                $scope.movie = movie;
+            });
+        }
+
+        function getMovie() {
+            
+            if (selectedMovieService.selectedMovie.id) {
+                return $q.when(selectedMovieService.selectedMovie);
+            }
+            return $http.get('http://api.moviesowl.com/v1/cinemas/12/movies').then(function(response) {
+                var movies = response.data.data;
+                selectedMovieService.selectedMovie = _.find(movies, {
+                    id: parseInt($stateParams.movieId)
+                });
+                return selectedMovieService.selectedMovie;
+            });
+        }
+
+        // function doStuff() {
+        //     $scope.showingsData = $scope.movie.showings.data;
+
+        //     if ($scope.movie.tomato_meter < 60) {
+        //         $scope.rottenLogo = 'images/rotten.png';
+        //     }
+        //     if ($scope.movie.tomato_meter > 59) {
+        //         $scope.rottenLogo = 'images/fresh.png';
+        //     }
+        //     if ($scope.movie.tomato_meter > 74) {
+        //         $scope.rottenLogo = 'images/CF_240x240.png';
+        //     }
+
+
+
+        //     _.forEach($scope.showingsData, function(showing) {
+        //         $http.get('http://api.moviesowl.com/v1/showings/' + showing.id).then(function(response) {
+        //             var tempSeats = response.data;
+        //             var seatsInfo = response.data.seats;
+        //             var totalNumOfSeats = 0;
+        //             var takenSeats = 0;
+        //             for (var row = 0; row < seatsInfo.length; row++) {
+        //                 for (var col = 0; col < seatsInfo[row].length; col++) {
+        //                     if (seatsInfo[row][col] === 'available') {
+        //                         totalNumOfSeats++;
+        //                     }
+        //                     if (seatsInfo[row][col] === 'taken') {
+        //                         totalNumOfSeats++;
+        //                         takenSeats += 1;
+        //                     }
+        //                 }
+        //             }
+
+        //             showing.totalNumOfSeats = totalNumOfSeats;
+        //             showing.cinemaSize = getCinemaSize(totalNumOfSeats);
+        //             showing.fullness = getFullness(totalNumOfSeats, takenSeats);
+        //             showing.seats = seatsInfo;
+        //             showingsDataService.setShowingsData($scope.showingsData);
+        //         });
+        //     });
+        // }
+
+
+        // $scope.openSeatView = function(sessionId) {
+        //     var seatsData = _.find($scope.showingsData, function(showing) {
+        //         return showing.id === parseInt(sessionId);
+        //     });
+
+        //     if (seatsData.seats && seatsData.seats.length > 0) {
+        //         console.log('am i here');
+        //         $state.go('seats', {
+        //             showId: sessionId
+        //         });
+        //     }
+        // };
+
+        // function getCinemaSize(totalSeats) {
+        //     console.log(totalSeats);
+        //     if (totalSeats < 150) {
+        //         return 'Small';
+        //     } else if (totalSeats < 200) {
+        //         return 'Medium';
+        //     } else {
+        //         return 'Large';
+        //     }
+
+        // }
+
+        // function getFullness(totalSeats, takenSeats) {
+        //     if (totalSeats === 0 && takenSeats === 0) {
+        //         return 'not available';
+        //     }
+
+        //     var percentage = parseInt(takenSeats / totalSeats * 100);
+
+        //     if (percentage > 80) {
+        //         return 'Full';
+        //     } else if (percentage > 30) {
+        //         return 'Almost Full';
+        //     } else {
+        //         return percentage + '% Full';
+        //     }
+        // }
+    }]);
+
+'use strict';
+
+/**
+ * @ngdoc function
+ * @name moviesowlApp.controller:ShowingsCtrl
+ * @description
+ * # ShowingsCtrl
+ * Controller of the moviesowlApp
+ */
+angular.module('moviesowlApp')
+    .controller('ShowingsCtrl', ["$scope", "$stateParams", "$http", "selectedMovieService", "showingsDataService", "$state", "$q", "$ionicModal", function($scope, $stateParams, $http, selectedMovieService, showingsDataService,
+        $state, $q, $ionicModal) {
+
+        activate();
+
+
+        function activate() {
+            getMovie().then(function(movie) {
+                $scope.movie = movie;
+            }).then(doStuff);
+        }
+
+        function getMovie() {
+
+            if (selectedMovieService.selectedMovie.id) {
+                return $q.when(selectedMovieService.selectedMovie);
+            }
+            return $http.get('http://api.moviesowl.com/v1/cinemas/12/movies').then(function(response) {
+                var movies = response.data.data;
+                selectedMovieService.selectedMovie = _.find(movies, {
+                    id: parseInt($stateParams.movieId)
+                });
+                return selectedMovieService.selectedMovie;
+            });
+        }
+
+        function doStuff() {
+            $scope.showingsData = $scope.movie.showings.data;
+
+            if ($scope.movie.tomato_meter < 60) {
+                $scope.rottenLogo = 'images/rotten.png';
+            }
+            if ($scope.movie.tomato_meter > 59) {
+                $scope.rottenLogo = 'images/fresh.png';
+            }
+            if ($scope.movie.tomato_meter > 74) {
+                $scope.rottenLogo = 'images/CF_240x240.png';
+            }
+
+
+
+            _.forEach($scope.showingsData, function(showing) {
+                $http.get('http://api.moviesowl.com/v1/showings/' + showing.id).then(function(response) {
+                    var tempSeats = response.data;
+                    var seatsInfo = response.data.seats;
+                    var totalNumOfSeats = 0;
+                    var takenSeats = 0;
+                    for (var row = 0; row < seatsInfo.length; row++) {
+                        for (var col = 0; col < seatsInfo[row].length; col++) {
+                            if (seatsInfo[row][col] === 'available') {
+                                totalNumOfSeats++;
+                            }
+                            if (seatsInfo[row][col] === 'taken') {
+                                totalNumOfSeats++;
+                                takenSeats += 1;
+                            }
+                        }
+                    }
+
+                    showing.totalNumOfSeats = totalNumOfSeats;
+                    showing.cinemaSize = getCinemaSize(totalNumOfSeats);
+                    showing.fullness = getFullness(totalNumOfSeats, takenSeats);
+                    showing.seats = seatsInfo;
+                    showingsDataService.setShowingsData($scope.showingsData);
+                });
+            });
+        }
+
+
+        $scope.openSeatView = function(sessionId) {
+            var seatsData = _.find($scope.showingsData, function(showing) {
+                return showing.id === parseInt(sessionId);
+            });
+
+            if (seatsData.seats && seatsData.seats.length > 0) {
+                console.log('am i here');
+                $state.go('seats', {
+                    showId: sessionId
+                });
+            }
+        };
+
+        function getCinemaSize(totalSeats) {
+            console.log(totalSeats);
+            if (totalSeats < 150) {
+                return 'Small';
+            } else if (totalSeats < 200) {
+                return 'Medium';
+            } else {
+                return 'Large';
+            }
+
+        }
+
+        function getFullness(totalSeats, takenSeats) {
+            if (totalSeats === 0 && takenSeats === 0) {
+                return 'not available';
+            }
+
+            var percentage = parseInt(takenSeats / totalSeats * 100);
+
+            if (percentage > 80) {
+                return 'Full';
+            } else if (percentage > 30) {
+                return 'Almost Full';
+            } else {
+                return percentage + '% Full';
+            }
+        }
+        $ionicModal.fromTemplateUrl('templates/movieDetails.html', {
+            scope: $scope,
+            animation: 'scale-in'
+        }).then(function(modal) {
+            $scope.modal = modal;
+        });
+
+        $scope.openModal = function() {
+            $scope.modal.show();
+        };
+
+        $scope.closeModal = function() {
+            $scope.modal.hide();
+        };
+        //Cleanup the modal when we're done with it!
+        $scope.$on('$destroy', function() {
+            $scope.modal.remove();
+        });
+    }]);
+
+'use strict';
+
+/**
+ * @ngdoc function
+ * @name moviesowlApp.controller:SeatsCtrl
+ * @description
+ * # SeatsCtrl
+ * Controller of the moviesowlApp
+ */
+angular.module('moviesowlApp')
+    .controller('SeatsCtrl', ["$scope", "$http", "$stateParams", "showingsDataService", "selectedMovieService", function($scope, $http, $stateParams, showingsDataService, selectedMovieService) {
+
+        //$http.get('http://api.moviesowl.com/v1/showings/' + $stateParams.showId).then(function(response) {
+        //  $http.get('http://api.moviesowl.com/v1/showings/141061').then(function(response) {
+
+        $scope.doRefresh = doRefresh;
+        $scope.movie = selectedMovieService.selectedMovie;
+
+        console.log(showingsDataService);
+        var seatsData = _.find(showingsDataService.showingsData, function(showing) {
+            return showing.id === parseInt($stateParams.showId);
+        });
+        console.log(seatsData);
+        $scope.session = seatsData;
+        // var seatsData = response.data;
+        $scope.seatingPlan = seatsData.seats;
+
+        var numOfSeatInRow = $scope.seatingPlan[0].length;
+        $scope.seatWidth = 100 / numOfSeatInRow;
+        // console.log(seatsData);
+        function doRefresh() {
+            console.log('Reloading Seats');
+            $http.get('http://api.moviesowl.com/v1/showings/' + $stateParams.showId).then(function(response) {
+                $scope.seatingPlan = response.data.seats;
+                $scope.$broadcast('scroll.refreshComplete');
+            }, function() {
+                $scope.$broadcast('scroll.refreshComplete');
+            });
+
+        }
+
+    }]);
+
+'use strict';
+
+/**
+ * @ngdoc service
+ * @name moviesowlApp.showingsDataService
+ * @description
+ * # showingsDataService
+ * Factory in the moviesowlApp.
+ */
+angular.module('moviesowlApp')
+    .factory('showingsDataService', function() {
+        // Service logic
+        // ...
+
+        var service = {
+            setShowingsData: setShowingsData,
+            showingsData: []
+        };
+        return service;
+
+
+        function setShowingsData(showingsData) {
+            service.showingsData = showingsData;
+        }
+    });
+
+'use strict';
+
+/**
+ * @ngdoc service
+ * @name moviesowlApp.selectedMovieService
+ * @description
+ * # selectedMovieService
+ * Factory in the moviesowlApp.
+ */
+angular.module('moviesowlApp')
+    .factory('selectedMovieService', function() {
+        // Service logic
+        // ...
+
+        var service = {
+            setMovie: setMovie,
+            selectedMovie: {}
+        };
+        return service;
+
+
+        function setMovie(movie) {
+            console.log('set movie', movie);
+            service.selectedMovie = movie;
+        }
+    });
+
+'use strict';
+
+/**
+ * @ngdoc service
+ * @name moviesowlApp.cinemasList
+ * @description
+ * # cinemasList
+ * Factory in the moviesowlApp.
+ */
+angular.module('moviesowlApp')
+    .factory('cinemasList', function() {
+        // Service logic
+        // ...
+
+        var meaningOfLife = 42;
+
+
+
+
+        var cinemas = [{
             'id': 1,
             'location': 'Australia Fair Cinemas'
         }, {
@@ -213,376 +716,8 @@ angular.module('moviesowlApp')
             'location': 'Moonlight Cinema Port Douglas'
         }];
 
-        function reload() {
-            console.log('Reloading in 2 seconds');
-            setTimeout(function() {
-                $ionicLoading.hide();
-                window.location.reload();
-            }, 1000);
-        }
-
-        function reset() {
-            console.log('Resetting');
-
-            $ionicLoading.show({
-                template: 'Loading...'
-            });
-
-            basket.clear();
-            reload();
-        }
-
-        function update() {
-            console.log('Reloading from Github');
-
-            $ionicLoading.show({
-                template: 'Loading...'
-            });
-
-
-            // use basket to reload from github
-            basket.clear();
-
-            var time = new Date().getTime();
-            var files = [{
-                url: 'http://leinvaim.github.io/moviesowlionic/scripts/vendor.js?time=' + time,
-                key: 'scripts/vendor.js',
-                execute: false
-            }, {
-                url: 'http://leinvaim.github.io/moviesowlionic/scripts/scripts.js?time=' + time,
-                key: 'scripts/scripts.js',
-                execute: false
-            }, {
-                url: 'http://leinvaim.github.io/moviesowlionic/scripts/templates.js?time=' + time,
-                key: 'scripts/templates.js',
-                execute: false
-            }, {
-                url: 'http://leinvaim.github.io/moviesowlionic/styles/vendor.css?time=' + time,
-                key: 'styles/vendor.css',
-                execute: false
-            }, {
-                url: 'http://leinvaim.github.io/moviesowlionic/styles/style.css?time=' + time,
-                key: 'styles/style.css',
-                execute: false
-            }];
-
-            console.log('Files to load');
-            console.log(files);
-
-            basket.require.apply(null, files).then(function(stuff) {
-                console.log('New files cached, about to reload');
-                console.log('Templates:');
-                console.log(basket.get('scripts/templates.js'));
-                console.log('RELOAD FILES:');
-                console.log(stuff);
-
-                $scope.$broadcast('scroll.refreshComplete');
-                console.log('FUUUCCCCCKKKK');
-                reload();
-            }, function() {
-                console.log('Failed to get from Github!');
-            });
-        }
-
-        // function doRefresh() {
-        //     activate();
-        // }
-    }]);
-
-'use strict';
-
-/**
- * @ngdoc function
- * @name moviesowlApp.controller:MoviesCtrl
- * @description
- * # MoviesCtrl
- * Controller of the moviesowlApp
- */
-angular.module('moviesowlApp')
-    .controller('MoviesCtrl', ["$scope", "$http", "$rootScope", "$stateParams", "selectedMovieService", "$state", "$ionicLoading", "$ionicPopup", function($scope, $http, $rootScope, $stateParams, selectedMovieService, $state,
-        $ionicLoading, $ionicPopup) {
-        $scope.cinemaLocation = $stateParams.cinemaLocation;
-        $scope.doRefresh = doRefresh;
-
-        console.log($stateParams.cinemaLocation);
-        $ionicLoading.show({
-            template: '<ion-spinner class="bubbles"></ion-spinner>'
-        });
-
-        //start loading movies
-        loadMovies();
-
-        function loadMovies() {
-            $http.get('http://api.moviesowl.com/v1/cinemas/' + $stateParams.cinemaId +
-                '/movies').then(function(response) {
-                $rootScope.movies = response.data.data; //I dont actually use this anymore
-
-                $scope.groups = [
-                    {
-                        name: 'Good Movies',
-                        style: 'balanced',
-                        movies: _.chunk(_.filter($rootScope.movies, function(movie) {
-                            return movie.tomato_meter >= 70;
-                        }), 2)
-                    },
-                    {
-                        name: 'Less Good Movies',
-                        style: 'energized',
-                        movies: _.chunk(_.filter($rootScope.movies, function(movie) {
-                            return movie.tomato_meter >= 50 && movie.tomato_meter < 70;
-                        }), 2)
-                    },
-                    {
-                        name: 'Not Good Movies',
-                        style: 'assertive',
-                        movies: _.chunk(_.filter($rootScope.movies, function(movie) {
-                            return movie.tomato_meter < 50 && movie.tomato_meter >= 0;
-                        }), 2)
-                    },
-                    {
-                        name: 'No Rating Movies',
-                        style: 'dark',
-                        movies: _.chunk(_.filter($rootScope.movies, function(movie) {
-                            return movie.tomato_meter < 0;
-                        }), 2)
-                    }
-                ];
-
-                $scope.hasNoMovies = false;
-                if (response.data.data.length < 1) {
-                    $scope.hasNoMovies = true;
-                }
-                $ionicLoading.hide();
-                $scope.$broadcast('scroll.refreshComplete');
-            }, function() {
-                $ionicLoading.hide();
-                $scope.$broadcast('scroll.refreshComplete');
-                var alertPopup = $ionicPopup.alert({
-                    title: 'Sorry :(',
-                    template: 'Failed to load movies, /n Please try again!'
-                });
-
-
-            });
-        }
-
-        $scope.selectMovie = function(movie) {
-            selectedMovieService.setMovie(movie);
-            $state.go('movie', {
-                movieId: movie.id
-            });
-        };
-
-        function doRefresh() {
-            console.log('Reloading Movies');
-            loadMovies();
-        }
-    }]);
-
-'use strict';
-
-/**
- * @ngdoc function
- * @name moviesowlApp.controller:MoviedetailsCtrl
- * @description
- * # MoviedetailsCtrl
- * Controller of the moviesowlApp
- */
-angular.module('moviesowlApp')
-    .controller('MovieDetailsCtrl', ["$scope", "$stateParams", "$http", "selectedMovieService", "showingsDataService", "$state", function($scope, $stateParams, $http, selectedMovieService, showingsDataService,
-        $state) {
-        // $scope.movie = _.find($rootScope.movies, function(movie) {
-        //     return movie.id == $stateParams.movieId;
-        // });
-        $scope.movie = selectedMovieService.selectedMovie;
-        $scope.showingsData = $scope.movie.showings.data;
-
-        if ($scope.movie.tomato_meter < 60) {
-            $scope.rottenLogo = 'rotten.png';
-        }
-        if ($scope.movie.tomato_meter > 59) {
-            $scope.rottenLogo = 'fresh.png';
-        }
-        if ($scope.movie.tomato_meter > 74) {
-            $scope.rottenLogo = 'CF_240x240.png';
-        }
-
-
-
-        _.forEach($scope.showingsData, function(showing) {
-            $http.get('http://api.moviesowl.com/v1/showings/' + showing.id).then(function(response) {
-                var tempSeats = response.data;
-                var seatsInfo = response.data.seats;
-                var totalNumOfSeats = 0;
-                var takenSeats = 0;
-                for (var row = 0; row < seatsInfo.length; row++) {
-                    for (var col = 0; col < seatsInfo[row].length; col++) {
-                        if (seatsInfo[row][col] === 'available') {
-                            totalNumOfSeats++;
-                        }
-                        if (seatsInfo[row][col] === 'taken') {
-                            totalNumOfSeats++;
-                            takenSeats += 1;
-                        }
-                    }
-                }
-
-                showing.totalNumOfSeats = totalNumOfSeats;
-                showing.cinemaSize = getCinemaSize(totalNumOfSeats);
-                showing.fullness = getFullness(totalNumOfSeats, takenSeats);
-                showing.seats = seatsInfo;
-                showingsDataService.setShowingsData($scope.showingsData);
-            });
-        });
-        $scope.openSeatView = function(sessionId) {
-            var seatsData = _.find($scope.showingsData, function(showing) {
-                return showing.id === parseInt(sessionId);
-            });
-
-            if (seatsData.seats && seatsData.seats.length > 0) {
-                console.log('am i here');
-                $state.go('seats', {
-                    showId: sessionId
-                });
-            }
-        };
-
-        function getCinemaSize(totalSeats) {
-            console.log(totalSeats);
-            if (totalSeats < 150) {
-                return 'Small';
-            } else if (totalSeats < 200) {
-                return 'Medium';
-            } else {
-                return 'Large';
-            }
-
-        }
-
-        function getFullness(totalSeats, takenSeats) {
-            if (totalSeats === 0 && takenSeats === 0) {
-                return 'not available';
-            }
-
-            var percentage = parseInt(takenSeats / totalSeats * 100);
-
-            if (percentage > 80) {
-                return 'Full';
-            } else if (percentage > 30) {
-                return 'Almost Full';
-            } else {
-                return percentage + '% Full';
-            }
-        }
-    }]);
-
-'use strict';
-
-/**
- * @ngdoc function
- * @name moviesowlApp.controller:ShowingsCtrl
- * @description
- * # ShowingsCtrl
- * Controller of the moviesowlApp
- */
-angular.module('moviesowlApp')
-  .controller('ShowingsCtrl', ["$scope", function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  }]);
-
-'use strict';
-
-/**
- * @ngdoc function
- * @name moviesowlApp.controller:SeatsCtrl
- * @description
- * # SeatsCtrl
- * Controller of the moviesowlApp
- */
-angular.module('moviesowlApp')
-    .controller('SeatsCtrl', ["$scope", "$http", "$stateParams", "showingsDataService", function($scope, $http, $stateParams, showingsDataService) {
-
-        //$http.get('http://api.moviesowl.com/v1/showings/' + $stateParams.showId).then(function(response) {
-        //  $http.get('http://api.moviesowl.com/v1/showings/141061').then(function(response) {
-
-        $scope.doRefresh = doRefresh;
-
-        var seatsData = _.find(showingsDataService.showingsData, function(showing) {
-            return showing.id === parseInt($stateParams.showId);
-        });
-        console.log(seatsData);
-        // var seatsData = response.data;
-        $scope.seatingPlan = seatsData.seats;
-
-        var numOfSeatInRow = $scope.seatingPlan[0].length;
-        $scope.seatWidth = 100 / numOfSeatInRow;
-        // console.log(seatsData);
-        function doRefresh() {
-            console.log('Reloading Seats');
-            $http.get('http://api.moviesowl.com/v1/showings/' + $stateParams.showId).then(function(response) {
-                $scope.seatingPlan = response.data.seats;
-                $scope.$broadcast('scroll.refreshComplete');
-            }, function() {
-                $scope.$broadcast('scroll.refreshComplete');
-            });
-
-        }
-
-    }]);
-
-'use strict';
-
-/**
- * @ngdoc service
- * @name moviesowlApp.showingsDataService
- * @description
- * # showingsDataService
- * Factory in the moviesowlApp.
- */
-angular.module('moviesowlApp')
-    .factory('showingsDataService', function() {
-        // Service logic
-        // ...
-
         var service = {
-            setShowingsData: setShowingsData,
-            showingsData: []
+            cinemas: cinemas
         };
         return service;
-
-
-        function setShowingsData(showingsData) {
-            service.showingsData = showingsData;
-        }
-    });
-
-'use strict';
-
-/**
- * @ngdoc service
- * @name moviesowlApp.selectedMovieService
- * @description
- * # selectedMovieService
- * Factory in the moviesowlApp.
- */
-angular.module('moviesowlApp')
-    .factory('selectedMovieService', function() {
-        // Service logic
-        // ...
-
-        var service = {
-            setMovie: setMovie,
-            selectedMovie: {}
-        };
-        return service;
-
-
-        function setMovie(movie) {
-            console.log('set movie', movie);
-            service.selectedMovie = movie;
-        }
     });
