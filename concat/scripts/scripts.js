@@ -1,4 +1,3 @@
-// jshint ignore: start
 (function() {
 
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -141,61 +140,40 @@ angular.module('moviesowlApp')
 angular.module('moviesowlApp')
     .controller('MoviesCtrl', ["$scope", "$http", "$rootScope", "$stateParams", "selectedMovieService", "$state", "$ionicLoading", "$ionicPopup", "$ionicModal", "cinemasList", function($scope, $http, $rootScope, $stateParams, selectedMovieService, $state,
         $ionicLoading, $ionicPopup, $ionicModal, cinemasList) {
-
+        $scope.cinemaLocation = $stateParams.cinemaLocation;
         $scope.doRefresh = doRefresh;
 
-        $scope.cinemaLocation = $stateParams.cinemaLocation;
+        console.log($stateParams.cinemaLocation);
+
         $scope.cinemas = cinemasList.cinemas;
-        $scope.openModal = openModal;
-        $scope.closeModal = closeModal;
-        $scope.closeModalOnly = closeModalOnly;
 
-        activate();
-
-        ///
-
-        function activate() {
-            if (hasPreferredCinema()) {
-                loadMovies();
-            }
-
-            setupModal().then(showPreferredCinemasModalIfNeeded);
-        }
-
-        function hasPreferredCinema() {
-            return !!window.localStorage.cinema;
-        }
-
-        function setupModal() {
-            return $ionicModal.fromTemplateUrl('templates/cinemas.html', {
-                scope: $scope,
-                animation: 'slide-in-up'
-            }).then(function(modal) {
-                $scope.modal = modal;
-            });
-        }
-
-        /**
-         * Shows the preferred cinema modal if they haven't setup one
-         */
-        function showPreferredCinemasModalIfNeeded() {
-            if (!hasPreferredCinema()) {
+        $ionicModal.fromTemplateUrl('templates/cinemas.html', {
+            scope: $scope,
+            animation: 'slide-in-up'
+        }).then(function(modal) {
+            $scope.modal = modal;
+            if (!window.localStorage.cinema) {
                 $scope.openModal();
             }
-        }
+        });
 
-        function openModal() {
+        $scope.openModal = function() {
             $scope.modal.show();
-        }
+        };
 
-        function closeModal(cinemaObj) {
+        $scope.closeModal = function(cinemaObj) {
             window.localStorage.cinema = angular.toJson(cinemaObj);
             $scope.modal.hide();
             loadMovies();
-        }
+        };
 
-        function closeModalOnly(cinemaObj) {
+        $scope.closeModalOnly = function(cinemaObj) {
             $scope.modal.hide();
+        };
+        if (window.localStorage.cinema) {
+
+            //start loading movies
+            loadMovies();
         }
 
 
@@ -204,37 +182,31 @@ angular.module('moviesowlApp')
             $scope.modal.remove();
         });
 
-        function getMoviesForCinema(cinemaId) {
-            return $http.get('http://api.moviesowl.com/v1/cinemas/' + cinemaId +
-            '/movies').then(function(response) {
-                return response.data;
-            });
-        }
         function loadMovies() {
             $ionicLoading.show({
-                template: '<ion-spinner class="bubbles"></ion-spinner>',
-                noBackdrop: true
+                template: '<ion-spinner class="bubbles"></ion-spinner>'
             });
             var cinemaObj = angular.fromJson(localStorage.cinema);
             $scope.cinemaLocation = cinemaObj.location;
 
-            getMoviesForCinema(cinemaObj.id).then(function(moviesData) {
-                $rootScope.movies = moviesData.data; //I dont actually use this anymore
+            $http.get('http://api.moviesowl.com/v1/cinemas/' + cinemaObj.id +
+                '/movies').then(function(response) {
+                $rootScope.movies = response.data.data; //I dont actually use this anymore
 
                 $scope.groups = [{
-                    name: 'Great Movies',
+                    name: 'Good Movies',
                     style: 'balanced',
                     movies: _.chunk(_.filter($rootScope.movies, function(movie) {
                         return movie.tomato_meter >= 70;
                     }), 2)
                 }, {
-                    name: 'Good Movies',
+                    name: 'Less Good Movies',
                     style: 'energized',
                     movies: _.chunk(_.filter($rootScope.movies, function(movie) {
                         return movie.tomato_meter >= 50 && movie.tomato_meter < 70;
                     }), 2)
                 }, {
-                    name: 'Bad Good',
+                    name: 'Not Good Movies',
                     style: 'assertive',
                     movies: _.chunk(_.filter($rootScope.movies, function(movie) {
                         return movie.tomato_meter < 50 && movie.tomato_meter >= 0;
@@ -248,7 +220,7 @@ angular.module('moviesowlApp')
                 }];
                 
                 $scope.hasNoMovies = false;
-                if (moviesData.data.length < 1) {
+                if (response.data.data.length < 1) {
                     $scope.hasNoMovies = true;
                 }
                 $ionicLoading.hide();
