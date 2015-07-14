@@ -65,19 +65,19 @@ angular.module('moviesowlApp')
                 $rootScope.movies = response.data.data; //I dont actually use this anymore
 
                 $scope.groups = [{
-                    name: 'Good Movies',
+                    name: 'Great Movies',
                     style: 'balanced',
                     movies: _.chunk(_.filter($rootScope.movies, function(movie) {
                         return movie.tomato_meter >= 70;
                     }), 2)
                 }, {
-                    name: 'Less Good Movies',
+                    name: 'Good Movies',
                     style: 'energized',
                     movies: _.chunk(_.filter($rootScope.movies, function(movie) {
                         return movie.tomato_meter >= 50 && movie.tomato_meter < 70;
                     }), 2)
                 }, {
-                    name: 'Not Good Movies',
+                    name: 'Bad Good',
                     style: 'assertive',
                     movies: _.chunk(_.filter($rootScope.movies, function(movie) {
                         return movie.tomato_meter < 50 && movie.tomato_meter >= 0;
