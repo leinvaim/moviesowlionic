@@ -1,3 +1,4 @@
+// jshint ignore: start
 // Generated on 2015-06-13 using generator-ionic 0.7.3
 'use strict';
 /* jshint -W079 */
@@ -51,7 +52,8 @@ module.exports = function(grunt) {
                     'scripts/*.js',
                     'styles/*.css',
                     'images/*',
-                    'fonts/*'
+                    'fonts/*',
+                    'platforms/**/*.js'
                 ],
                 dest: '<%= yeoman.dist %>/manifest.appcache'
             }
@@ -340,6 +342,29 @@ module.exports = function(grunt) {
                     cwd: '.temp/<%= yeoman.images %>',
                     dest: '<%= yeoman.dist %>/<%= yeoman.images %>',
                     src: ['generated/*']
+                }]
+            },
+            cordova: {
+                files: [{
+                    expand: true,
+                    cwd: 'platforms/ios/platform_www',
+                    dest: '<%= yeoman.dist %>/platforms/ios',
+                    src: ['**']
+                }, {
+                    expand: true,
+                    cwd: '.',
+                    dest: '<%= yeoman.dist %>/platforms/ios',
+                    src: ['plugins/**/www/*']
+                }, {
+                    expand: true,
+                    cwd: 'platforms/android/platform_www',
+                    dest: '<%= yeoman.dist %>/platforms/android',
+                    src: ['**']
+                }, {
+                    expand: true,
+                    cwd: '.',
+                    dest: '<%= yeoman.dist %>/platforms/android',
+                    src: ['plugins/**/www/*']
                 }]
             },
             styles: {
@@ -653,14 +678,15 @@ module.exports = function(grunt) {
         'usemin',
         'processhtml:dist',
         'htmlmin',
-        'ngtemplates',
-        'manifest'
+        'ngtemplates'
     ]);
 
 
 
     grunt.registerTask('deploy', [
         'compress',
+        'copy:cordova',
+        'manifest',
         'gh-pages'
     ]);
 
