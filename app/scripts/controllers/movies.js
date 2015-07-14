@@ -54,7 +54,8 @@ angular.module('moviesowlApp')
 
         function loadMovies() {
             $ionicLoading.show({
-                template: '<ion-spinner class="bubbles"></ion-spinner>'
+                template: '<ion-spinner class="bubbles"></ion-spinner>',
+                noBackdrop: true
             });
             var cinemaObj = angular.fromJson(localStorage.cinema);
             $scope.cinemaLocation = cinemaObj.location;
