@@ -2,12 +2,17 @@
     <ion-nav-title>
         {{cinemaLocation}}
     </ion-nav-title>
+    <ion-nav-buttons side="primary">
+        <button class="button" ng-click="toggleViewMode()">
+            <i class="icon ion-grid"></i>
+        </button>
+    </ion-nav-buttons>
     <ion-nav-buttons side="secondary">
         <button class="button" ng-click="openModal()">
             Cinemas
         </button>
     </ion-nav-buttons>
-    <ion-content>
+    <ion-content style="background-color: #222">
         <!-- Refresher -->
         <ion-refresher pulling-text="Pull to update movies." on-refresh="doRefresh()" spinner="bubbles">
         </ion-refresher>

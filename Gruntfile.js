@@ -1,3 +1,4 @@
+// jshint ignore: start
 // Generated on 2015-06-13 using generator-ionic 0.7.3
 'use strict';
 /* jshint -W079 */
@@ -31,33 +32,39 @@ module.exports = function(grunt) {
         manifest: {
             generate: {
                 options: {
-                    basePath: '../',
-                    // cache: ['js/app.js', 'css/style.css'],
-                    network: ['http://*', 'https://*'],
-                    fallback: ['/ /offline.html'],
-                    // exclude: ['js/jquery.min.js'],
-                    // preferOnline: true,
+                    basePath: '<%= yeoman.dist %>',
+                    cache: [],
+                    network: ['*'],
+                    //network: ['http://*', 'https://*'],
+                    //fallback: ['/ /offline.html'],
+                    //exclude: ['js/jquery.min.js'],
+                    //preferOnline: true,
                     verbose: true,
-                    // timestamp: true,
+                    //timestamp: true,
                     hash: true,
-                    master: ['index.html'],
-                    process: function(path) {
-                        return path.substring('build/'.length);
-                    }
+                    master: ['index.html']
+                    //process: function (path) {
+                    //    return path.substring('build/'.length);
+                    //}
                 },
                 src: [
-                    '<%= yeoman.dist %>/templates/*.html',
-                    '<%= yeoman.dist %>/scripts/*.js',
-                    '<%= yeoman.dist %>/styles/*.css',
+                    'templates/*.html',
+                    'scripts/*.js',
+                    'styles/*.css',
+                    'images/*',
+                    'fonts/*',
+                    'platforms/**/*.js'
                 ],
                 dest: '<%= yeoman.dist %>/manifest.appcache'
             }
         },
 
 
+
         'gh-pages': {
             options: {
                 base: '<%= yeoman.dist %>'
+                //base: 'platforms/ios/www'
             },
             src: '**/*'
         },
@@ -292,14 +299,13 @@ module.exports = function(grunt) {
         },
 
         // The following *-min tasks produce minified files in the dist folder
-        //cssmin: {
-        //    options: {
-        //        //root: '<%= yeoman.app %>',
-        //        relativeTo: '<%= yeoman.app %>',
-        //        target: '<%= yeoman.app %>',
-        //        noRebase: true
-        //    }
-        //},
+        cssmin: {
+            options: {
+                //root: '<%= yeoman.app %>',
+                noRebase: true
+            }
+        },
+
         htmlmin: {
             dist: {
                 options: {
@@ -336,6 +342,19 @@ module.exports = function(grunt) {
                     cwd: '.temp/<%= yeoman.images %>',
                     dest: '<%= yeoman.dist %>/<%= yeoman.images %>',
                     src: ['generated/*']
+                }]
+            },
+            cordova: {
+                files: [{
+                    expand: true,
+                    cwd: 'platforms/ios/www',
+                    dest: '<%= yeoman.dist %>/platforms/ios',
+                    src: ['*.js', 'plugins/**/*', 'cordova-js-src']
+                }, {
+                    expand: true,
+                    cwd: 'platforms/android/www',
+                    dest: '<%= yeoman.dist %>/platforms/android',
+                    src: ['*.js', 'plugins/**/*', 'cordova-js-src']
                 }]
             },
             styles: {
@@ -400,27 +419,27 @@ module.exports = function(grunt) {
             ]
         },
 
-        cssmin: {
-            dist: {
-                files: [{
-                    expand: true,
-                    cwd: '.temp/<%= yeoman.styles %>',
-                    src: ['*.css'],
-                    dest: '<%= yeoman.dist %>/<%= yeoman.styles %>'
-                }]
-            }
-        },
+        //cssmin: {
+        //    dist: {
+        //        files: [{
+        //            expand: true,
+        //            cwd: '.temp/<%= yeoman.styles %>',
+        //            src: ['*.css'],
+        //            dest: '<%= yeoman.dist %>/<%= yeoman.styles %>'
+        //        }]
+        //    }
+        //},
 
-        replace: {
-            cssmove: {
-                src: ['<%= yeoman.dist %>/<%= yeoman.styles %>/style.css', '<%= yeoman.dist %>/<%= yeoman.styles %>/vendor.css'],
-                overwrite: true, // overwrite matched source files
-                replacements: [{
-                    from: "url(../",
-                    to: "url("
-                }]
-            }
-        },
+        //replace: {
+        //    cssmove: {
+        //        src: ['<%= yeoman.dist %>/<%= yeoman.styles %>/style.css', '<%= yeoman.dist %>/<%= yeoman.styles %>/vendor.css'],
+        //        overwrite: true, // overwrite matched source files
+        //        replacements: [{
+        //            from: "url(../",
+        //            to: "url("
+        //        }]
+        //    }
+        //},
 
 
         // By default, your `index.html`'s <!-- Usemin block --> will take care of
@@ -642,9 +661,9 @@ module.exports = function(grunt) {
         'concat',
         'ngAnnotate',
         'copy:dist',
-        'copy:tmp',
+        //'copy:tmp',
         'cssmin',
-        'replace:cssmove',
+        //'replace:cssmove',
         'uglify',
         'usemin',
         'processhtml:dist',
@@ -656,6 +675,10 @@ module.exports = function(grunt) {
 
     grunt.registerTask('deploy', [
         'compress',
+        'ionic:build:ios',
+        //'ionic:build:android',
+        'copy:cordova',
+        'manifest',
         'gh-pages'
     ]);
 
