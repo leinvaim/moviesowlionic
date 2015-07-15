@@ -64,6 +64,7 @@ module.exports = function(grunt) {
         'gh-pages': {
             options: {
                 base: '<%= yeoman.dist %>'
+                //base: 'platforms/ios/www'
             },
             src: '**/*'
         },
@@ -347,24 +348,14 @@ module.exports = function(grunt) {
             cordova: {
                 files: [{
                     expand: true,
-                    cwd: 'platforms/ios/platform_www',
+                    cwd: 'platforms/ios/www',
                     dest: '<%= yeoman.dist %>/platforms/ios',
-                    src: ['**']
+                    src: ['*.js', 'plugins/**/*', 'cordova-js-src']
                 }, {
                     expand: true,
-                    cwd: '.',
-                    dest: '<%= yeoman.dist %>/platforms/ios',
-                    src: ['plugins/**/www/*']
-                }, {
-                    expand: true,
-                    cwd: 'platforms/android/platform_www',
+                    cwd: 'platforms/android/www',
                     dest: '<%= yeoman.dist %>/platforms/android',
-                    src: ['**']
-                }, {
-                    expand: true,
-                    cwd: '.',
-                    dest: '<%= yeoman.dist %>/platforms/android',
-                    src: ['plugins/**/www/*']
+                    src: ['*.js', 'plugins/**/*', 'cordova-js-src']
                 }]
             },
             styles: {
@@ -685,6 +676,8 @@ module.exports = function(grunt) {
 
     grunt.registerTask('deploy', [
         'compress',
+        'ionic:build:ios',
+        //'ionic:build:android',
         'copy:cordova',
         'manifest',
         'gh-pages'
