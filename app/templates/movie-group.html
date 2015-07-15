@@ -6,11 +6,13 @@
     </div>
 
     <div ng-repeat="row in group.movies" ng-if="mode == 'list'">
-        <div class="item item-dark" ng-repeat="movie in row" style="background-color:#222">
+        <div class="item item-dark item-icon-right" ng-repeat="movie in row" style="background-color:#222"
+             ng-click="selectMovie(movie)">
             <h2 style="color:white">{{ movie.title }}</h2>
             <p>
                 <span am-time-ago="{{movie.showings.data[0].start_time}}" am-preprocess="unix"></span>
             </p>
+            <i class="icon ion-chevron-right icon-accessory"></i>
         </div>
     </div>
 

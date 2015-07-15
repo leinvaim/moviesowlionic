@@ -1,10 +1,10 @@
-<ion-view>
+<ion-view style="background-color: #222;">
     <!-- <div class="background-image" style="background-image: url('{{movie.poster}}');">
     </div> -->
     <ion-nav-title>
         {{movie.title}}
     </ion-nav-title>
-    <img src="{{ movie.poster }}" class="background-image-two">
+    <!--<img src="{{ movie.poster }}" class="background-image-two">-->
     <ion-content>
         <div class="content">
             <!--  <div class="row">
@@ -33,15 +33,17 @@
                     <div>Rotten Tomatoes</div>
                     <img src="{{rottenLogo}}" style="width:25px;"> {{movie.tomato_meter}}%
                 </ion-item>
-                <div ng-click="openModal()">
-                    <img src="{{movie.poster}}" style="height:180px; max-width:100%;">
+                <ion-item class="item-icon-right item-dark" ng-click="openModal()" style="background-color: #222">
+                    <!--{{ movie.synopsis }}-->
+                    More Info
+                    <i class="icon ion-chevron-right icon-accessory"></i>
+                </ion-item>
+
+                <div class="item item-dark item-divider" >
+                    Today's Sessions
                 </div>
-                <!--                 <ion-item class="wrap" style="background-color: transparent; color: white;">
-                    Synopsis
-                    <br/>{{movie.synopsis}}
-                </ion-item> -->
-                <div class="todaySessionText">Today's Sessions</div>
-                <ion-item ng-repeat="session in showingsData" ng-click="openSeatView(session.id)" class="sessionsCell">
+
+                <ion-item ng-repeat="session in showingsData" ng-click="openSeatView(session.id)" class="sessionsCell item-dark" style="background-color: #222">
                     <div class="row">
                         <div class="col col-25" style="text-align:left; font-weight:bold;">{{session.start_time*1000| date:'h:mma' }}</div>
                         <div class="col col-35" ng-show="session.screen_type === 'standard'">
