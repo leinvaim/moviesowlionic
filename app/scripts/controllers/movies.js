@@ -12,12 +12,14 @@ angular.module('moviesowlApp')
         $ionicLoading, $ionicPopup, $ionicModal, cinemasList) {
 
         $scope.doRefresh = doRefresh;
-
-        $scope.cinemaLocation = $stateParams.cinemaLocation;
-        $scope.cinemas = cinemasList.cinemas;
         $scope.openModal = openModal;
         $scope.closeModal = closeModal;
         $scope.closeModalOnly = closeModalOnly;
+        $scope.toggleViewMode = toggleViewMode;
+
+        $scope.cinemaLocation = $stateParams.cinemaLocation;
+        $scope.cinemas = cinemasList.cinemas;
+        $scope.mode = getViewMode();
 
         activate();
 
@@ -143,5 +145,21 @@ angular.module('moviesowlApp')
         function doRefresh() {
             console.log('Reloading Movies');
             loadMovies();
+        }
+
+
+        function getViewMode() {
+            return localStorage.viewMode || 'list';
+        }
+
+        function toggleViewMode() {
+            var mode = '';
+            if($scope.mode === 'list') {
+                mode = 'grid';
+            } else {
+                mode = 'list';
+            }
+            $scope.mode = mode;
+            localStorage.viewMode = mode;
         }
     });
