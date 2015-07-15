@@ -7,7 +7,7 @@ angular.module('moviesowlApp').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('templates/movie-group.html',
-    "<div class=\"group\" ng-if=\"group.movies.length > 0\"><div class=\"item item-divider {{ group.style }}-bg\" ion-affix data-affix-within-parent-with-class=\"group\" style=\"border-bottom: none; color:white; text-align:center\">{{ group.name }}<!--<div class=\"badge badge-light\">2</div>--></div><div class=\"row\" ng-repeat=\"row in group.movies\"><div class=\"col col-50\" ng-repeat=\"movie in row\"><div style=\"width:100%; height:100%; background-color:white\" ng-click=\"selectMovie(movie)\"><!-- <a href=\"#/movie/{{movie.id}}\"> --><img ng-src=\"{{movie.poster}}\" style=\"width:100%\"> <span am-time-ago=\"{{movie.showings.data[0].start_time}}\" am-preprocess=\"unix\"></span><!--  </a> --></div></div></div></div>"
+    "<div class=\"group\" ng-if=\"group.movies.length > 0\"><div class=\"item item-divider {{ group.style }}-bg\" ion-affix data-affix-within-parent-with-class=\"group\" style=\"border: none; color:white; text-align:center\">{{ group.name }}<!--<div class=\"badge badge-light\">2</div>--></div><div class=\"row\" ng-repeat=\"row in group.movies\"><div class=\"col col-50\" ng-repeat=\"movie in row\" style=\"position:relative\"><div style=\"width:100%; height:100%\" ng-click=\"selectMovie(movie)\"><!-- <a href=\"#/movie/{{movie.id}}\"> --><img ng-src=\"{{movie.poster}}\" style=\"width:100%\"><div style=\"position: absolute;bottom:30px;width:100%;text-align:center\"><span am-time-ago=\"{{movie.showings.data[0].start_time}}\" am-preprocess=\"unix\" style=\"background-color: #eee;padding:2px 10px;border-radius:100px;\"></span></div><!--  </a> --></div></div></div></div>"
   );
 
 
@@ -17,7 +17,7 @@ angular.module('moviesowlApp').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('templates/movies.html',
-    "<ion-view><ion-nav-title>{{cinemaLocation}}</ion-nav-title><ion-nav-buttons side=\"secondary\"><button class=\"button\" ng-click=\"openModal()\">Cinemas</button></ion-nav-buttons><ion-content><!-- Refresher --><!--<ion-refresher pulling-text=\"Pull to update movies.\" on-refresh=\"doRefresh()\" spinner=\"bubbles\">--><!--</ion-refresher>--><!-- /Refresher -->test 2222<!--<div ng-hide=\"hasNoMovies\">--><!--<div ng-repeat=\"group in groups\">--><!--<ng-include src=\"'templates/movie-group.html'\"></ng-include>--><!--</div>--><!--</div>--><!--<div ng-if=\"hasNoMovies\">--><!--No more movies available today. Come back tomorrow :)--><!--</div>--></ion-content></ion-view>"
+    "<ion-view><ion-nav-title>{{cinemaLocation}}</ion-nav-title><ion-nav-buttons side=\"secondary\"><button class=\"button\" ng-click=\"openModal()\">Cinemas</button></ion-nav-buttons><ion-content style=\"background-color: #333\"><!-- Refresher --><ion-refresher pulling-text=\"Pull to update movies.\" on-refresh=\"doRefresh()\" spinner=\"bubbles\"></ion-refresher><!-- /Refresher --><div ng-hide=\"hasNoMovies\"><div ng-repeat=\"group in groups\"><ng-include src=\"'templates/movie-group.html'\"></ng-include></div></div><div ng-if=\"hasNoMovies\">No more movies available today. Come back tomorrow :)</div></ion-content></ion-view>"
   );
 
 
