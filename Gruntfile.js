@@ -299,14 +299,13 @@ module.exports = function(grunt) {
         },
 
         // The following *-min tasks produce minified files in the dist folder
-        //cssmin: {
-        //    options: {
-        //        //root: '<%= yeoman.app %>',
-        //        relativeTo: '<%= yeoman.app %>',
-        //        target: '<%= yeoman.app %>',
-        //        noRebase: true
-        //    }
-        //},
+        cssmin: {
+            options: {
+                //root: '<%= yeoman.app %>',
+                noRebase: true
+            }
+        },
+
         htmlmin: {
             dist: {
                 options: {
@@ -420,27 +419,27 @@ module.exports = function(grunt) {
             ]
         },
 
-        cssmin: {
-            dist: {
-                files: [{
-                    expand: true,
-                    cwd: '.temp/<%= yeoman.styles %>',
-                    src: ['*.css'],
-                    dest: '<%= yeoman.dist %>/<%= yeoman.styles %>'
-                }]
-            }
-        },
+        //cssmin: {
+        //    dist: {
+        //        files: [{
+        //            expand: true,
+        //            cwd: '.temp/<%= yeoman.styles %>',
+        //            src: ['*.css'],
+        //            dest: '<%= yeoman.dist %>/<%= yeoman.styles %>'
+        //        }]
+        //    }
+        //},
 
-        replace: {
-            cssmove: {
-                src: ['<%= yeoman.dist %>/<%= yeoman.styles %>/style.css', '<%= yeoman.dist %>/<%= yeoman.styles %>/vendor.css'],
-                overwrite: true, // overwrite matched source files
-                replacements: [{
-                    from: "url(../",
-                    to: "url("
-                }]
-            }
-        },
+        //replace: {
+        //    cssmove: {
+        //        src: ['<%= yeoman.dist %>/<%= yeoman.styles %>/style.css', '<%= yeoman.dist %>/<%= yeoman.styles %>/vendor.css'],
+        //        overwrite: true, // overwrite matched source files
+        //        replacements: [{
+        //            from: "url(../",
+        //            to: "url("
+        //        }]
+        //    }
+        //},
 
 
         // By default, your `index.html`'s <!-- Usemin block --> will take care of
@@ -662,9 +661,9 @@ module.exports = function(grunt) {
         'concat',
         'ngAnnotate',
         'copy:dist',
-        'copy:tmp',
+        //'copy:tmp',
         'cssmin',
-        'replace:cssmove',
+        //'replace:cssmove',
         'uglify',
         'usemin',
         'processhtml:dist',
