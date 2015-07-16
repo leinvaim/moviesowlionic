@@ -33,7 +33,11 @@ module.exports = function(grunt) {
             generate: {
                 options: {
                     basePath: '<%= yeoman.dist %>',
-                    cache: [],
+                    cache: [
+                        'fonts/ionicons.eot?v=2.0.1',
+                        'fonts/ionicons.svg?v=2.0.1',
+                        'fonts/ionicons.ttf?v=2.0.1',
+                        'fonts/ionicons.woff?v=2.0.1'],
                     network: ['*'],
                     //network: ['http://*', 'https://*'],
                     //fallback: ['/ /offline.html'],
