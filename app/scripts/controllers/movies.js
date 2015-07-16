@@ -158,7 +158,7 @@ angular.module('moviesowlApp')
                         return movie.tomato_meter >= 50 && movie.tomato_meter < 70;
                     }), 2)
                 }, {
-                    name: 'Bad Good',
+                    name: 'Bad Movies',
                     style: 'assertive',
                     movies: _.chunk(_.filter($rootScope.movies, function(movie) {
                         return movie.tomato_meter < 50 && movie.tomato_meter >= 0;
