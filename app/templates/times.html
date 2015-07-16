@@ -1,7 +1,7 @@
 <ion-modal-view>
     <ion-header-bar>
         <h1 class="title">Starting After</h1>
-        <button class="button button-outline button-dark" ng-click="closeModalOnly()">Done</button>
+        <button class="button button-outline button-dark" ng-click="timesModal.hide();">Done</button>
     </ion-header-bar>
     <ion-content>
         <ion-item ng-repeat="time in times" ng-click="setStartingTime(time)">
