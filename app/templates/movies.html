@@ -26,4 +26,16 @@
             No more movies available today. Come back tomorrow :)
         </div>
     </ion-content>
+    <ion-footer-bar align-title="left" class="bar-dark item-icon-right" ng-click="showTimesModal()">
+        <!--<div class="buttons">-->
+            <!--<button class="button">Left Button</button>-->
+        <!--</div>-->
+        <h1 class="title">
+            From: {{ startingAfter | date:'shortTime'}}
+        </h1>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+        <!--<div class="buttons" ng-click="doSomething()">-->
+            <!--<button class="button">Right Button</button>-->
+        <!--</div>-->
+    </ion-footer-bar>
 </ion-view>

@@ -16,21 +16,70 @@ angular.module('moviesowlApp')
         $scope.closeModal = closeModal;
         $scope.closeModalOnly = closeModalOnly;
         $scope.toggleViewMode = toggleViewMode;
+        $scope.setStartingTime = setStartingTime;
+        $scope.showTimesModal = showTimesModal;
 
         $scope.cinemaLocation = $stateParams.cinemaLocation;
         $scope.cinemas = cinemasList.cinemas;
+
         $scope.mode = getViewMode();
 
         activate();
 
         ///
 
+        function getPossibleStartingTimes() {
+            var times = [
+                getCurrentTime()
+            ];
+
+            var nextTime = new Date(getCurrentTime().getTime());
+            nextTime.setHours(nextTime.getHours() + 1);
+            nextTime.setMinutes(0);
+
+            for (var i = nextTime.getHours(); i < 24; i++) {
+                var time = new Date(nextTime.getTime());
+                time.setHours(i);
+                times.push(time);
+            }
+            return times;
+        }
+
         function activate() {
+            $scope.startingAfter = getCurrentTime();
+
             if (hasPreferredCinema()) {
                 loadMovies();
             }
 
             setupModal().then(showPreferredCinemasModalIfNeeded);
+
+            $ionicModal.fromTemplateUrl('templates/times.html', {
+                scope: $scope,
+                animation: 'slide-in-up'
+            }).then(function(modal) {
+                $scope.timesModal = modal;
+            });
+        }
+
+        function getCurrentTime() {
+            return new Date();
+        }
+
+        function showTimesModal() {
+            $scope.times = getPossibleStartingTimes();
+            $scope.timesModal.show();
+        }
+        /**
+         * Changes the starting hour to search from
+         *
+         * Only show movies starting after 4pm, or 8pm
+         * @param time
+         */
+        function setStartingTime(time) {
+            $scope.timesModal.hide();
+            $scope.startingAfter = time;
+            loadMovies();
         }
 
         function hasPreferredCinema() {
@@ -75,9 +124,12 @@ angular.module('moviesowlApp')
             $scope.modal.remove();
         });
 
-        function getMoviesForCinema(cinemaId) {
+        function getMoviesForCinema(cinemaId, time) {
+            if(!time) {
+                time = Math.round((new Date()).getTime() / 1000);
+            }
             return $http.get('http://api.moviesowl.com/v1/cinemas/' + cinemaId +
-            '/movies').then(function(response) {
+            '/movies?starting_after=' + time).then(function(response) {
                 return response.data;
             });
         }
@@ -89,7 +141,8 @@ angular.module('moviesowlApp')
             var cinemaObj = angular.fromJson(localStorage.cinema);
             $scope.cinemaLocation = cinemaObj.location;
 
-            getMoviesForCinema(cinemaObj.id).then(function(moviesData) {
+            var time = Math.round($scope.startingAfter.getTime() / 1000);
+            getMoviesForCinema(cinemaObj.id, time).then(function(moviesData) {
                 $rootScope.movies = moviesData.data; //I dont actually use this anymore
 
                 $scope.groups = [{
@@ -144,6 +197,7 @@ angular.module('moviesowlApp')
 
         function doRefresh() {
             console.log('Reloading Movies');
+            $scope.startingAfter = getCurrentTime();
             loadMovies();
         }
 
