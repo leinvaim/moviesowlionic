@@ -22,8 +22,11 @@
                 <ng-include src="'templates/movie-group.html'"></ng-include>
             </div>
         </div>
-        <div ng-if="hasNoMovies">
-            No more movies available today. Come back tomorrow :)
+        <div class="item"
+             ng-if="hasNoMovies" style="text-align: center">
+            <h2>No more movies today</h2>
+            <p style="margin-bottom: 10px;">Come back tomorrow</p>
+            <img src="images/no-movies-owl.png" alt="" style="max-width: 33%"/>
         </div>
     </ion-content>
     <ion-footer-bar align-title="left" class="bar-dark item-icon-right" ng-click="showTimesModal()">
