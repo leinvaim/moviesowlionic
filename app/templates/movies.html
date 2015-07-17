@@ -3,9 +3,9 @@
         {{cinemaLocation}}
     </ion-nav-title>
     <ion-nav-buttons side="primary">
-        <button class="button" ng-click="toggleViewMode()" ng-switch="mode">
-            <i class="icon ion-grid" ng-switch-when="list"></i>
-            <i class="icon ion-ios-list-outline" ng-switch-when="grid"></i>
+        <button class="button" ng-click="toggleViewMode()">
+            <i class="icon"
+                    ng-class="{'ion-grid': mode == 'list', 'ion-ios-list-outline': mode == 'grid'}"></i>
         </button>
     </ion-nav-buttons>
     <ion-nav-buttons side="secondary">
