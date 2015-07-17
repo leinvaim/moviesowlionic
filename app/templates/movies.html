@@ -4,7 +4,8 @@
     </ion-nav-title>
     <ion-nav-buttons side="primary">
         <button class="button" ng-click="toggleViewMode()">
-            <i class="icon ion-grid"></i>
+            <i class="icon ion-grid" ng-show="mode == 'list'"></i>
+            <i class="icon ion-ios-list-outline" ng-show="mode == 'grid'"></i>
         </button>
     </ion-nav-buttons>
     <ion-nav-buttons side="secondary">
