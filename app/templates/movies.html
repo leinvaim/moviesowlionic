@@ -17,6 +17,7 @@
         <ion-refresher pulling-text="Pull to update movies." on-refresh="doRefresh()" spinner="bubbles">
         </ion-refresher>
         <!-- /Refresher -->
+
         <div ng-hide="hasNoMovies">
             <div ng-repeat="group in groups">
                 <ng-include src="'templates/movie-group.html'"></ng-include>
@@ -26,7 +27,7 @@
              ng-if="hasNoMovies" style="text-align: center">
             <h2>No more movies today</h2>
             <p style="margin-bottom: 10px;">Come back tomorrow</p>
-            <img src="images/no-movies-owl.png" alt="" style="max-width: 33%"/>
+            <img src="images/no-movies-owl.png" alt="" style="max-width: 50%"/>
         </div>
     </ion-content>
     <ion-footer-bar align-title="left" class="bar-dark item-icon-right" ng-click="showTimesModal()">
