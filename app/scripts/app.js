@@ -12,9 +12,17 @@
 // the 2nd parameter is an array of 'requires'
 angular.module('moviesowlApp', ['ionic', 'angulartics', 'angulartics.google.analytics', 'angularMoment', 'ion-affix'])
 
-.run(function($ionicPlatform, amMoment) {
+.run(function($ionicPlatform, amMoment, $rootScope) {
     amMoment.changeLocale('en');
     $ionicPlatform.ready(function() {
+
+        $ionicPlatform.ready(function() {
+            if(navigator.splashscreen){
+                setTimeout(function() {
+                    navigator.splashscreen.hide();
+                }, 100);
+            }
+        });
 
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
