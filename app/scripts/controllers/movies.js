@@ -182,7 +182,7 @@ angular.module('moviesowlApp')
                 $scope.$broadcast('scroll.refreshComplete');
                 var alertPopup = $ionicPopup.alert({
                     title: 'Sorry :(',
-                    template: 'Failed to load movies, /n Please try again!'
+                    template: 'Failed to load movies, Please try again!'
                 });
 
             });
