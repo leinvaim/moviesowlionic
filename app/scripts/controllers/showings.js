@@ -8,7 +8,7 @@
  * Controller of the moviesowlApp
  */
 angular.module('moviesowlApp')
-    .controller('ShowingsCtrl', function($scope, $stateParams, $http, selectedMovieService, showingsDataService,
+    .controller('ShowingsCtrl', function(ENV, $scope, $stateParams, $http, selectedMovieService, showingsDataService,
         $state, $q, $ionicModal) {
 
         activate();
@@ -25,7 +25,7 @@ angular.module('moviesowlApp')
             if (selectedMovieService.selectedMovie.id) {
                 return $q.when(selectedMovieService.selectedMovie);
             }
-            return $http.get('http://api.moviesowl.com/v1/cinemas/12/movies').then(function(response) {
+            return $http.get(ENV.apiEndpoint + 'cinemas/12/movies').then(function(response) {
                 var movies = response.data.data;
                 selectedMovieService.selectedMovie = _.find(movies, {
                     id: parseInt($stateParams.movieId)
@@ -50,7 +50,7 @@ angular.module('moviesowlApp')
 
 
             _.forEach($scope.showingsData, function(showing) {
-                $http.get('http://api.moviesowl.com/v1/showings/' + showing.id).then(function(response) {
+                $http.get(ENV.apiEndpoint + 'showings/' + showing.id).then(function(response) {
                     var tempSeats = response.data;
                     var seatsInfo = response.data.seats;
                     var totalNumOfSeats = 0;

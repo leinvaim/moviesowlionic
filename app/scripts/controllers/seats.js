@@ -8,7 +8,7 @@
  * Controller of the moviesowlApp
  */
 angular.module('moviesowlApp')
-    .controller('SeatsCtrl', function($scope, $http, $stateParams, showingsDataService, selectedMovieService,
+    .controller('SeatsCtrl', function(ENV, $scope, $http, $stateParams, showingsDataService, selectedMovieService,
                                       $timeout) {
 
         //$http.get('http://api.moviesowl.com/v1/showings/' + $stateParams.showId).then(function(response) {
@@ -40,7 +40,7 @@ angular.module('moviesowlApp')
         // console.log(seatsData);
         function doRefresh() {
             console.log('Reloading Seats');
-            $http.get('http://api.moviesowl.com/v1/showings/' + $stateParams.showId).then(function(response) {
+            $http.get(ENV.apiEndpoint + 'showings/' + $stateParams.showId).then(function(response) {
                 $scope.seatingPlan = response.data.seats;
                 $scope.$broadcast('scroll.refreshComplete');
             }, function() {
