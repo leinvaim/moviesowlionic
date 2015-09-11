@@ -1,6 +1,6 @@
 <!--  -->
 <ion-modal-view>
-    <img src="{{ movie.poster }}" class="background-image-two">
+    <img src="{{ ENV.posterEndpoint }}{{ movie.poster }}" class="background-image-two">
     <ion-header-bar class="detailsTitle">
         <div class="title" style="font-weight:bold;">
             {{movie.title}}

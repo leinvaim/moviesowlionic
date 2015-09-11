@@ -20,3 +20,4 @@ ionic/platforms/
 ionic/plugins/
 ionic/.idea/
 ionic/www/lib/
+.grunt

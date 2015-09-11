@@ -8,7 +8,7 @@
  * Controller of the moviesowlApp
  */
 angular.module('moviesowlApp')
-    .controller('MoviesCtrl', function($scope, $http, $rootScope, $stateParams, selectedMovieService, $state,
+    .controller('MoviesCtrl', function(ENV, $scope, $http, $rootScope, $stateParams, selectedMovieService, $state,
         $ionicLoading, $ionicPopup, $ionicModal, cinemasList) {
 
         $scope.doRefresh = doRefresh;
@@ -128,7 +128,7 @@ angular.module('moviesowlApp')
             if(!time) {
                 time = Math.round((new Date()).getTime() / 1000);
             }
-            return $http.get('http://api.moviesowl.com/v1/cinemas/' + cinemaId +
+            return $http.get(ENV.apiEndpoint + 'cinemas/' + cinemaId +
             '/movies?starting_after=' + time).then(function(response) {
                 return response.data;
             });
@@ -182,7 +182,7 @@ angular.module('moviesowlApp')
                 $scope.$broadcast('scroll.refreshComplete');
                 var alertPopup = $ionicPopup.alert({
                     title: 'Sorry :(',
-                    template: 'Failed to load movies, /n Please try again!'
+                    template: 'Failed to load movies, Please try again!'
                 });
 
             });

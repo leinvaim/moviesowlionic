@@ -8,7 +8,7 @@
  * Controller of the moviesowlApp
  */
 angular.module('moviesowlApp')
-    .controller('MovieDetailsCtrl', function($scope, $stateParams, $http, selectedMovieService, showingsDataService,
+    .controller('MovieDetailsCtrl', function(ENV, $scope, $stateParams, $http, selectedMovieService, showingsDataService,
         $state, $q) {
         // $scope.movie = _.find($rootScope.movies, function(movie) {
         //     return movie.id == $stateParams.movieId;
@@ -28,7 +28,7 @@ angular.module('moviesowlApp')
             if (selectedMovieService.selectedMovie.id) {
                 return $q.when(selectedMovieService.selectedMovie);
             }
-            return $http.get('http://api.moviesowl.com/v1/cinemas/12/movies').then(function(response) {
+            return $http.get(ENV.apiEndpoint + 'cinemas/12/movies').then(function(response) {
                 var movies = response.data.data;
                 selectedMovieService.selectedMovie = _.find(movies, {
                     id: parseInt($stateParams.movieId)

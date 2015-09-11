@@ -107,7 +107,8 @@ module.exports = function(grunt) {
                 constants: {
                     ENV: {
                         name: 'development',
-                        apiEndpoint: 'http://dev.yoursite.com:10000/'
+                        apiEndpoint: 'http://128.199.104.251/moviesowl.com/current/public/api/v1/',
+                        posterEndpoint: 'http://128.199.104.251/moviesowl.com/current/public/'
                     }
                 }
             },
@@ -115,7 +116,8 @@ module.exports = function(grunt) {
                 constants: {
                     ENV: {
                         name: 'production',
-                        apiEndpoint: 'http://api.yoursite.com/'
+                        apiEndpoint: 'http://128.199.104.251/moviesowl.com/current/public/api/v1/',
+                        posterEndpoint: 'http://128.199.104.251/moviesowl.com/current/public/'
                     }
                 }
             }

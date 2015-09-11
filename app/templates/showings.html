@@ -29,9 +29,9 @@
                 </div>
             </div> -->
             <ion-list>
-                <ion-item class="ratingCell">
+                <ion-item class="ratingCell" ng-if="movie.tomato_meter >= 0">
                     <div>Rotten Tomatoes</div>
-                    <img src="{{rottenLogo}}" style="width:25px;"> {{movie.tomato_meter}}%
+                    <img src="{{rottenLogo}}" style="width:25px;position:relative;top:6px;"> {{movie.tomato_meter}}%
                 </ion-item>
                 <ion-item class="item-dark item-icon-right" ng-click="openModal()" style="background-color: #222">
                     <!--{{ movie.synopsis }}-->
