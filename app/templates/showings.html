@@ -1,6 +1,6 @@
-<ion-view style="background-color: #222;">
-    <!-- <div class="background-image" style="background-image: url('{{movie.poster}}');">
-    </div> -->
+<ion-view>
+    <div class="background-image" style="background-image: url('{{ ENV.posterEndpoint}}{{ movie.poster }}');">
+    </div>
     <ion-nav-title>
         {{movie.title}}
     </ion-nav-title>
