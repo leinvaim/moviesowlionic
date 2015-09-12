@@ -27,7 +27,8 @@ angular.module('moviesowlApp').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('templates/showings.html',
-    "<ion-view><div class=\"background-image\" style=\"background-image: url('{{ ENV.posterEndpoint}}{{ movie.poster }}')\"></div><ion-nav-title>{{movie.title}}</ion-nav-title><!--<img src=\"{{ movie.poster }}\" class=\"background-image-two\">--><ion-content><!--<div class=\"content\">--><!--  <div class=\"row\">\n" +
+    "<ion-view style=\"background-color: #222\"><!-- <div class=\"background-image\" style=\"background-image: url('{{movie.poster}}');\">\n" +
+    "    </div> --><ion-nav-title>{{movie.title}}</ion-nav-title><!--<img src=\"{{ movie.poster }}\" class=\"background-image-two\">--><ion-content><!--<div class=\"content\">--><!--  <div class=\"row\">\n" +
     "                <div class=\"col\">\n" +
     "                    <img src=\"{{movie.poster}}\" style=\"max-height:100%; max-width:100%;\">\n" +
     "                </div>\n" +
