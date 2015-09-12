@@ -1,5 +1,4 @@
-<ion-view style="background-color: #222"><!-- <div class="background-image" style="background-image: url('{{movie.poster}}');">
-    </div> --><ion-nav-title>{{movie.title}}</ion-nav-title><!--<img src="{{ movie.poster }}" class="background-image-two">--><ion-content><!--<div class="content">--><!--  <div class="row">
+<ion-view><div class="background-image" style="background-image: url('{{ ENV.posterEndpoint}}{{ movie.poster }}')"></div><ion-nav-title>{{movie.title}}</ion-nav-title><!--<img src="{{ movie.poster }}" class="background-image-two">--><ion-content><!--<div class="content">--><!--  <div class="row">
                 <div class="col">
                     <img src="{{movie.poster}}" style="max-height:100%; max-width:100%;">
                 </div>
