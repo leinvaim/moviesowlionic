@@ -1,39 +1,20 @@
 <ion-view>
-    <div class="background-image" style="background-image: url('{{ ENV.posterEndpoint}}{{ movie.poster }}');">
-    </div>
+    <!--<div class="background-image" style="background-image: url({{ ENV.posterEndpoint }}{{ movie.poster }});">-->
+    <!--</div>-->
     <ion-nav-title>
-        {{movie.title}}
+        <div class="title">
+            {{movie.title}}
+        </div>
     </ion-nav-title>
-    <!--<img src="{{ movie.poster }}" class="background-image-two">-->
+    <img src="{{ ENV.posterEndpoint }}{{ movie.poster }}" class="background-image-two">
     <ion-content>
-        <!--<div class="content">-->
-            <!--  <div class="row">
-                <div class="col">
-                    <img src="{{movie.poster}}" style="max-height:100%; max-width:100%;">
-                </div>
-                <div class="col">
-                    <div class="row">
-                        {{movie.title}}
-                    </div>
-                    <div class="row">
-                        Run Time: {{movie.run_time}}
-                    </div>
-                    <div class="row">
-                        Director:
-                        <br/> {{movie.director}}
-                    </div>
-                    <div class="row wrap">
-                        Casts:
-                        <br/> {{movie.cast}}
-                    </div>
-                </div>
-            </div> -->
+
             <ion-list>
                 <ion-item class="ratingCell" ng-if="movie.tomato_meter >= 0">
                     <div>Rotten Tomatoes</div>
                     <img src="{{rottenLogo}}" style="width:25px;position:relative;top:6px;"> {{movie.tomato_meter}}%
                 </ion-item>
-                <ion-item class="item-dark item-icon-right" ng-click="openModal()" style="background-color: #222">
+                <ion-item class="item-icon-right movieDetailsHeading" ng-click="openModal()">
                     <!--{{ movie.synopsis }}-->
                     More Info
                     <i class="icon ion-chevron-right icon-accessory"></i>
@@ -43,7 +24,7 @@
                     Today's Sessions
                 </div>
 
-                <ion-item ng-repeat="session in showingsData" ng-click="openSeatView(session.id)" class="item-dark item-icon-right" style="background-color: #222">
+                <ion-item ng-repeat="session in showingsData" ng-click="openSeatView(session.id)" class="sessionsCell item-icon-right">
 
 
                     <div class="row" style="padding: 0;">
