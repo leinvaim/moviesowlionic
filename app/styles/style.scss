@@ -70,6 +70,11 @@
     }
 }
 
+.spinner.showing svg {
+    height: 16px;
+    fill: rgb(106, 167, 255);
+}
+
 .custom-spinner {
     width: 20%;
     padding-bottom: 20%;
