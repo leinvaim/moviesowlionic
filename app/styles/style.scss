@@ -334,9 +334,7 @@
 //    background: none;
 //    border-bottom: none
 //}
-//.scroll-content {
-//    overflow: visible !important;
-//}
+
 
 bar.bar-custom, bar.bar-custom .bar.bar-positive, .bar-custom .nav-bar-block ion-header-bar {
     //border-color: #FF7148;
@@ -351,4 +349,8 @@ bar.bar-custom, bar.bar-custom .bar.bar-positive, .bar-custom .nav-bar-block ion
 
 .bar-dark .button.button-clear {
     color: rgb(187, 176, 176);
+}
+
+.scroll-content {
+    overflow: visible !important;
 }
