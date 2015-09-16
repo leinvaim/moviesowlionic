@@ -227,8 +227,8 @@ angular.module('moviesowlApp')
         }
 
         function handleCacheError(e) {
-            alert('Error: Cache failed to update!');
-        };
+           // window.alert('Error: Cache failed to update!');
+        }
 
         function updateFound(e) {
             console.log(e);
