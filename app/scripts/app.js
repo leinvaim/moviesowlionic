@@ -36,6 +36,14 @@ angular.module('moviesowlApp', ['ionic', 'config', 'angulartics', 'angulartics.g
             //StatusBar.overlaysWebView(true);
             //StatusBar.style(1); //Light
         }
+        $rootScope.$on('$stateChangeSuccess', function (evt, toState) {
+            console.log('stateChangeSuccess');
+            if (toState.changeColor) {
+                $rootScope.changeColor = true;
+            } else {
+                $rootScope.changeColor = false;
+            }
+        });
     });
 
 
@@ -63,7 +71,8 @@ angular.module('moviesowlApp', ['ionic', 'config', 'angulartics', 'angulartics.g
         .state('showings', {
             url: '/showings/:movieId',
             templateUrl: 'templates/showings.html',
-            controller: 'ShowingsCtrl'
+            controller: 'ShowingsCtrl',
+            changeColor: true
         })
         .state('seats', {
             url: '/seats/:showId',
