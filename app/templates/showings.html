@@ -1,21 +1,41 @@
 <ion-view>
     <!--<div class="background-image" style="background-image: url({{ ENV.posterEndpoint }}{{ movie.poster }});">-->
     <!--</div>-->
-    <ion-nav-title>
-        <div class="title">
-            {{movie.title}}
+    <!--<ion-nav-title>-->
+        <!--<div class="title">-->
+            <!--{{movie.title}}-->
+        <!--</div>-->
+    <!--</ion-nav-title>-->
+    <ion-content class="no-header">
+        <div class="pickgradient">
+            <img src="{{ ENV.posterEndpoint }}{{ movie.poster }}" style="width: 100%;">
         </div>
-    </ion-nav-title>
-    <img src="{{ ENV.posterEndpoint }}{{ movie.poster }}" class="background-image-two">
-    <ion-content>
-
             <ion-list>
+                <ion-item class="movieTitleCell">
+                    <div class="item-text-wrap">
+                        {{movie.title}}
+                    </div>
+                </ion-item>
                 <ion-item class="ratingCell" ng-if="movie.tomato_meter >= 0">
-                    <div>Rotten Tomatoes</div>
-                    <img src="{{rottenLogo}}" style="width:25px;position:relative;top:6px;"> {{movie.tomato_meter}}%
+                    <div class="row">
+                        <div class="col rating-left">
+                            <div style="font-weight: bold;">
+                                <img src="{{rottenLogo}}" style="width:16px;position:relative; top:3px;">
+                                {{movie.tomato_meter}}%
+                            </div>
+                            <div class="rottenTomatoText">
+                                Rotten Tomatoes
+                            </div>
+                        </div>
+
+                        <div class="col rating-right" >
+                            <div style="color:{{textColour}};">{{owlRating}}</div>
+                            <div class="rottenTomatoText"> Says The Owl </div>
+                        </div>
+                    </div>
+
                 </ion-item>
                 <ion-item class="item-icon-right movieDetailsHeading" ng-click="openModal()">
-                    <!--{{ movie.synopsis }}-->
                     More Info
                     <i class="icon ion-chevron-right icon-accessory"></i>
                 </ion-item>

@@ -10,11 +10,12 @@
 angular.module('moviesowlApp')
     .controller('ShowingsCtrl', function(ENV, $scope, $stateParams, $http, selectedMovieService, showingsDataService,
         $state, $q, $ionicModal) {
-
+        
         activate();
 
 
         function activate() {
+
             getMovie().then(function(movie) {
                 $scope.movie = movie;
             }).then(doStuff);
@@ -46,6 +47,20 @@ angular.module('moviesowlApp')
             if ($scope.movie.tomato_meter > 74) {
                 $scope.rottenLogo = 'images/CF_240x240.png';
             }
+
+            if ($scope.movie.tomato_meter < 50){
+                $scope.owlRating = 'Bad Movie';
+                $scope.textColour = 'red';
+            }
+            if ($scope.movie.tomato_meter >= 50){
+                $scope.owlRating = 'Good Movie';
+                $scope.textColour = 'yellow';
+            }
+            if ($scope.movie.tomato_meter >= 70){
+                $scope.owlRating = 'Great Movie';
+                $scope.textColour = '#1CC56A';
+            }
+
 
 
 
