@@ -349,18 +349,24 @@ bar.bar-custom, bar.bar-custom .bar.bar-positive, .bar-custom .nav-bar-block ion
     background-image: none;
     background: none;
     border-bottom: none;
-    transition-property: all;
-    transition-duration: 0.8s;
-    transition-timing-function: linear;
+
+    -webkit-transition: all 0.8s ease-in;
+    -moz-transition: all 0.8s ease-in;
+    -ms-transition: all 0.8s ease-in; /* IE10 is actually unprefixed */
+    -o-transition: all 0.8s ease-in;
+    transition: all 0.8s ease-in;
 
 }
 
 
 .bar-dark .bar-header{
     background-color: rgba(43, 49, 53, 0.75) !important;
-    transition-property: all;
-    transition-duration: 0.1s;
-    transition-timing-function: ease-out;
+    //-webkit-transition: all 0.1s ease-out;
+    //-moz-transition: all 0.1s ease-out;
+    //-ms-transition: all 0.1s ease-out; /* IE10 is actually unprefixed */
+    //-o-transition: all 0.1s ease-out;
+    //transition: all 0.1s ease-out;
+
 }
 
 .bar-dark .button {
