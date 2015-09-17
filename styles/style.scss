@@ -352,8 +352,18 @@ bar.bar-custom, bar.bar-custom .bar.bar-positive, .bar-custom .nav-bar-block ion
 
 }
 
+
+.bar-dark .bar-header{
+    background-color: rgba(43, 49, 53, 0.75) !important;
+}
+
+.bar-dark .button {
+    background-color: rgba(43, 49, 53, 0.75);
+    border-color: rgba(123, 122, 122, 0.91);
+}
 .bar-dark .button.button-clear {
     color: rgb(187, 176, 176);
+    background-color: none;
 }
 
 .scroll-content {
