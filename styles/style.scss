@@ -1,0 +1,377 @@
+/* Empty. Add your own CSS if you like */
+
+.item.wrap,
+.item-content.wrap {
+    white-space: normal;
+}
+
+.wrap {
+    white-space: normal;
+}
+/*#poster {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("path/to/img");
+    background-repeat: no-repeat;
+    background-size: contain;
+}*/
+
+.blink_me {
+    -webkit-animation-name: blinker;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+    -moz-animation-name: blinker;
+    -moz-animation-duration: 2s;
+    -moz-animation-timing-function: linear;
+    -moz-animation-iteration-count: infinite;
+    animation-name: blinker;
+    animation-duration: 2s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+@-moz-keyframes blinker {
+    0% {
+        opacity: 1.0;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1.0;
+    }
+}
+
+@-webkit-keyframes blinker {
+    0% {
+        opacity: 1.0;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1.0;
+    }
+}
+
+@keyframes blinker {
+    0% {
+        opacity: 1.0;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1.0;
+    }
+}
+
+.spinner.showing svg {
+    height: 16px;
+    fill: rgb(106, 167, 255);
+}
+
+.custom-spinner {
+    width: 20%;
+    padding-bottom: 20%;
+    position: relative;
+    float: right;
+    text-align: center;
+    -webkit-animation: rotate 2.0s infinite linear;
+    animation: rotate 2.0s infinite linear;
+}
+
+.dot1,
+.dot2 {
+    width: 60%;
+    height: 60%;
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    background-color: #333;
+    border-radius: 100%;
+    -webkit-animation: bounce 2.0s infinite ease-in-out;
+    animation: bounce 2.0s infinite ease-in-out;
+}
+
+.dot2 {
+    top: auto;
+    bottom: 0px;
+    -webkit-animation-delay: -1.0s;
+    animation-delay: -1.0s;
+}
+
+@-webkit-keyframes rotate {
+    100% {
+        -webkit-transform: rotate(360deg)
+    }
+}
+
+@keyframes rotate {
+    100% {
+        transform: rotate(360deg);
+        -webkit-transform: rotate(360deg)
+    }
+}
+
+@-webkit-keyframes bounce {
+    0%, 100% {
+        -webkit-transform: scale(0.0)
+    }
+    50% {
+        -webkit-transform: scale(1.0)
+    }
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: scale(0.0);
+        -webkit-transform: scale(0.0);
+    }
+    50% {
+        transform: scale(1.0);
+        -webkit-transform: scale(1.0);
+    }
+}
+
+.background-image-two {
+    position: absolute;
+    top: -10%;
+    left: -10%;
+    width: 120%;
+    height: 120%;
+    -webkit-filter: blur(10px) brightness(0.2);
+    -moz-filter: blur(10px) brightness(0.2);
+    -o-filter: blur(10px) brightness(0.2);
+    -ms-filter: blur(10px) brightness(0.2);
+    filter: blur(10px) brightness(0.2);
+}
+
+.background-image-bright {
+    // background-image: url('../img/background/image.jpg');
+    position: absolute;
+    top: -10%;
+    left: -10%;
+    width: 120%;
+    height: 120%;
+    -webkit-filter: blur(10px) brightness(0.9) opacity(0.2);
+    -moz-filter: blur(10px) brightness(0.9) opacity(0.2);
+    -o-filter: blur(10px) brightness(0.9) opacity(0.2);
+    -ms-filter: blur(10px) brightness(0.9) opacity(0.2);
+    filter: blur(10px) brightness(0.9) opacity(0.2);
+}
+
+.content {
+    position: absolute;
+    z-index: 9999;
+    top: 0;
+    color: white !important;
+    // margin-left: 20px;
+    // margin-right: 20px;
+}
+
+.ratingCell {
+    background-color: transparent;
+    color: white;
+    width: 101vw;
+    border-top: none;
+    border-bottom-style: groove;
+    border-bottom-width: thin;
+    border-color: darkgray;
+    text-align: left;
+}
+
+.movieTitleCell {
+    background-color: transparent;
+    color: white;
+    width: 101vw;
+    border: none;
+    text-align: left;
+    font-size: 22px;
+    line-height: 1.2;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding-top: 320px;
+    padding-bottom: 0;
+}
+
+.rating-left {
+    border: 1px solid #585650;
+    border-radius: 10px 0px 0px 10px;
+    text-align: center;
+}
+
+.rating-right {
+    border: 1px solid #585650;
+    border-radius: 0px 10px 10px 0px;
+    border-left: none;
+    text-align: center;
+    font-weight: bold;
+}
+
+.todaySessionText {
+    margin-top: 5px;
+    font-size: 1.25em;
+    margin-bottom: 5px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.sessionsCell {
+    border-bottom-style: groove;
+    border-bottom-width: thin;
+    border-color: darkgray;
+    border-top: none;
+    background-color: #000001;
+    color: white;
+}
+
+.movieDetailsHeading {
+    background-color: #000001;
+    color: white;
+    font-weight: bold;
+    border: none;
+}
+
+
+.rottenTomatoText {
+    text-transform: uppercase;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.movieDetails {
+    background-color: transparent;
+    color: white;
+    border: none;
+}
+
+.container-details {
+    background-color: transparent;
+    border-style: groove;
+}
+
+.detailsTitle {
+    background-color: transparent;
+    color: white;
+}
+
+.emptySeat {
+    position: absolute;
+    background-color: #DDDDDD;
+}
+
+.filledSeat {
+    color:red;
+    position:absolute;
+   border: 1px solid red;
+}
+
+
+.scale-in {
+    -webkit-transform: scale(0.0);
+    transform: scale(0.0);
+    opacity: 0;
+}
+
+.scale-in.ng-enter,
+.scale-in > .ng-enter {
+    -webkit-transition: all cubic-bezier(.1, .7, .1, 1) 800ms;
+    transition: all cubic-bezier(.1, .7, .1, 1) 800ms;
+}
+
+.scale-in.ng-enter-active,
+.scale-in > .ng-enter-active {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: 1;
+}
+
+.scale-in.ng-leave,
+.scale-in > .ng-leave {
+    -webkit-transition: all ease-in-out 250ms;
+    transition: all ease-in-out 250ms;
+}
+
+.pickgradient{
+    //position:relative;
+    display:inline-block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 500px;
+    overflow: hidden;
+}
+.pickgradient:after {
+    content:'';
+    position:absolute;
+    left:0;
+    top:268px;
+    width:100%;
+    height:232px;
+    display:inline-block;
+    background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 110px); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,1)), color-stop(110px,rgba(0,0,0,0))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,1.0) 110px); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,1.0) 110px); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,1.0) 110px); /* IE10+ */
+    background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,1.0) 110px); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */
+}
+
+.pickgradient img{
+    display:block;
+}
+
+//.bar.bar-light {
+//    background-color: rgba(255,255,255,0) !important; /* or transparent, or background:none */
+//    background-image: none;
+//    background: none;
+//    border-bottom: none
+//}
+
+.platform-ios.platform-cordova:not(.fullscreen) .no-header {
+    top:0px;
+}
+
+bar.bar-custom, bar.bar-custom .bar.bar-positive, .bar-custom .nav-bar-block ion-header-bar {
+    //border-color: #FF7148;
+    //background-color: #FF7148;
+    //background-image: linear-gradient(0deg, #FF7148, #FF7148 50%, transparent 50%);
+
+    //background-color: rgba(255,255,255,0) !important; /* or transparent, or background:none */
+    background-color: rgba(255,255,255,.01) !important;
+    background-image: none;
+    background: none;
+    border-bottom: none;
+    transition-property: all;
+    transition-duration: 0.8s;
+    transition-timing-function: linear;
+
+}
+
+
+.bar-dark .bar-header{
+    background-color: rgba(43, 49, 53, 0.75) !important;
+    transition-property: all;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-out;
+}
+
+.bar-dark .button {
+    background-color: rgba(43, 49, 53, 0.75);
+    border-color: rgba(123, 122, 122, 0.91);
+}
+.bar-dark .button.button-clear {
+    color: rgb(187, 176, 176);
+    background-color: none;
+}
+
+.scroll-content {
+   // overflow: visible !important;
+}
