@@ -349,6 +349,9 @@ bar.bar-custom, bar.bar-custom .bar.bar-positive, .bar-custom .nav-bar-block ion
     background-image: none;
     background: none;
     border-bottom: none;
+    transition-property: all;
+    transition-duration: 0.8s;
+    transition-timing-function: ease-in;
 
 }
 

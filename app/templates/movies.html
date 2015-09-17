@@ -18,10 +18,12 @@
         <ion-refresher pulling-text="Pull to update movies." on-refresh="doRefresh()" spinner="bubbles">
         </ion-refresher>
         <!-- /Refresher -->
-<div ng-show="hasUpdate">
-    <progress max=100 value="{{ progressWidth }}"></progress>
-    {{ progressWidth }}
-</div>
+
+        <div ng-show="hasUpdate">
+            <progress max=100 value="{{ progressWidth }}"></progress>
+            {{ progressWidth }}
+        </div>
+
         <div ng-hide="hasNoMovies">
             <div ng-repeat="group in groups">
                 <ng-include src="'templates/movie-group.html'"></ng-include>
