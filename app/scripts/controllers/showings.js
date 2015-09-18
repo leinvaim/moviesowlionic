@@ -9,9 +9,20 @@
  */
 angular.module('moviesowlApp')
     .controller('ShowingsCtrl', function(ENV, $scope, $stateParams, $http, selectedMovieService, showingsDataService,
-        $state, $q, $ionicModal, $rootScope) {
+        $state, $q, $ionicModal, $rootScope, $ionicHistory, $timeout) {
+
+
+        $scope.goBack = goBack;
 
         activate();
+
+
+        function goBack() {
+            $rootScope.changeColor = false;
+            $timeout(function() {
+                $ionicHistory.goBack();
+            }, 0);
+        }
 
 
         function activate() {

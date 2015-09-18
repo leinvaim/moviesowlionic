@@ -358,7 +358,20 @@ bar.bar-custom, bar.bar-custom .bar.bar-positive, .bar-custom .nav-bar-block ion
 .bar-custom .back-button {
   text-shadow: rgba(0, 0, 0, 1) 0px 2px 20px;
   color: white;
+  display: none !important;
 }
+.back-button-fixed {
+  display: none;
+}
+.bar-custom .back-button-fixed {
+  display: block;
+  background-color: transparent;
+  border: none;
+  font-size: 17px;
+  position: relative;
+  left: -10px;
+}
+
 .bar-custom .nav-bar-title {
   visibility: hidden;
 }
@@ -380,3 +393,7 @@ bar.bar-custom, bar.bar-custom .bar.bar-positive, .bar-custom .nav-bar-block ion
 //.scroll-content {
 //    overflow: visible !important;
 //}
+
+ion-content {
+  background-color: black;
+}
