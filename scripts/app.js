@@ -36,14 +36,21 @@ angular.module('moviesowlApp', ['ionic', 'config', 'angulartics', 'angulartics.g
             //StatusBar.overlaysWebView(true);
             //StatusBar.style(1); //Light
         }
-        $rootScope.$on('$stateChangeSuccess', function (evt, toState) {
-            console.log('stateChangeSuccess');
+        $rootScope.$on('$stateChangeStart', function(event, toState) {
             if (toState.changeColor) {
                 $rootScope.changeColor = true;
             } else {
                 $rootScope.changeColor = false;
             }
         });
+        //$rootScope.$on('$stateChangeSuccess', function (evt, toState) {
+        //    console.log('stateChangeSuccess');
+        //    if (toState.changeColor) {
+        //        $rootScope.changeColor = true;
+        //    } else {
+        //        $rootScope.changeColor = false;
+        //    }
+        //});
     });
 
 
