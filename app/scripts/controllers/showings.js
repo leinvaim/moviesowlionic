@@ -9,12 +9,24 @@
  */
 angular.module('moviesowlApp')
     .controller('ShowingsCtrl', function(ENV, $scope, $stateParams, $http, selectedMovieService, showingsDataService,
-        $state, $q, $ionicModal) {
+        $state, $q, $ionicModal, $rootScope) {
 
         activate();
 
 
         function activate() {
+            console.log('hell world');
+            angular.element('ion-content').bind("scroll", function(e) {
+                console.log(e.originalEvent.detail);
+                if (e.originalEvent.detail.scrollTop >= 10) {
+                    $rootScope.changeColor = false;
+                } else {
+                    $rootScope.changeColor = true;
+                }
+                console.log('scrolling');
+                $scope.$apply();
+            });
+
 
             getMovie().then(function(movie) {
                 $scope.movie = movie;
@@ -35,34 +47,47 @@ angular.module('moviesowlApp')
             });
         }
 
+        function getRottenTomatoLogo(movie) {
+            if (movie.tomato_meter < 60) {
+                return 'images/rotten.png';
+            }
+            if (movie.tomato_meter > 59) {
+                return 'images/fresh.png';
+            }
+            if (movie.tomato_meter > 74) {
+                return 'images/CF_240x240.png';
+            }
+        }
+
+        function getOwlRating(movie) {
+            if (movie.tomato_meter < 50) {
+                return 'Bad Movie';
+            }
+            if (movie.tomato_meter >= 50) {
+                return 'Good Movie';
+            }
+            if (movie.tomato_meter >= 70) {
+                return 'Great Movie';
+            }
+        }
+
+        function getOwlColor(movie) {
+            if (movie.tomato_meter < 50) {
+                return 'red';
+            }
+            if (movie.tomato_meter >= 50) {
+                return 'yellow';
+            }
+            if (movie.tomato_meter >= 70) {
+                return '#1CC56A';
+            }
+        }
+
         function doStuff() {
             $scope.showingsData = $scope.movie.showings.data;
-
-            if ($scope.movie.tomato_meter < 60) {
-                $scope.rottenLogo = 'images/rotten.png';
-            }
-            if ($scope.movie.tomato_meter > 59) {
-                $scope.rottenLogo = 'images/fresh.png';
-            }
-            if ($scope.movie.tomato_meter > 74) {
-                $scope.rottenLogo = 'images/CF_240x240.png';
-            }
-
-            if ($scope.movie.tomato_meter < 50){
-                $scope.owlRating = 'Bad Movie';
-                $scope.textColour = 'red';
-            }
-            if ($scope.movie.tomato_meter >= 50){
-                $scope.owlRating = 'Good Movie';
-                $scope.textColour = 'yellow';
-            }
-            if ($scope.movie.tomato_meter >= 70){
-                $scope.owlRating = 'Great Movie';
-                $scope.textColour = '#1CC56A';
-            }
-
-
-
+            $scope.rottenLogo = getRottenTomatoLogo($scope.movie);
+            $scope.owlRating = getOwlRating($scope.movie);
+            $scope.textColour = getOwlColor($scope.movie);
 
             _.forEach($scope.showingsData, function(showing) {
                 $http.get(ENV.apiEndpoint + 'showings/' + showing.id).then(function(response) {
