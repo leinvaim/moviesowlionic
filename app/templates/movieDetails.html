@@ -11,7 +11,7 @@
                 </button>
                 <div style="font-size:11px;margin-bottom: 5px;">
                     {{movie.run_time}} Minutes
-
+                    &nbsp;
                     <rating ng-model="movie.stars"
                             max="4"
                             readonly="true"
@@ -23,9 +23,13 @@
                     {{movie.title}}
                 </div>
             </ion-item>
-            <ion-item class="ratingCell --dark" ng-if="movie.tomato_meter >= 0">
+            <ion-item class="ratingCell item-darker" ng-if="movie.tomato_meter >= 0">
                 <div class="row">
                     <div class="col rating-left">
+                        <div style="color:{{textColour}};">{{owlRating}}</div>
+                        <div class="rottenTomatoText"> Says The Owl</div>
+                    </div>
+                    <div class="col rating-right">
                         <div style="font-weight: bold;">
                             <img src="{{rottenLogo}}" style="width:16px;position:relative; top:3px;">
                             {{movie.tomato_meter}}%
@@ -34,15 +38,10 @@
                             Rotten Tomatoes
                         </div>
                     </div>
-
-                    <div class="col rating-right">
-                        <div style="color:{{textColour}};">{{owlRating}}</div>
-                        <div class="rottenTomatoText"> Says The Owl</div>
-                    </div>
                 </div>
 
             </ion-item>
-            <div class="item container-details --dark ">
+            <div class="item container-details item-darker ">
                 <div class="item-divider movieDetailsHeading">
                     Directors
                 </div>
@@ -50,15 +49,15 @@
                     {{movie.director}}
                 </div>
             </div>
-            <div class="item container-details --dark">
+            <div class="item container-details item-darker">
                 <div class="item-divider movieDetailsHeading">
                     Casts
                 </div>
-                <div class="wrap movieDetails --dark">
+                <div class="wrap movieDetails">
                     {{movie.cast}}
                 </div>
             </div>
-            <div class="item container-details --dark">
+            <div class="item container-details item-darker">
                 <div class="item-divider movieDetailsHeading">
                     Synopsis
                 </div>

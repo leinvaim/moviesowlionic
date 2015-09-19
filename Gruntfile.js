@@ -81,7 +81,7 @@ module.exports = function(grunt) {
                 files: {
                     'www/index.html': ['www/index.html']
                 }
-            },
+            }
         },
 
         ngtemplates: {

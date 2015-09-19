@@ -245,7 +245,7 @@ angular.module('moviesowlApp')
             console.log(e);
             $scope.$apply(function(){
                 $scope.progressWidth = e.loaded / e.total * 100;
-                console.log('progress', $scope.progressWidth);
+                console.log('progress 2', $scope.progressWidth);
                 if($scope.progressWidth === 100) {
                     $scope.hasUpdate = false;
                 }

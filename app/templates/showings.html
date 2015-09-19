@@ -9,11 +9,10 @@
 
     <ion-content>
         <ion-list>
-            <ion-item class="item-icon-right --dark" ng-click="openModal()">
+            <ion-item class="item-icon-right item-darker" ng-click="openModal()">
                 <i class="icon ion-star"></i>
                 Ratings, Trailer, Cast, Synopsis and more
                 <i class="icon ion-chevron-right icon-accessory"></i>
-
             </ion-item>
 
             <div class="item item-dark item-divider">
@@ -21,7 +20,7 @@
             </div>
 
             <ion-item ng-repeat="session in showingsData" ng-click="openSeatView(session.id)"
-                      class="item-icon-right --dark">
+                      class="item-icon-right item-darker">
 
 
                 <div class="row" style="padding: 0;">
