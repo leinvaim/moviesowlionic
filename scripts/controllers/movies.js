@@ -244,8 +244,11 @@ angular.module('moviesowlApp')
         function getProgress(e) {
             console.log(e);
             $scope.$apply(function(){
-                $scope.progressWidth = e.load / e.total * 100;
+                $scope.progressWidth = e.loaded / e.total * 100;
                 console.log('progress', $scope.progressWidth);
+                if($scope.progressWidth === 100) {
+                    $scope.hasUpdate = false;
+                }
             });
         }
 
