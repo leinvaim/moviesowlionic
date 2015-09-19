@@ -20,7 +20,7 @@
                 Today's Sessions
             </div>
 
-            <ion-item collection-repeat="session in showingsData" ng-click="openSeatView(session.id)"
+            <ion-item ng-repeat="session in showingsData" ng-click="openSeatView(session.id)"
                       class="item-icon-right --dark">
 
 
