@@ -62,36 +62,30 @@ angular.module('moviesowlApp')
             if (movie.tomato_meter < 60) {
                 return 'images/rotten.png';
             }
-            if (movie.tomato_meter > 59) {
+            if (movie.tomato_meter < 75) {
                 return 'images/fresh.png';
             }
-            if (movie.tomato_meter > 74) {
-                return 'images/CF_240x240.png';
-            }
+            return 'images/CF_240x240.png';
         }
 
         function getOwlRating(movie) {
             if (movie.tomato_meter < 50) {
                 return 'Bad Movie';
             }
-            if (movie.tomato_meter >= 50) {
+            if (movie.tomato_meter < 70) {
                 return 'Good Movie';
             }
-            if (movie.tomato_meter >= 70) {
-                return 'Great Movie';
-            }
+            return 'Great Movie';
         }
 
         function getOwlColor(movie) {
             if (movie.tomato_meter < 50) {
                 return 'red';
             }
-            if (movie.tomato_meter >= 50) {
+            if (movie.tomato_meter < 70) {
                 return 'yellow';
             }
-            if (movie.tomato_meter >= 70) {
-                return '#1CC56A';
-            }
+            return '#1CC56A';
         }
 
         function doStuff() {

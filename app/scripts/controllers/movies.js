@@ -143,6 +143,9 @@ angular.module('moviesowlApp')
 
             var time = Math.round($scope.startingAfter.getTime() / 1000);
             getMoviesForCinema(cinemaObj.id, time).then(function(moviesData) {
+                _.each(moviesData.data, function(movie) {
+                    movie.stars = movie.tomato_meter / 25;
+                });
                 $rootScope.movies = moviesData.data; //I dont actually use this anymore
 
                 $scope.groups = [{
