@@ -28,23 +28,6 @@ angular.module('moviesowlApp')
 
         ///
 
-        function getPossibleStartingTimes() {
-            var times = [
-                getCurrentTime()
-            ];
-
-            var nextTime = new Date(getCurrentTime().getTime());
-            nextTime.setHours(nextTime.getHours() + 1);
-            nextTime.setMinutes(0);
-
-            for (var i = nextTime.getHours(); i < 24; i++) {
-                var time = new Date(nextTime.getTime());
-                time.setHours(i);
-                times.push(time);
-            }
-            return times;
-        }
-
         function activate() {
             $scope.startingAfter = getCurrentTime();
 
@@ -60,6 +43,23 @@ angular.module('moviesowlApp')
             }).then(function(modal) {
                 $scope.timesModal = modal;
             });
+        }
+
+        function getPossibleStartingTimes() {
+            var times = [
+                getCurrentTime()
+            ];
+
+            var nextTime = new Date(getCurrentTime().getTime());
+            nextTime.setHours(nextTime.getHours() + 1);
+            nextTime.setMinutes(0);
+
+            for (var i = nextTime.getHours(); i < 24; i++) {
+                var time = new Date(nextTime.getTime());
+                time.setHours(i);
+                times.push(time);
+            }
+            return times;
         }
 
         function getCurrentTime() {

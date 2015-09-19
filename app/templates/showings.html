@@ -6,44 +6,12 @@
             {{movie.title}}
         </div>
     </ion-nav-title>
-    <ion-nav-buttons side="primary">
-        <button class="button back-button-fixed" ng-click="goBack()">
-            <i class="icon ion-arrow-left-c"></i> Back
-        </button>
-    </ion-nav-buttons>
 
-
-    <ion-content class="no-header" scroll-event-interval="5">
-        <div class="pickgradient">
-            <img src="{{ ENV.posterEndpoint }}{{ movie.poster }}" style="width: 100%;">
-        </div>
+    <ion-content>
         <ion-list>
-            <ion-item class="movieTitleCell">
-                <div class="item-text-wrap">
-                    {{movie.title}}
-                </div>
-            </ion-item>
-            <ion-item class="ratingCell" ng-if="movie.tomato_meter >= 0">
-                <div class="row">
-                    <div class="col rating-left">
-                        <div style="font-weight: bold;">
-                            <img src="{{rottenLogo}}" style="width:16px;position:relative; top:3px;">
-                            {{movie.tomato_meter}}%
-                        </div>
-                        <div class="rottenTomatoText">
-                            Rotten Tomatoes
-                        </div>
-                    </div>
-
-                    <div class="col rating-right">
-                        <div style="color:{{textColour}};">{{owlRating}}</div>
-                        <div class="rottenTomatoText"> Says The Owl</div>
-                    </div>
-                </div>
-
-            </ion-item>
-            <ion-item class="item-icon-right movieDetailsHeading" ng-click="openModal()">
-                More Info
+            <ion-item class="item-icon-right" ng-click="openModal()">
+                <!--<i class="icon ion-star" style="color: yellow;"></i>-->
+                Ratings, Trailer, Cast, Synopsis and more
                 <i class="icon ion-chevron-right icon-accessory"></i>
             </ion-item>
 
