@@ -83,7 +83,7 @@ angular.module('moviesowlApp')
                 return 'red';
             }
             if (movie.tomato_meter < 70) {
-                return 'yellow';
+                return '#DABF00';
             }
             return '#1CC56A';
         }
