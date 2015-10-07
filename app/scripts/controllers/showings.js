@@ -10,35 +10,10 @@
 angular.module('moviesowlApp')
     .controller('ShowingsCtrl', function(ENV, $scope, $stateParams, $http, selectedMovieService, showingsDataService,
         $state, $q, $ionicModal, $rootScope, $ionicHistory, $timeout) {
-
-
-        $scope.goBack = goBack;
-
+        
         activate();
 
-
-        function goBack() {
-            $rootScope.changeColor = false;
-            $timeout(function() {
-                $ionicHistory.goBack();
-            }, 0);
-        }
-
-
         function activate() {
-            console.log('hell world');
-            angular.element('ion-content').bind("scroll", function(e) {
-                console.log(e.originalEvent.detail);
-                if (e.originalEvent.detail.scrollTop >= 10) {
-                    $rootScope.changeColor = false;
-                } else {
-                    $rootScope.changeColor = true;
-                }
-                console.log('scrolling');
-                $scope.$apply();
-            });
-
-
             getMovie().then(function(movie) {
                 $scope.movie = movie;
             }).then(doStuff);
