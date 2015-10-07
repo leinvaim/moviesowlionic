@@ -19,7 +19,9 @@ angular.module('moviesowlApp')
         $scope.buyTickets = buyTickets;
         $scope.buyTelstraTickets = buyTelstraTickets;
 
-        activate();
+        $scope.$on('$ionicView.afterEnter', function(){
+            activate();
+        });
 
         function activate() {
             var seatsData = _.find(showingsDataService.showingsData, function(showing) {

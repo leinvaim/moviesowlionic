@@ -24,9 +24,11 @@ angular.module('moviesowlApp')
 
         $scope.mode = getViewMode();
 
-        activate();
-
         ///
+
+        $scope.$on('$ionicView.loaded', function(){
+            activate();
+        });
 
         function activate() {
             $scope.startingAfter = getCurrentTime();
