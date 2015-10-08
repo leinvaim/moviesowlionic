@@ -59,8 +59,10 @@
 
     if ( navigator.userAgent.indexOf("iPhone") > 0 || navigator.userAgent.indexOf("iPad") > 0 || navigator.userAgent.indexOf("iPod") > 0) {
         getScript("platforms/ios/cordova.js");
+        getScript("scripts/tracking.js");
     } else if (navigator.userAgent.indexOf("Android") > 0) {
         getScript("platforms/android/cordova.js");
+        getScript("scripts/tracking.js");
     }
     </script>
     <!--<script src="cordova.js"></script>-->
@@ -68,7 +70,6 @@
 
 
     <!-- build:js scripts/scripts.js -->
-    <script src="scripts/tracking.js"></script>
     <script src="scripts/app.js"></script>
     <script src="scripts/configuration.js"></script>
     <script src="scripts/controllers/cinemas.js"></script>
