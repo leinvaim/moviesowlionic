@@ -4,6 +4,9 @@
         <button class="button button-outline button-dark" ng-click="closeModalOnly()">Done</button>
     </ion-header-bar>
     <ion-content>
+        <div class="ion-item text-center" ng-hide="cinemas.length">
+            <ion-spinner></ion-spinner>
+        </div>
         <label ng-repeat="cinema in cinemas" class="item item-radio item-icon-right" ng-click="closeModal(cinema)">
             <input type="radio" name="group">
             <div class="item-content">

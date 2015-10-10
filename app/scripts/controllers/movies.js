@@ -20,7 +20,7 @@ angular.module('moviesowlApp')
         $scope.showTimesModal = showTimesModal;
 
         $scope.cinemaLocation = $stateParams.cinemaLocation;
-        $scope.cinemas = cinemasList.cinemas;
+        //$scope.cinemas = cinemasList.cinemas;
 
         $scope.mode = getViewMode();
 
@@ -107,6 +107,9 @@ angular.module('moviesowlApp')
         }
 
         function openModal() {
+            $http.get(ENV.apiEndpoint + 'cinemas').then(function(response) {
+                $scope.cinemas = response.data.data;
+            });
             $scope.modal.show();
         }
 
