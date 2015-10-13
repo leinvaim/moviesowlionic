@@ -90,6 +90,7 @@ angular.module('moviesowlApp')
                     showing.totalNumOfSeats = totalNumOfSeats;
                     showing.cinemaSize = getCinemaSize(totalNumOfSeats);
                     showing.fullness = getFullness(totalNumOfSeats, takenSeats);
+                    showing.hasSeats = totalNumOfSeats === 0 && takenSeats === 0;
                     showing.seats = seatsInfo;
                     showingsDataService.setShowingsData($scope.showingsData);
                 });
@@ -124,7 +125,7 @@ angular.module('moviesowlApp')
 
         function getFullness(totalSeats, takenSeats) {
             if (totalSeats === 0 && takenSeats === 0) {
-                return 'not available';
+                return 'No seating info';
             }
 
             var percentage = parseInt(takenSeats / totalSeats * 100);
