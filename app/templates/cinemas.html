@@ -5,15 +5,20 @@
     </ion-header-bar>
     <ion-content>
         <ion-list>
-            <div class="item item-text-wrap">
-                <i class="icon ion-information-circled"></i> Only <strong>Event Cinemas</strong> are currently supported.
+            <label class="item item-input">
+                <i class="icon ion-search placeholder-icon"></i>
+                <input type="text" placeholder="Search" ng-model="search">
+            </label>
+            <div class="item item-text-wrap" ng-hide="search">
+                <i class="icon ion-information-circled"></i> Only <strong>Event Cinemas</strong> (plus a few others)
+                are currently supported.
                 Want another cinema?
                 <a href="mailto:cmcnamara87@gmail.com?subject=MoviesOwl needs more cinemas!" style="text-decoration: none;color:#D4435C;"><i class="icon ion-email"></i> Let us know.</a>
             </div>
             <div class="item text-center" ng-hide="cinemas.length">
                 <ion-spinner></ion-spinner>
             </div>
-            <label ng-repeat="cinema in cinemas" class="item item-radio item-icon-right" ng-click="closeModal(cinema)">
+            <label ng-repeat="cinema in cinemas | filter:search" class="item item-radio item-icon-right" ng-click="closeModal(cinema)">
                 <input type="radio" name="group">
                 <div class="item-content">
                     <span>{{cinema.location}}</span>
