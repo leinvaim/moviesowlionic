@@ -16,8 +16,12 @@ angular.module('moviesowlApp')
 
         $scope.doRefresh = doRefresh;
         $scope.movie = selectedMovieService.selectedMovie;
+        $scope.buyTickets = buyTickets;
+        $scope.buyTelstraTickets = buyTelstraTickets;
 
-        activate();
+        $scope.$on('$ionicView.afterEnter', function(){
+            activate();
+        });
 
         function activate() {
             var seatsData = _.find(showingsDataService.showingsData, function(showing) {
@@ -46,7 +50,15 @@ angular.module('moviesowlApp')
             }, function() {
                 $scope.$broadcast('scroll.refreshComplete');
             });
-
         }
 
+        function buyTickets() {
+            var url = 'https://www.eventcinemas.com.au';
+            window.open(url, '_system');
+        }
+
+        function buyTelstraTickets() {
+            var url = 'https://www.my.telstra.com.au/myaccount/home?goto=https%3A%2F%2Fwww.my.telstra.com.au%2Fmyaccount%2Floyalty-offers-consumer';
+            window.open(url, '_system');
+        }
     });

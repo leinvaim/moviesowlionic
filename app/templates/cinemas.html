@@ -4,17 +4,32 @@
         <button class="button button-outline button-dark" ng-click="closeModalOnly()">Done</button>
     </ion-header-bar>
     <ion-content>
-        <label ng-repeat="cinema in cinemas" class="item item-radio item-icon-right" ng-click="closeModal(cinema)">
-            <input type="radio" name="group">
-            <div class="item-content">
-                <span>{{cinema.location}}</span>
-                <span ng-show="cinemaLocation === cinema.location">
-                    <i class="icon ion-ios-heart icon-accessory" style="color:deeppink; font-size:30px; width:60px;"></i> 
-                </span>
-                <span ng-hide="cinemaLocation === cinema.location">
-                <i class="icon ion-ios-heart-outline icon-accessory" style="font-size: 30px; width:60px;"></i>
-                </span>
+        <ion-list>
+            <label class="item item-input">
+                <i class="icon ion-search placeholder-icon"></i>
+                <input type="text" placeholder="Search" ng-model="search">
+            </label>
+            <div class="item item-text-wrap" ng-hide="search">
+                <i class="icon ion-information-circled"></i> Only <strong>Event Cinemas</strong> (plus a few others)
+                are currently supported.
+                Want another cinema?
+                <a href="mailto:cmcnamara87@gmail.com?subject=MoviesOwl needs more cinemas!" style="text-decoration: none;color:#D4435C;"><i class="icon ion-email"></i> Let us know.</a>
             </div>
-        </label>
+            <div class="item text-center" ng-hide="cinemas.length">
+                <ion-spinner></ion-spinner>
+            </div>
+            <label ng-repeat="cinema in cinemas | filter:search" class="item item-radio item-icon-right" ng-click="closeModal(cinema)">
+                <input type="radio" name="group">
+                <div class="item-content">
+                    <span>{{cinema.location}}</span>
+                    <span ng-show="cinemaLocation === cinema.location">
+                        <i class="icon ion-ios-heart icon-accessory" style="color:deeppink; font-size:30px; width:60px;"></i>
+                    </span>
+                    <span ng-hide="cinemaLocation === cinema.location">
+                    <i class="icon ion-ios-heart-outline icon-accessory" style="font-size: 30px; width:60px;"></i>
+                    </span>
+                </div>
+            </label>
+        </ion-list>
     </ion-content>
 </ion-modal-view>

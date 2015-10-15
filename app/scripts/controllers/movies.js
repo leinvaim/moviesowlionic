@@ -20,30 +20,15 @@ angular.module('moviesowlApp')
         $scope.showTimesModal = showTimesModal;
 
         $scope.cinemaLocation = $stateParams.cinemaLocation;
-        $scope.cinemas = cinemasList.cinemas;
+        //$scope.cinemas = cinemasList.cinemas;
 
         $scope.mode = getViewMode();
 
-        activate();
-
         ///
 
-        function getPossibleStartingTimes() {
-            var times = [
-                getCurrentTime()
-            ];
-
-            var nextTime = new Date(getCurrentTime().getTime());
-            nextTime.setHours(nextTime.getHours() + 1);
-            nextTime.setMinutes(0);
-
-            for (var i = nextTime.getHours(); i < 24; i++) {
-                var time = new Date(nextTime.getTime());
-                time.setHours(i);
-                times.push(time);
-            }
-            return times;
-        }
+        $scope.$on('$ionicView.loaded', function(){
+            activate();
+        });
 
         function activate() {
             $scope.startingAfter = getCurrentTime();
@@ -60,6 +45,23 @@ angular.module('moviesowlApp')
             }).then(function(modal) {
                 $scope.timesModal = modal;
             });
+        }
+
+        function getPossibleStartingTimes() {
+            var times = [
+                getCurrentTime()
+            ];
+
+            var nextTime = new Date(getCurrentTime().getTime());
+            nextTime.setHours(nextTime.getHours() + 1);
+            nextTime.setMinutes(0);
+
+            for (var i = nextTime.getHours(); i < 24; i++) {
+                var time = new Date(nextTime.getTime());
+                time.setHours(i);
+                times.push(time);
+            }
+            return times;
         }
 
         function getCurrentTime() {
@@ -105,6 +107,9 @@ angular.module('moviesowlApp')
         }
 
         function openModal() {
+            $http.get(ENV.apiEndpoint + 'cinemas').then(function(response) {
+                $scope.cinemas = response.data.data;
+            });
             $scope.modal.show();
         }
 
@@ -143,6 +148,9 @@ angular.module('moviesowlApp')
 
             var time = Math.round($scope.startingAfter.getTime() / 1000);
             getMoviesForCinema(cinemaObj.id, time).then(function(moviesData) {
+                _.each(moviesData.data, function(movie) {
+                    movie.stars = movie.tomato_meter / 25;
+                });
                 $rootScope.movies = moviesData.data; //I dont actually use this anymore
 
                 $scope.groups = [{
@@ -240,9 +248,12 @@ angular.module('moviesowlApp')
         
         function getProgress(e) {
             console.log(e);
-            console.log('progress');
             $scope.$apply(function(){
-                $scope.progressWidth = e.load / e.total * 100;
+                $scope.progressWidth = e.loaded / e.total * 100;
+                console.log('progress 2', $scope.progressWidth);
+                if($scope.progressWidth === 100) {
+                    $scope.hasUpdate = false;
+                }
             });
         }
 

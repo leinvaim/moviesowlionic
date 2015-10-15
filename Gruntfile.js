@@ -81,7 +81,7 @@ module.exports = function(grunt) {
                 files: {
                     'www/index.html': ['www/index.html']
                 }
-            },
+            }
         },
 
         ngtemplates: {
@@ -107,8 +107,8 @@ module.exports = function(grunt) {
                 constants: {
                     ENV: {
                         name: 'development',
-                        apiEndpoint: 'http://128.199.104.251/moviesowl.com/current/public/api/v1/',
-                        posterEndpoint: 'http://128.199.104.251/moviesowl.com/current/public/'
+                        apiEndpoint: 'http://moviesowl.com/api/v1/',
+                        posterEndpoint: 'http://moviesowl.com/'
                     }
                 }
             },
@@ -116,8 +116,8 @@ module.exports = function(grunt) {
                 constants: {
                     ENV: {
                         name: 'production',
-                        apiEndpoint: 'http://128.199.104.251/moviesowl.com/current/public/api/v1/',
-                        posterEndpoint: 'http://128.199.104.251/moviesowl.com/current/public/'
+                        apiEndpoint: 'http://moviesowl.com/api/v1/',
+                        posterEndpoint: 'http://moviesowl.com/'
                     }
                 }
             }

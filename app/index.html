@@ -41,6 +41,7 @@
     <script src="bower_components/moment/moment.js"></script>
     <script src="bower_components/angular-moment/angular-moment.js"></script>
     <script src="bower_components/ion-affix/ion-affix.js"></script>
+    <script src="bower_components/ionic-rating/ionic-rating.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -58,15 +59,17 @@
 
     if ( navigator.userAgent.indexOf("iPhone") > 0 || navigator.userAgent.indexOf("iPad") > 0 || navigator.userAgent.indexOf("iPod") > 0) {
         getScript("platforms/ios/cordova.js");
+        getScript("scripts/tracking.js");
     } else if (navigator.userAgent.indexOf("Android") > 0) {
         getScript("platforms/android/cordova.js");
+        getScript("scripts/tracking.js");
     }
     </script>
     <!--<script src="cordova.js"></script>-->
     <!-- your app's js -->
 
+
     <!-- build:js scripts/scripts.js -->
-    <script src="scripts/tracking.js"></script>
     <script src="scripts/app.js"></script>
     <script src="scripts/configuration.js"></script>
     <script src="scripts/controllers/cinemas.js"></script>
@@ -78,6 +81,7 @@
     <script src="scripts/services/selectedmovieservice.js"></script>
     <script src="scripts/services/cinemaslist.js"></script>
     <!-- endbuild -->
+    <script src="scripts/templates.js"></script>
 
 </head>
 
@@ -85,7 +89,7 @@
     <!--<ion-nav-bar class="bar-custom">-->
         <ion-nav-bar class="bar-dark" ng-class="{'bar-custom' : changeColor}">
         <ion-nav-back-button class="button-clear">
-            <i class="ion-arrow-left-c"></i> Back
+            <!--<i class="ion-arrow-left-c"></i> Back-->
         </ion-nav-back-button>
     </ion-nav-bar>
     <ion-nav-view></ion-nav-view>
