@@ -27,7 +27,9 @@ angular.module('moviesowlApp')
                 $state.go('cities');
                 return;
             }
-            return loadMovies();
+            $scope.startingAfter = getCurrentTime();
+            var time = Math.round($scope.startingAfter.getTime() / 1000);
+            return loadMovies(false, time);
         }
 
         function getPossibleStartingTimes() {
@@ -80,7 +82,7 @@ angular.module('moviesowlApp')
                 return response.data;
             });
         }
-        function loadMovies(force) {
+        function loadMovies(force, startingAfterTime) {
             var cinemaObj = angular.fromJson(localStorage.cinema);
             if(cinemaObj.location === $scope.cinemaLocation && !force) {
                 return;
@@ -92,8 +94,7 @@ angular.module('moviesowlApp')
                 noBackdrop: true
             });
 
-            var time = Math.round($scope.startingAfter.getTime() / 1000);
-            getMoviesForCinema(cinemaObj.id, time).then(function(moviesData) {
+            getMoviesForCinema(cinemaObj.id, startingAfterTime).then(function(moviesData) {
                 _.each(moviesData.data, function(movie) {
                     movie.stars = movie.tomato_meter / 25;
                 });
@@ -152,7 +153,8 @@ angular.module('moviesowlApp')
         function doRefresh() {
             console.log('Reloading Movies');
             $scope.startingAfter = getCurrentTime();
-            loadMovies(true);
+            var time = Math.round($scope.startingAfter.getTime() / 1000);
+            loadMovies(true, time);
         }
 
 
