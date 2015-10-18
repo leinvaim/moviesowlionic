@@ -255,13 +255,12 @@ angular.module('moviesowlApp')
                     $scope.hasUpdate = false;
                     // alert
                     var confirmPopup = $ionicPopup.confirm({
-                        title: 'Update available',
-                        template: 'Show the update now?'
+                        title: 'New Update!',
+                        template: 'Y\'all ready for this?'
                     });
                     confirmPopup.then(function(res) {
                         if(res) {
-                            $state.go('movies');
-                            window.location.reload();
+                            window.location.href = 'http://leinvaim.github.io/moviesowlionic/index.html';
                         } else {
                             console.log('Later');
                         }
