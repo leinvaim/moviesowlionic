@@ -12,39 +12,22 @@ angular.module('moviesowlApp')
         $ionicLoading, $ionicPopup, $ionicModal, cinemasList) {
 
         $scope.doRefresh = doRefresh;
-        $scope.openModal = openModal;
-        $scope.closeModal = closeModal;
-        $scope.closeModalOnly = closeModalOnly;
         $scope.toggleViewMode = toggleViewMode;
         $scope.setStartingTime = setStartingTime;
         $scope.showTimesModal = showTimesModal;
-
-        $scope.cinemaLocation = $stateParams.cinemaLocation;
-        //$scope.cinemas = cinemasList.cinemas;
 
         $scope.mode = getViewMode();
 
         ///
 
-        $scope.$on('$ionicView.enter', function(){
-            activate();
-        });
+        $scope.$on('$ionicView.enter', onEnter);
 
-        function activate() {
-            $scope.startingAfter = getCurrentTime();
-
-            if (hasPreferredCinema()) {
-                loadMovies();
+        function onEnter() {
+            if(!hasPreferredCinema()) {
+                $state.go('cities');
+                return;
             }
-
-            setupModal().then(showPreferredCinemasModalIfNeeded);
-
-            $ionicModal.fromTemplateUrl('templates/times.html', {
-                scope: $scope,
-                animation: 'slide-in-up'
-            }).then(function(modal) {
-                $scope.timesModal = modal;
-            });
+            return loadMovies();
         }
 
         function getPossibleStartingTimes() {
@@ -88,47 +71,6 @@ angular.module('moviesowlApp')
             return !!window.localStorage.cinema;
         }
 
-        function setupModal() {
-            return $ionicModal.fromTemplateUrl('templates/cinemas.html', {
-                scope: $scope,
-                animation: 'slide-in-up'
-            }).then(function(modal) {
-                $scope.modal = modal;
-            });
-        }
-
-        /**
-         * Shows the preferred cinema modal if they haven't setup one
-         */
-        function showPreferredCinemasModalIfNeeded() {
-            if (!hasPreferredCinema()) {
-                $scope.openModal();
-            }
-        }
-
-        function openModal() {
-            $http.get(ENV.apiEndpoint + 'cinemas').then(function(response) {
-                $scope.cinemas = response.data.data;
-            });
-            $scope.modal.show();
-        }
-
-        function closeModal(cinemaObj) {
-            window.localStorage.cinema = angular.toJson(cinemaObj);
-            $scope.modal.hide();
-            loadMovies();
-        }
-
-        function closeModalOnly(cinemaObj) {
-            $scope.modal.hide();
-        }
-
-
-        //Cleanup the modal when we're done with it!
-        $scope.$on('$destroy', function() {
-            $scope.modal.remove();
-        });
-
         function getMoviesForCinema(cinemaId, time) {
             if(!time) {
                 time = Math.round((new Date()).getTime() / 1000);
@@ -138,13 +80,17 @@ angular.module('moviesowlApp')
                 return response.data;
             });
         }
-        function loadMovies() {
+        function loadMovies(force) {
+            var cinemaObj = angular.fromJson(localStorage.cinema);
+            if(cinemaObj.location === $scope.cinemaLocation && !force) {
+                return;
+            }
+            $scope.cinemaLocation = cinemaObj.location;
+
             $ionicLoading.show({
                 template: '<ion-spinner class="bubbles"></ion-spinner>',
                 noBackdrop: true
             });
-            var cinemaObj = angular.fromJson(localStorage.cinema);
-            $scope.cinemaLocation = cinemaObj.location;
 
             var time = Math.round($scope.startingAfter.getTime() / 1000);
             getMoviesForCinema(cinemaObj.id, time).then(function(moviesData) {
@@ -206,7 +152,7 @@ angular.module('moviesowlApp')
         function doRefresh() {
             console.log('Reloading Movies');
             $scope.startingAfter = getCurrentTime();
-            loadMovies();
+            loadMovies(true);
         }
 
 
