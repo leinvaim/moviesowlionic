@@ -29,13 +29,6 @@ module.exports = [
         ]
     },
     {
-        "file": "plugins/cordova-plugin-google-analytics/www/analytics.js",
-        "id": "cordova-plugin-google-analytics.UniversalAnalytics",
-        "clobbers": [
-            "analytics"
-        ]
-    },
-    {
         "file": "plugins/org.apache.cordova.splashscreen/www/splashscreen.js",
         "id": "org.apache.cordova.splashscreen.SplashScreen",
         "clobbers": [
@@ -46,11 +39,9 @@ module.exports = [
 module.exports.metadata = 
 // TOP OF METADATA
 {
-    "com.google.playservices": "19.0.0",
     "com.ionic.keyboard": "1.0.4",
     "org.apache.cordova.console": "0.2.13",
     "org.apache.cordova.device": "0.3.0",
-    "cordova-plugin-google-analytics": "0.7.2",
     "org.apache.cordova.splashscreen": "1.0.0"
 }
 // BOTTOM OF METADATA
