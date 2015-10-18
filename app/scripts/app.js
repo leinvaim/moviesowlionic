@@ -71,6 +71,16 @@ angular.module('moviesowlApp', ['ionic',
         //     templateUrl: 'templates/cinemas.html',
         //     controller: 'CinemasCtrl'
         // })
+        .state('cities', {
+            url: '/cities',
+            templateUrl: 'templates/cities.html',
+            controller: 'CitiesController'
+        })
+        .state('cinemas', {
+            url: '/cinemas?city',
+            templateUrl: 'templates/cinemas-page.html',
+            controller: 'CinemasController'
+        })
         .state('movies', {
             url: '/movies',
             templateUrl: 'templates/movies.html',

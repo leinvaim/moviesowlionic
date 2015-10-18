@@ -107,7 +107,7 @@ module.exports = function(grunt) {
                 constants: {
                     ENV: {
                         name: 'development',
-                        apiEndpoint: 'http://moviesowl.com/api/v1/',
+                        apiEndpoint: 'http://localhost:8888/api/v1/',
                         posterEndpoint: 'http://moviesowl.com/'
                     }
                 }

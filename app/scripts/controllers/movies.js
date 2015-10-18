@@ -26,7 +26,7 @@ angular.module('moviesowlApp')
 
         ///
 
-        $scope.$on('$ionicView.loaded', function(){
+        $scope.$on('$ionicView.enter', function(){
             activate();
         });
 
