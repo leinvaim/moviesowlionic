@@ -253,6 +253,20 @@ angular.module('moviesowlApp')
                 console.log('progress 2', $scope.progressWidth);
                 if($scope.progressWidth === 100) {
                     $scope.hasUpdate = false;
+                    // alert
+                    var confirmPopup = $ionicPopup.confirm({
+                        title: 'Update available',
+                        template: 'Show the update now?'
+                    });
+                    confirmPopup.then(function(res) {
+                        if(res) {
+                            $state.go('movies');
+                            window.location.reload();
+                        } else {
+                            console.log('Later');
+                        }
+                    });
+
                 }
             });
         }
