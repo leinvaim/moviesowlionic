@@ -6,7 +6,7 @@
         .controller('CinemasController', CinemasController);
 
     /* @ngInject */
-    function CinemasController($http, ENV, $scope, $state, $ionicHistory, $stateParams) {
+    function CinemasController($http, ENV, $scope, $state, $ionicHistory, $stateParams, $ionicViewSwitcher) {
         /* jshint validthis: true */
 
         activate();
@@ -25,6 +25,7 @@
 
         function goToMovies(cinema) {
             window.localStorage.cinema = angular.toJson(cinema);
+            $ionicViewSwitcher.nextDirection('back');
             $ionicHistory.nextViewOptions({
                 //disableAnimate: true,
                 disableBack: true
