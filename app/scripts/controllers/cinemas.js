@@ -15,8 +15,10 @@
         ////////////////
 
         function activate() {
-            var cinemaObj = angular.fromJson(localStorage.cinema);
-            $scope.cinemaLocation = cinemaObj.location;
+            if(localStorage.cinema) {
+                var cinemaObj = angular.fromJson(localStorage.cinema);
+                $scope.cinemaLocation = cinemaObj.location;
+            }
 
             $http.get(ENV.apiEndpoint + 'cities/' + $stateParams.city + '/cinemas').then(function(response) {
                 $scope.cinemas = response.data.data;

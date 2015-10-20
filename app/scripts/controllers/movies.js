@@ -9,7 +9,7 @@
  */
 angular.module('moviesowlApp')
     .controller('MoviesCtrl', function(ENV, $scope, $http, $rootScope, $stateParams, selectedMovieService, $state,
-        $ionicLoading, $ionicPopup, $ionicModal, cinemasList) {
+        $ionicLoading, $ionicPopup, $ionicModal, cinemasList, $ionicHistory) {
 
         $scope.doRefresh = doRefresh;
         $scope.toggleViewMode = toggleViewMode;
@@ -24,6 +24,10 @@ angular.module('moviesowlApp')
 
         function onEnter() {
             if(!hasPreferredCinema()) {
+                $ionicHistory.nextViewOptions({
+                    disableAnimate: true,
+                    disableBack: true
+                });
                 $state.go('cities');
                 return;
             }
