@@ -202,17 +202,17 @@ angular.module('moviesowlApp')
                 if($scope.progressWidth === 100) {
                     $scope.hasUpdate = false;
                     // alert
-                    var confirmPopup = $ionicPopup.confirm({
-                        title: 'New Update!',
-                        template: 'Y\'all ready for this?'
-                    });
-                    confirmPopup.then(function(res) {
-                        if(res) {
-                            window.location.href = 'http://leinvaim.github.io/moviesowlionic/index.html';
-                        } else {
-                            console.log('Later');
-                        }
-                    });
+                    //var confirmPopup = $ionicPopup.confirm({
+                    //    title: 'New Update!',
+                    //    template: 'Y\'all ready for this?'
+                    //});
+                    //confirmPopup.then(function(res) {
+                    //    if(res) {
+                    //        window.location.href = 'http://leinvaim.github.io/moviesowlionic/index.html';
+                    //    } else {
+                    //        console.log('Later');
+                    //    }
+                    //});
 
                 }
             });
