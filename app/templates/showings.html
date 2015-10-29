@@ -9,6 +9,30 @@
 
     <ion-content>
         <ion-list>
+            <ion-item class="item-darker" style="padding:0;">
+                <img ng-src="{{ ENV.posterEndpoint }}{{ movie.poster }}" alt=""
+                     style="width:100%;"/>
+            </ion-item>
+            <ion-item class="item-darker" ng-if="movie.tomato_meter >= 0"
+                      style="text-align: center">
+                <div class="row" style="padding:0">
+                    <div class="col rating-left" style="padding:0">
+                        <div style="color:{{textColour}};font-weight:bold;">{{owlRating}}</div>
+                        <div style="text-transform: uppercase;font-size:10px;"> Says The Owl</div>
+                    </div>
+                    <div class="col rating-right" style="padding:0">
+                        <div style="font-weight: bold;">
+                            <img src="{{rottenLogo}}" style="width:16px;position:relative; top:3px;">
+                            {{movie.tomato_meter}}%
+                        </div>
+                        <div style="text-transform: uppercase;font-size:10px;">
+                            Rotten Tomatoes
+                        </div>
+                    </div>
+                </div>
+
+            </ion-item>
+
             <ion-item class="item-icon-right item-darker" ng-click="openModal()">
                 <i class="icon ion-star"></i>
                 Ratings, Trailer, Cast, Synopsis and more
