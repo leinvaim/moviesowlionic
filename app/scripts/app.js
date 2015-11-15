@@ -17,9 +17,23 @@ angular.module('moviesowlApp', ['ionic',
     'ionic.rating',
     'ngIOS9UIWebViewPatch'])
 
-    .run(function ($ionicPlatform, amMoment, $rootScope, ENV, $document) {
+    .run(function ($ionicPlatform, amMoment, $rootScope, ENV, $document, $http) {
         amMoment.changeLocale('en');
         $rootScope.ENV = ENV;
+
+
+        if(ENV.name === 'production') {
+            if(!localStorage.device_id) {
+                console.log('Registering device with craigalytics');
+                $http.post('http://128.199.104.251/craigalytics/current/public/api/devices')
+                    .then(function(response) {
+                        localStorage.device_id = response.data.id;
+                        console.log('Craigalytics: ' + localStorage.device_id);
+                    });
+            } else {
+                console.log('Craigalytics: ' + localStorage.device_id);
+            }
+        }
 
         $ionicPlatform.ready(function () {
 
