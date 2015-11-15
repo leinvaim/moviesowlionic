@@ -22,17 +22,33 @@ angular.module('moviesowlApp', ['ionic',
         $rootScope.ENV = ENV;
 
 
-        if(ENV.name === 'production') {
-            if(!localStorage.device_id) {
-                console.log('Registering device with craigalytics');
-                $http.post('http://128.199.104.251/craigalytics/current/public/api/devices')
-                    .then(function(response) {
-                        localStorage.device_id = response.data.id;
-                        console.log('Craigalytics: ' + localStorage.device_id);
+        console.log(ENV);
+        
+        if (!localStorage.device_id) {
+            console.log('Registering device with craigalytics');
+            $http.post('http://128.199.104.251/craigalytics/current/public/api/devices')
+                .then(function (response) {
+                    localStorage.device_id = response.data.id;
+                    console.log('Craigalytics: ' + localStorage.device_id);
+
+                    $http.post('http://128.199.104.251/craigalytics/current/public/api/events', {
+                        name: 'APP_OPENED',
+                        device_id: localStorage.device_id,
+                        metadata: []
+                    }).then(function (response) {
+                        console.log('Craigalytics: APP_OPENED');
                     });
-            } else {
-                console.log('Craigalytics: ' + localStorage.device_id);
-            }
+
+                });
+        } else {
+            console.log('Craigalytics: ' + localStorage.device_id);
+            $http.post('http://128.199.104.251/craigalytics/current/public/api/events', {
+                name: 'APP_OPENED',
+                device_id: localStorage.device_id,
+                metadata: []
+            }).then(function (response) {
+                console.log('Craigalytics: APP_OPENED');
+            });
         }
 
         $ionicPlatform.ready(function () {
