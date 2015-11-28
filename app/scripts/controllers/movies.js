@@ -12,7 +12,7 @@ angular.module('moviesowlApp')
         $ionicLoading, $ionicPopup, $ionicModal, cinemasList, $ionicHistory, craigalytics) {
 
         $scope.doRefresh = doRefresh;
-        $scope.toggleViewMode = toggleViewMode;
+        $scope.toggleViewMode = _.throttle(toggleViewMode, 500);
         $scope.setStartingTime = setStartingTime;
         $scope.showTimesModal = showTimesModal;
 
@@ -171,6 +171,7 @@ angular.module('moviesowlApp')
         }
 
         function toggleViewMode() {
+            console.log('toggling view mode');
             var mode = '';
             if($scope.mode === 'list') {
                 mode = 'grid';
