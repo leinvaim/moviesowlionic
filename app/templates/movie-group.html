@@ -6,11 +6,21 @@
     </div>
 
     <div ng-repeat="row in group.movies" ng-if="mode == 'list'">
-        <div class="item item-dark item-icon-right" ng-repeat="movie in row" style="background-color:#222"
+        <div class="item item-dark item-icon-right item-text-wrap" ng-repeat="movie in row" style="background-color:#222"
              ng-click="selectMovie(movie)">
-            <h2 style="color:white">{{ movie.title }}</h2>
+            <h2 style="color:white">{{ movie.title }}
+                <span style="font-size: 12px;color:#aaa">
+                    <img src="images/fresh.png" style="width:10px;position:relative; top:0px;"
+                         ng-hide="movie.tomato_meter < 60">
+                    <img src="images/rotten.png" style="width:10px;position:relative; top:0px;"
+                         ng-hide="movie.tomato_meter >= 60">
+                    {{movie.tomato_meter}}%
+                </span>
+            </h2>
             <p>
-                <span am-time-ago="{{movie.showings.data[0].start_time}}" am-preprocess="unix"></span>
+                <span ng-repeat="showing in movie.showings.data" style="margin-right: 5px;color:#aaa;">
+                    {{ showing.start_time * 1000 | date:'shortTime'}}
+                </span>
             </p>
             <i class="icon ion-chevron-right icon-accessory"></i>
         </div>
