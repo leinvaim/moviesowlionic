@@ -9,7 +9,7 @@
  */
 angular.module('moviesowlApp')
     .controller('MoviesCtrl', function(ENV, $scope, $http, $rootScope, $stateParams, selectedMovieService, $state,
-        $ionicLoading, $ionicPopup, $ionicModal, cinemasList, $ionicHistory) {
+        $ionicLoading, $ionicPopup, $ionicModal, cinemasList, $ionicHistory, craigalytics) {
 
         $scope.doRefresh = doRefresh;
         $scope.toggleViewMode = toggleViewMode;
@@ -92,6 +92,10 @@ angular.module('moviesowlApp')
                 return;
             }
             $scope.cinemaLocation = cinemaObj.location;
+
+            craigalytics.send('VIEWED_CINEMA', {
+                name: $scope.cinemaLocation
+            });
 
             $ionicLoading.show({
                 template: '<ion-spinner class="bubbles"></ion-spinner>',
