@@ -33,8 +33,11 @@
                         console.log('Craigalytics: ' + localStorage.device_id);
                         registrationDeferred.resolve();
                     });
+                return registrationDeferred.promise;
+            } else {
+                registrationDeferred.resolve();
+                return registrationDeferred.promise;
             }
-            return registrationDeferred.promise;
         }
 
         function send(name, metadata) {
