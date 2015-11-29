@@ -15,6 +15,7 @@ angular.module('moviesowlApp')
         $scope.toggleViewMode = _.throttle(toggleViewMode, 500);
         $scope.setStartingTime = setStartingTime;
         $scope.showTimesModal = showTimesModal;
+        $scope.isStartingSoon = isStartingSoon;
 
         $scope.mode = getViewMode();
 
@@ -163,6 +164,18 @@ angular.module('moviesowlApp')
             $scope.startingAfter = getCurrentTime();
             var time = Math.round($scope.startingAfter.getTime() / 1000);
             loadMovies(true, time);
+        }
+
+        /**
+         * Check if start time is < 1hr from now
+         * @param startTime
+         * @returns {boolean}
+         */
+        function isStartingSoon(startTime) {
+            var date = new Date();
+            var currentTime = date.getTime() / 1000;
+            var oneHourBeforeStartTime = startTime - (60*60);
+            return  currentTime > oneHourBeforeStartTime;
         }
 
 
