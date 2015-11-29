@@ -20,7 +20,7 @@
             <p>
                 <span ng-repeat="showing in movie.showings.data"
                       class="small-session-time"
-                      ng-class="{'--soon': isStartingSoon(showing.start_time)}">
+                      ng-class="{'soon': isStartingSoon(showing.start_time)}">
                     {{ showing.start_time * 1000 | date:'shortTime'}}
                 </span>
             </p>
@@ -41,7 +41,7 @@
                     <span am-time-ago="{{movie.showings.data[0].start_time}}"
                           am-preprocess="unix"
                           class="time-human"
-                          ng-class="{'--soon': isStartingSoon(movie.showings.data[0].start_time)}">
+                          ng-class="{'soon': isStartingSoon(movie.showings.data[0].start_time)}">
                     </span>
                     </div>
                 </div>
