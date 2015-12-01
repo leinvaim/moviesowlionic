@@ -24,14 +24,18 @@ angular.module('moviesowlApp')
         });
 
         function activate() {
+            console.log($scope.movie);
+
             var seatsData = _.find(showingsDataService.showingsData, function(showing) {
                 return showing.id === parseInt($stateParams.showId);
             });
             $scope.session = seatsData;
+            console.log(seatsData);
             $timeout(function() {
                 getSeatingPlan(seatsData);
             }, 1000);
         }
+
 
         function getSeatingPlan(seatsData) {
             $scope.seatingPlan = seatsData.seats;
@@ -53,7 +57,10 @@ angular.module('moviesowlApp')
         }
 
         function buyTickets() {
-            var url = 'https://www.eventcinemas.com.au';
+
+            var url = $scope.session.tickets_url;
+            console.log(url);
+            //cordova.InAppBrowser.open(url, '_blank', 'location=yes');
             window.open(url, '_system');
         }
 
