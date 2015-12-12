@@ -13,7 +13,8 @@ var ghPages = require('gulp-gh-pages');
 var templateCache = require('gulp-angular-templatecache');
 
 var paths = {
-    sass: ['./scss/**/*.scss']
+    sass: ['./scss/**/*.scss'],
+    html: ['./www/**/*.html']
 };
 
 gulp.task('default', ['sass']);
@@ -33,6 +34,7 @@ gulp.task('sass', function (done) {
 
 gulp.task('watch', function () {
     gulp.watch(paths.sass, ['sass']);
+    gulp.watch(paths.html, ['templates']);
 });
 
 gulp.task('install', ['git-check'], function () {
@@ -67,20 +69,21 @@ gulp.task('templates', function () {
 });
 
 gulp.task('manifest', function () {
-    return gulp.src(['css/ionic.app.css', 'js/templates.js', 'js/configuration.js', 'js/**/*.js', '!js/bootstrap.js'], {
+    return gulp.src([
+        'lib/ionic/js/ionic.bundle.js',
+        'css/ionic.app.css'
+    ].concat(
+        bowerFiles()
+    ).concat([
+            'js/cordova-app-loader-complete.js', // app loader
+            'js/templates.js', // templates
+            'js/configuration.js', // config
+            'js/**/*.js', // app files
+            '!js/bootstrap.js' // not bootstrap
+        ]), {
         cwd: 'www',
         base: 'www'
-    })
-        //.pipe(angularFilesort())
-        .pipe(addsrc.prepend(bowerFiles().concat([
-            'lib/ionic/js/ionic.bundle.js',
-            '!lib/ionic/css/ionic.css', '!lib/ionic/fonts/*'
-        ]), {
-            cwd: 'www',
-            base: 'www'
-        }))
-        .pipe(calManifest({
-            load: ['**']
-        }))
-        .pipe(gulp.dest('./www'));
+    }).pipe(calManifest({
+        load: ['**']
+    })).pipe(gulp.dest('./www'));
 });

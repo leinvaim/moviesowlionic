@@ -1,9 +1,5 @@
 {
     "files": {
-        "lib_lodash_lodash.js": {
-            "filename": "lib/lodash/lodash.js",
-            "version": "31ef498e961eaee57b5458cf0b6929da737338eb37a371f0fa720e7ba15db0fb"
-        },
         "lib_ionic_js_ionic.bundle.js": {
             "filename": "lib/ionic/js/ionic.bundle.js",
             "version": "2a6430b20dc9ce78b5595607cc571456ba3a5d13897ffe7e051f1f80a6db6f4c"
@@ -12,9 +8,21 @@
             "filename": "css/ionic.app.css",
             "version": "12c77e6bf4cc07fc001e92493ff3ab32277813073c39f7a251bf9707a6bf864c"
         },
+        "lib_lodash_lodash.js": {
+            "filename": "lib/lodash/lodash.js",
+            "version": "31ef498e961eaee57b5458cf0b6929da737338eb37a371f0fa720e7ba15db0fb"
+        },
+        "lib_ion-sticky_ion-sticky.js": {
+            "filename": "lib/ion-sticky/ion-sticky.js",
+            "version": "23e5a6b441c7b970a97e5ee2348685bad5aeea03ad6ae422c170d66c980b6c46"
+        },
+        "js_cordova-app-loader-complete.js": {
+            "filename": "js/cordova-app-loader-complete.js",
+            "version": "76299c410fab485ec88d1e8765d935320fe4d172897d5f675fa410d66bd3f107"
+        },
         "js_templates.js": {
             "filename": "js/templates.js",
-            "version": "e63d2e05db6f16088e11b8954afc8f5ffd3ecc6b6a9f698cf48bedf3909ac98d"
+            "version": "e9be663cf49086f4fae3ffb75b6127e76c8defe0aecacfafa060234ff5063727"
         },
         "js_configuration.js": {
             "filename": "js/configuration.js",
@@ -22,11 +30,11 @@
         },
         "js_app.js": {
             "filename": "js/app.js",
-            "version": "83b6dc4e50e4e9076328c824cabb36da6deba4b2764280bee8d7b60c87337dd9"
+            "version": "43dbd25866253c478ff875a6cfaf064821a37cdb55520328e8c4acffb8298a6c"
         },
         "js_autoupdate.service.js": {
             "filename": "js/autoupdate.service.js",
-            "version": "21e892c7a4563cfbe43b9bcd66314d32e01494135c62646040be0e3224999b23"
+            "version": "217874aca9b7c2314f712c1931d0b408bc0b723f8f49b1ddc020b758752861f8"
         },
         "js_cinemas.js": {
             "filename": "js/cinemas.js",
@@ -43,10 +51,6 @@
         "js_controllers.js": {
             "filename": "js/controllers.js",
             "version": "7a0bea488b1efaa5a17e626b051d19f054f13adfcb2719a4932b29e5021d18e2"
-        },
-        "js_cordova-app-loader-complete.js": {
-            "filename": "js/cordova-app-loader-complete.js",
-            "version": "76299c410fab485ec88d1e8765d935320fe4d172897d5f675fa410d66bd3f107"
         },
         "js_craigalytics.service.js": {
             "filename": "js/craigalytics.service.js",
@@ -78,9 +82,11 @@
         }
     },
     "load": [
-        "lib/lodash/lodash.js",
         "lib/ionic/js/ionic.bundle.js",
         "css/ionic.app.css",
+        "lib/lodash/lodash.js",
+        "lib/ion-sticky/ion-sticky.js",
+        "js/cordova-app-loader-complete.js",
         "js/templates.js",
         "js/configuration.js",
         "js/app.js",
@@ -89,7 +95,6 @@
         "js/cinemaslist.js",
         "js/cities.js",
         "js/controllers.js",
-        "js/cordova-app-loader-complete.js",
         "js/craigalytics.service.js",
         "js/movies.controller.js",
         "js/seats.js",
