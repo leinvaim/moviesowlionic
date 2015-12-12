@@ -1,0 +1,35 @@
+.item, a.item {
+  background-color: #222;
+  color: white;
+  border-color: black;
+
+  &.item-radio .item-content {
+    background-color: #222;
+    color: white;
+    border-color: black;
+  }
+}
+
+.item {
+  color: white;
+
+  h1, h2, h3, h4 {
+    color: white;
+  }
+  &:active, &.activated {
+    border-color: black;
+    background-color: #333;
+  }
+  &.great-movies {
+    background-color: $balanced;
+  }
+  &.good-movies {
+    background-color: $energized;
+  }
+  &.bad-movies {
+    background-color: $assertive;
+  }
+  &.no-ratings {
+    background-color: $dark;
+  }
+}

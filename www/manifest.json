@@ -1,0 +1,102 @@
+{
+    "files": {
+        "lib_lodash_lodash.js": {
+            "filename": "lib/lodash/lodash.js",
+            "version": "31ef498e961eaee57b5458cf0b6929da737338eb37a371f0fa720e7ba15db0fb"
+        },
+        "lib_ionic_js_ionic.bundle.js": {
+            "filename": "lib/ionic/js/ionic.bundle.js",
+            "version": "2a6430b20dc9ce78b5595607cc571456ba3a5d13897ffe7e051f1f80a6db6f4c"
+        },
+        "css_ionic.app.css": {
+            "filename": "css/ionic.app.css",
+            "version": "12c77e6bf4cc07fc001e92493ff3ab32277813073c39f7a251bf9707a6bf864c"
+        },
+        "js_templates.js": {
+            "filename": "js/templates.js",
+            "version": "e63d2e05db6f16088e11b8954afc8f5ffd3ecc6b6a9f698cf48bedf3909ac98d"
+        },
+        "js_configuration.js": {
+            "filename": "js/configuration.js",
+            "version": "ae3baed888a0c7155d87ad98cece8284be65669d0342e1676a0804d08133ebe2"
+        },
+        "js_app.js": {
+            "filename": "js/app.js",
+            "version": "83b6dc4e50e4e9076328c824cabb36da6deba4b2764280bee8d7b60c87337dd9"
+        },
+        "js_autoupdate.service.js": {
+            "filename": "js/autoupdate.service.js",
+            "version": "21e892c7a4563cfbe43b9bcd66314d32e01494135c62646040be0e3224999b23"
+        },
+        "js_cinemas.js": {
+            "filename": "js/cinemas.js",
+            "version": "f6523075ee0ca4f4d131e490b6bd859905ef22e468a44de29e0c06d05a20888e"
+        },
+        "js_cinemaslist.js": {
+            "filename": "js/cinemaslist.js",
+            "version": "a7016d559d75f6343e178bdddb300824d36dae624704a8ca25cf66c9fc03c6c2"
+        },
+        "js_cities.js": {
+            "filename": "js/cities.js",
+            "version": "67daeb7b88771440439d1d1ba0163dc51686aeb3a022b64b105235af49b7660e"
+        },
+        "js_controllers.js": {
+            "filename": "js/controllers.js",
+            "version": "7a0bea488b1efaa5a17e626b051d19f054f13adfcb2719a4932b29e5021d18e2"
+        },
+        "js_cordova-app-loader-complete.js": {
+            "filename": "js/cordova-app-loader-complete.js",
+            "version": "76299c410fab485ec88d1e8765d935320fe4d172897d5f675fa410d66bd3f107"
+        },
+        "js_craigalytics.service.js": {
+            "filename": "js/craigalytics.service.js",
+            "version": "248bd1a526cfe113e41cc114206b2319c8fbd0f849ff6919d0bd9f2ed4dcf0fa"
+        },
+        "js_movies.controller.js": {
+            "filename": "js/movies.controller.js",
+            "version": "162cb21a045e0d7f19168abaf6837d1de34b83a8f829baf6069e820d683eb78e"
+        },
+        "js_seats.js": {
+            "filename": "js/seats.js",
+            "version": "578d8ce29ee41efbc12e87673ade61815d19358f4e4b7f7ae3c73cc8b5e8dfb3"
+        },
+        "js_selectedmovieservice.js": {
+            "filename": "js/selectedmovieservice.js",
+            "version": "a8fb2fee949c95eb7970f39937b2429c85bd8f26dd3a95393ddcdb891926b9fe"
+        },
+        "js_services.js": {
+            "filename": "js/services.js",
+            "version": "c25fa9b8ec28d037c9b3a07b7c3ca8fccff35be1afc3843f1703263ee0a85a0e"
+        },
+        "js_showings.js": {
+            "filename": "js/showings.js",
+            "version": "3a1fe3defd2a651989a4b8fbd1a3297866291cbaba6418e742171c5504e7edbc"
+        },
+        "js_showingsdataservice.js": {
+            "filename": "js/showingsdataservice.js",
+            "version": "b1ebce291b6813f7f004636cd0ca074c8a9fc4cddedaf6bf161eaaef8d37255b"
+        }
+    },
+    "load": [
+        "lib/lodash/lodash.js",
+        "lib/ionic/js/ionic.bundle.js",
+        "css/ionic.app.css",
+        "js/templates.js",
+        "js/configuration.js",
+        "js/app.js",
+        "js/autoupdate.service.js",
+        "js/cinemas.js",
+        "js/cinemaslist.js",
+        "js/cities.js",
+        "js/controllers.js",
+        "js/cordova-app-loader-complete.js",
+        "js/craigalytics.service.js",
+        "js/movies.controller.js",
+        "js/seats.js",
+        "js/selectedmovieservice.js",
+        "js/services.js",
+        "js/showings.js",
+        "js/showingsdataservice.js"
+    ],
+    "root": "./"
+}

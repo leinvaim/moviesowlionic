@@ -1,0 +1,40 @@
+<ion-view>
+    <ion-nav-title>
+        {{cinemaLocation}}
+    </ion-nav-title>
+    <ion-nav-buttons side="primary">
+        <button class="button" ng-click="toggleViewMode()">
+            <i class="icon"
+               ng-class="{'ion-grid': mode == 'list', 'ion-ios-list-outline': mode == 'grid'}"></i>
+        </button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="secondary">
+        <button class="button" ui-sref="cities">
+            Cinemas
+        </button>
+    </ion-nav-buttons>
+    <ion-content>
+        <!-- Refresher -->
+        <ion-refresher pulling-text="Pull to update movies." on-refresh="doRefresh()" spinner="bubbles">
+        </ion-refresher>
+        <!-- /Refresher -->
+
+        <div ng-hide="hasNoMovies">
+            <div ng-repeat="group in groups">
+                <ng-include src="'templates/includes/movie-group.html'"></ng-include>
+            </div>
+        </div>
+        <div class="item"
+             ng-if="hasNoMovies" style="text-align: center">
+            <h2>No more movies today</h2>
+
+            <p style="margin-bottom: 10px;">Come back tomorrow</p>
+            <img src="img/no-movies-owl.png" alt="" style="max-width: 50%"/>
+        </div>
+        <a class="item item-icon-right item-text-wrap" href="mailto:cmcnamara87+moviesowl@gmail.com?subject=MoviesOwl Ideas!">
+            Got any <strong>ideas or suggestions</strong>? We'd love to hear them!
+            <i class="icon ion-email icon-accessory"></i>
+        </a>
+    </ion-content>
+</ion-view>
+
