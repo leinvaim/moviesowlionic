@@ -4,19 +4,13 @@
             <div class="item">
                 {{ autoupdate.state }}
             </div>
-            <ion-item ng-repeat="chat in chats"
-                      href="#/tab/chats/{{chat.id}}">
-                <img ng-src="{{chat.face}}">
-
-                <h2>{{chat.name}}</h2>
-
-                <p>{{chat.lastText}}</p>
-                <i class="icon ion-chevron-right icon-accessory"></i>
-
-                <ion-option-button class="button-assertive" ng-click="remove(chat)">
-                    Delete
-                </ion-option-button>
-            </ion-item>
+            <div class="item">
+                Added a bunch of cool stuff!
+            </div>
+            <a class="item item-icon-right item-text-wrap" href="mailto:cmcnamara87+moviesowl@gmail.com?subject=MoviesOwl Ideas!">
+                Got any <strong>ideas or suggestions</strong>? We'd love to hear them!
+                <i class="icon ion-email icon-accessory"></i>
+            </a>
         </ion-list>
     </ion-content>
 </ion-view>

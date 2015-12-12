@@ -74,19 +74,19 @@
                 if(src[0] === '/') src = src.substr(1);
                 src = manifest.root + src ;
                 // Load javascript
-                if(src.substr(-3) === ".js") {
-                    el = document.createElement('script');
-                    el.type = 'text/javascript';
-                    el.src = src + '?' + now;
+                if(src.substr(-3) === ".js"){
+                    el= document.createElement('script');
+                    el.type= 'text/javascript';
+                    el.src= src + '?' + now;
                     el.async = false;
-                    head.appendChild(el);
-                } else if(src.substr(-4) === ".css"){
+                    // Load CSS
+                } else {
                     el= document.createElement('link');
                     el.rel = "stylesheet";
                     el.href = src + '?' + now;
                     el.type = "text/css";
-                    head.appendChild(el);
                 }
+                head.appendChild(el);
             });
         }
 
@@ -115,7 +115,7 @@
 //---------------------------------------------------------------------
     window.Manifest = {};
     //localStorage.removeItem('manifest');
-//Step 1: Load manifest from localStorage
+// Step 1: Load manifest from localStorage
     var manifest = JSON.parse(localStorage.getItem('manifest'));
     console.log('stored manfiest', manifest);
 // grab manifest.json location from <script manifest="..."></script>

@@ -13,7 +13,7 @@ angular.module('moviesowlApp')
 
         console.log('movis conro');
         $scope.doRefresh = doRefresh;
-        $scope.toggleViewMode = _.throttle(toggleViewMode, 500);
+        $scope.toggleViewMode = toggleViewMode;
         $scope.setStartingTime = setStartingTime;
         $scope.showTimesModal = showTimesModal;
         $scope.isStartingSoon = isStartingSoon;
