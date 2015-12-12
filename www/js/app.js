@@ -123,3 +123,10 @@ angular.module('moviesowlApp', ['ionic', 'config', 'templates'])
         $urlRouterProvider.otherwise('/tab/movies');
 
     });
+
+setTimeout(function() {
+    angular.element(document).ready(function() {
+        console.log('bootstrapping now');
+        angular.bootstrap(document, ['moviesowlApp']);
+    });
+}, 0);

@@ -11,9 +11,6 @@ angular.module('moviesowlApp')
     .controller('SeatsCtrl', function(ENV, $scope, $http, $stateParams, showingsDataService, selectedMovieService,
                                       $timeout) {
 
-        //$http.get('http://api.moviesowl.com/v1/showings/' + $stateParams.showId).then(function(response) {
-        //  $http.get('http://api.moviesowl.com/v1/showings/141061').then(function(response) {
-
         $scope.doRefresh = doRefresh;
         $scope.movie = selectedMovieService.selectedMovie;
         $scope.buyTickets = buyTickets;
@@ -43,9 +40,6 @@ angular.module('moviesowlApp')
             $scope.seatWidth = 100 / numOfSeatInRow;
         }
 
-
-
-        // console.log(seatsData);
         function doRefresh() {
             console.log('Reloading Seats');
             $http.get(ENV.apiEndpoint + 'showings/' + $stateParams.showId).then(function(response) {
@@ -57,14 +51,13 @@ angular.module('moviesowlApp')
         }
 
         function buyTickets() {
-
             var url = $scope.session.tickets_url;
-            console.log(url);
-            window.open(url);
+            url = url.replace('&bookingSource=www|sessions', '');
+            window.open('http://eventcinemas.com.au', '_blank', 'location=yes');
         }
 
         function buyTelstraTickets() {
             var url = 'https://www.my.telstra.com.au/myaccount/home?goto=https%3A%2F%2Fwww.my.telstra.com.au%2Fmyaccount%2Floyalty-offers-consumer';
-            window.open(url);
+            window.open(url, '_blank');
         }
     });
