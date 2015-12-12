@@ -15,6 +15,10 @@ angular.module('moviesowlApp', ['ionic', 'config', 'templates'])
         $rootScope.ENV = ENV;
 
         $ionicPlatform.ready(function () {
+            if (window.cordova) {
+                // Add in app browser open
+                window.open = cordova.InAppBrowser.open;
+            }
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
             // for form inputs)
             if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {

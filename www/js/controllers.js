@@ -13,7 +13,7 @@ angular.module('moviesowlApp')
             autoupdate.check();
         });
         $scope.autoupdate = autoupdate;
-        
+
         $scope.chats = Chats.all();
         $scope.remove = function (chat) {
             Chats.remove(chat);

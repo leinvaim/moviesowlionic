@@ -60,12 +60,11 @@ angular.module('moviesowlApp')
 
             var url = $scope.session.tickets_url;
             console.log(url);
-            //cordova.InAppBrowser.open(url, '_blank', 'location=yes');
-            window.open(url, '_system');
+            window.open(url);
         }
 
         function buyTelstraTickets() {
             var url = 'https://www.my.telstra.com.au/myaccount/home?goto=https%3A%2F%2Fwww.my.telstra.com.au%2Fmyaccount%2Floyalty-offers-consumer';
-            window.open(url, '_system');
+            window.open(url);
         }
     });
