@@ -1,6 +1,9 @@
 <ion-view view-title="Chats">
     <ion-content>
         <ion-list>
+            <div class="item">
+                {{ autoupdate.state }}
+            </div>
             <ion-item ng-repeat="chat in chats"
                       href="#/tab/chats/{{chat.id}}">
                 <img ng-src="{{chat.face}}">
