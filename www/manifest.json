@@ -8,13 +8,25 @@
             "filename": "css/ionic.app.css",
             "version": "12c77e6bf4cc07fc001e92493ff3ab32277813073c39f7a251bf9707a6bf864c"
         },
+        "lib_ionic_fonts_ionicons.eot": {
+            "filename": "lib/ionic/fonts/ionicons.eot",
+            "version": "a4803d7bdeb478a5b9238fe74d8aaa98dafe2e8e68fccbd0e3f4dced823f27f0"
+        },
+        "lib_ionic_fonts_ionicons.svg": {
+            "filename": "lib/ionic/fonts/ionicons.svg",
+            "version": "a627d9068c1235d9b3c95c405eb6ecb64a290b159cf5e926c0d96d89b24cd5fc"
+        },
+        "lib_ionic_fonts_ionicons.ttf": {
+            "filename": "lib/ionic/fonts/ionicons.ttf",
+            "version": "2ba7f20b1d8990e17a47fe3d88e4c766628aaa2baf1dd30fca0a0db59836f5f9"
+        },
+        "lib_ionic_fonts_ionicons.woff": {
+            "filename": "lib/ionic/fonts/ionicons.woff",
+            "version": "709f2789daaff440820ebb975d3ae409af45121bdec47e39e83523490b1bc0fc"
+        },
         "lib_lodash_lodash.js": {
             "filename": "lib/lodash/lodash.js",
             "version": "31ef498e961eaee57b5458cf0b6929da737338eb37a371f0fa720e7ba15db0fb"
-        },
-        "lib_ion-sticky_ion-sticky.js": {
-            "filename": "lib/ion-sticky/ion-sticky.js",
-            "version": "23e5a6b441c7b970a97e5ee2348685bad5aeea03ad6ae422c170d66c980b6c46"
         },
         "js_cordova-app-loader-complete.js": {
             "filename": "js/cordova-app-loader-complete.js",
@@ -22,7 +34,7 @@
         },
         "js_templates.js": {
             "filename": "js/templates.js",
-            "version": "e9be663cf49086f4fae3ffb75b6127e76c8defe0aecacfafa060234ff5063727"
+            "version": "3d50a5895dc294ad7a555f58518d49cefe4f396d415f4c61bb2c904a6b6b6465"
         },
         "js_configuration.js": {
             "filename": "js/configuration.js",
@@ -30,11 +42,11 @@
         },
         "js_app.js": {
             "filename": "js/app.js",
-            "version": "43dbd25866253c478ff875a6cfaf064821a37cdb55520328e8c4acffb8298a6c"
+            "version": "540725f7197f1cba7cee3910b7560fbf921f34576c724f528e04ea3a068b9485"
         },
         "js_autoupdate.service.js": {
             "filename": "js/autoupdate.service.js",
-            "version": "217874aca9b7c2314f712c1931d0b408bc0b723f8f49b1ddc020b758752861f8"
+            "version": "95dbc8658969a04423844c232bb65dd6181bcc3b038988f824e19c3b622ffef8"
         },
         "js_cinemas.js": {
             "filename": "js/cinemas.js",
@@ -84,8 +96,11 @@
     "load": [
         "lib/ionic/js/ionic.bundle.js",
         "css/ionic.app.css",
+        "lib/ionic/fonts/ionicons.eot",
+        "lib/ionic/fonts/ionicons.svg",
+        "lib/ionic/fonts/ionicons.ttf",
+        "lib/ionic/fonts/ionicons.woff",
         "lib/lodash/lodash.js",
-        "lib/ion-sticky/ion-sticky.js",
         "js/cordova-app-loader-complete.js",
         "js/templates.js",
         "js/configuration.js",

@@ -14,7 +14,8 @@ var templateCache = require('gulp-angular-templatecache');
 
 var paths = {
     sass: ['./scss/**/*.scss'],
-    html: ['./www/**/*.html']
+    html: ['./www/**/*.html'],
+    bower: ['./bower.json']
 };
 
 gulp.task('default', ['sass']);
@@ -35,6 +36,7 @@ gulp.task('sass', function (done) {
 gulp.task('watch', function () {
     gulp.watch(paths.sass, ['sass']);
     gulp.watch(paths.html, ['templates']);
+    gulp.watch(paths.bower, ['templates']);
 });
 
 gulp.task('install', ['git-check'], function () {
@@ -71,7 +73,8 @@ gulp.task('templates', function () {
 gulp.task('manifest', function () {
     return gulp.src([
         'lib/ionic/js/ionic.bundle.js',
-        'css/ionic.app.css'
+        'css/ionic.app.css',
+        'lib/ionic/fonts/*'
     ].concat(
         bowerFiles()
     ).concat([
