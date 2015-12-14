@@ -28,7 +28,10 @@ angular.module('moviesowlApp', ['ionic', 'config', 'templates'])
             }
             if (window.StatusBar) {
                 // org.apache.cordova.statusbar required
-                StatusBar.styleDefault();
+                StatusBar.styleLightContent();
+            }
+            if (navigator.splashscreen) {
+                navigator.splashscreen.hide();
             }
         });
     })
@@ -49,16 +52,7 @@ angular.module('moviesowlApp', ['ionic', 'config', 'templates'])
             })
 
             // Each tab has its own nav history stack:
-            .state('cities', {
-                url: '/cities',
-                templateUrl: 'templates/cities.html',
-                controller: 'CitiesController'
-            })
-            .state('cinemas', {
-                url: '/cinemas?city',
-                templateUrl: 'templates/cinemas-page.html',
-                controller: 'CinemasController'
-            })
+
             .state('movies', {
                 parent: 'tab',
                 url: '/movies',
@@ -114,7 +108,27 @@ angular.module('moviesowlApp', ['ionic', 'config', 'templates'])
                 views: {
                     'tab-account': {
                         templateUrl: 'templates/tab-account.html',
-                        controller: 'AccountCtrl'
+                        controller: 'AccountController'
+                    }
+                }
+            })
+            .state('cities', {
+                parent: 'tab',
+                url: '/cities',
+                views: {
+                    'tab-account': {
+                        templateUrl: 'templates/cities.html',
+                        controller: 'CitiesController'
+                    }
+                }
+            })
+            .state('cinemas', {
+                parent: 'tab',
+                url: '/cinemas?city',
+                views: {
+                    'tab-account': {
+                        templateUrl: 'templates/cinemas-page.html',
+                        controller: 'CinemasController'
                     }
                 }
             });

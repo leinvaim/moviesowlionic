@@ -53,7 +53,12 @@ angular.module('moviesowlApp')
         function buyTickets() {
             var url = $scope.session.tickets_url;
             url = url.replace('&bookingSource=www|sessions', '');
-            window.open('http://eventcinemas.com.au', '_blank', 'location=yes');
+            var ref = cordova.InAppBrowser.open(url, '_blank', 'location=yes');
+            ref.addEventListener('loadstop', function() {
+                console.log('load stop reached');
+                //ref.executeScript({code: "$('.continue').click(function() { $('#MemberCards').val('800012851988'); });"});
+                ref.executeScript({code: "$('#MemberCards').val('800012851988');"});
+            });
         }
 
         function buyTelstraTickets() {

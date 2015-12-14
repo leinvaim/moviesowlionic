@@ -1,9 +1,10 @@
 <ion-view view-title="Account">
-  <ion-content>
-    <ion-list>
-    <ion-toggle  ng-model="settings.enableFriends">
-        Enable Friends
-    </ion-toggle>
-    </ion-list>
-  </ion-content>
+    <ion-content>
+        <ion-list>
+            <a class="item item-icon-right" ui-sref="cities">
+                Your Cinema <strong>{{ cinemaLocation }}</strong>
+                <i class="icon ion-chevron-right icon-accessory"></i>
+            </a>
+        </ion-list>
+    </ion-content>
 </ion-view>

@@ -81,8 +81,10 @@ gulp.task('manifest', function () {
             'js/cordova-app-loader-complete.js', // app loader
             'js/templates.js', // templates
             'js/configuration.js', // config
+            'js/app.js', // app
             'js/**/*.js', // app files
-            '!js/bootstrap.js' // not bootstrap
+            '!js/bootstrap.js', // not bootstrap
+            '!js/cinema-inject.js' // remove cinema inject code
         ]), {
         cwd: 'www',
         base: 'www'

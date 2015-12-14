@@ -34,7 +34,7 @@
         },
         "js_templates.js": {
             "filename": "js/templates.js",
-            "version": "5be94690c951f841e2ce0952e8582b51859ac7fa19026de0117011549b81e235"
+            "version": "435019a24bc22569085263c218c679e75b9f4ddfcd570a7e3a7b38cea7112b64"
         },
         "js_configuration.js": {
             "filename": "js/configuration.js",
@@ -42,7 +42,11 @@
         },
         "js_app.js": {
             "filename": "js/app.js",
-            "version": "0bbf6053494aa5151df3be4b5d0b087195705386473f59039ed35b7594bb736c"
+            "version": "41eed312c90ad4dea04ed19958cbfe77f8a47fdffd57cfe871d67189710de83e"
+        },
+        "js_account.controller.js": {
+            "filename": "js/account.controller.js",
+            "version": "f4119c6c191d042f3c3cc0a1c62c13f80f96177672a97279b9f1a478f76a963a"
         },
         "js_autoupdate.service.js": {
             "filename": "js/autoupdate.service.js",
@@ -74,7 +78,7 @@
         },
         "js_seats.js": {
             "filename": "js/seats.js",
-            "version": "cd846115fdd03b517c4f4e14035b7f4327a3d63c625968e41f99029568054755"
+            "version": "0a040e0a30aee8afccea098fdc16290df418397d25051ef891c7bb3e08ec8c6f"
         },
         "js_selectedmovieservice.js": {
             "filename": "js/selectedmovieservice.js",
@@ -105,6 +109,7 @@
         "js/templates.js",
         "js/configuration.js",
         "js/app.js",
+        "js/account.controller.js",
         "js/autoupdate.service.js",
         "js/cinemas.js",
         "js/cinemaslist.js",
