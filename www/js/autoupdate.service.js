@@ -53,13 +53,13 @@
 
         // 2. Cordova: On resume
         fs.deviceready.then(function () {
-            document.addEventListener('resume', check);
+            //document.addEventListener('resume', check);
         });
 
         // 3. Chrome: On page becomes visible again
         function handleVisibilityChange() {
             if (!document.webkitHidden) {
-                check();
+                //check();
             }
         }
 
