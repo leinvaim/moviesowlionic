@@ -9768,3 +9768,20 @@ body, .pane {
   color: red;
   position: absolute;
   border: 1px solid red; }
+
+.small-session-time {
+  margin-right: 8px;
+  color: #aaa; }
+
+.small-session-time.soon {
+  color: white; }
+
+.time-human {
+  background-color: #333;
+  color: #eee;
+  padding: 2px 10px;
+  border-radius: 100px; }
+
+.time-human.soon {
+  background-color: white;
+  color: #333; }
