@@ -2,7 +2,7 @@
     "files": {
         "lib_ionic_js_ionic.bundle.js": {
             "filename": "lib/ionic/js/ionic.bundle.js",
-            "version": "2a6430b20dc9ce78b5595607cc571456ba3a5d13897ffe7e051f1f80a6db6f4c"
+            "version": "33984c6af990ace737a1b9c179cb0cf8aad0d7460df34e52bdcdb66fab4a3e52"
         },
         "css_ionic.app.css": {
             "filename": "css/ionic.app.css",
@@ -36,6 +36,10 @@
             "filename": "lib/moment/moment.js",
             "version": "330b77f348bc97849800b9f3af7d1fe52fb6e145525ad494149d7a202c0c3cbf"
         },
+        "lib_ion-affix_ion-affix.js": {
+            "filename": "lib/ion-affix/ion-affix.js",
+            "version": "4a4359aaca0db754733fbd6cecfc4bde64ae4140732edb3f1e6378c510b18969"
+        },
         "lib_angular-moment_angular-moment.js": {
             "filename": "lib/angular-moment/angular-moment.js",
             "version": "44c05e91c516897260bd895e828f1349614d4d3ce6ad14ad976d7f461a4fc176"
@@ -46,7 +50,7 @@
         },
         "js_templates.js": {
             "filename": "js/templates.js",
-            "version": "91673a1b757c8ba944e4eddf1345e59e66f5f4fd1f2320af23d1d0e4a0f5d3e4"
+            "version": "6473122d22ea1412064c1726bdbf2850da7e22fa8a1781230c0ce6af500aa0fb"
         },
         "js_configuration.js": {
             "filename": "js/configuration.js",
@@ -54,15 +58,15 @@
         },
         "js_app.js": {
             "filename": "js/app.js",
-            "version": "ea7ca8854e79efe27dff61bb138cd18e63936d6c77077ed771939f4529052a0b"
+            "version": "39c2c52396e7126f247a41dd8e9059bf79b2d0b1488b52752405fbe16b741369"
         },
         "js_account.controller.js": {
             "filename": "js/account.controller.js",
-            "version": "f4119c6c191d042f3c3cc0a1c62c13f80f96177672a97279b9f1a478f76a963a"
+            "version": "876fb6dc429a79f1b7d867129f2c60ad5714aab6f51e4794e4292148388932d0"
         },
         "js_autoupdate.service.js": {
             "filename": "js/autoupdate.service.js",
-            "version": "3667f3d1d91255ac43941fbb3e2f6783f82a866b0866078020a10815a795280c"
+            "version": "f7df3ebb3c73291ad82791d2006d4b6b3c4cd7362166059010a7cef0179e0563"
         },
         "js_cinemas.js": {
             "filename": "js/cinemas.js",
@@ -76,10 +80,6 @@
             "filename": "js/cities.js",
             "version": "67daeb7b88771440439d1d1ba0163dc51686aeb3a022b64b105235af49b7660e"
         },
-        "js_controllers.js": {
-            "filename": "js/controllers.js",
-            "version": "72e82ddad39b16b56ff231b52a21b932c316165f3f97d96b1890992eff538094"
-        },
         "js_craigalytics.service.js": {
             "filename": "js/craigalytics.service.js",
             "version": "248bd1a526cfe113e41cc114206b2319c8fbd0f849ff6919d0bd9f2ed4dcf0fa"
@@ -87,6 +87,10 @@
         "js_movies.controller.js": {
             "filename": "js/movies.controller.js",
             "version": "8a60580de253d87786b0c57a39553e4768572ff019a9401cc13205c64271c3cd"
+        },
+        "js_news.controller.js": {
+            "filename": "js/news.controller.js",
+            "version": "5ae41f310fb6672c23f74f11f7d2441494fd088ea2dbcca062716886b2ffaecb"
         },
         "js_seats.js": {
             "filename": "js/seats.js",
@@ -119,6 +123,7 @@
         "lib/lodash/lodash.js",
         "lib/angular/angular.js",
         "lib/moment/moment.js",
+        "lib/ion-affix/ion-affix.js",
         "lib/angular-moment/angular-moment.js",
         "js/cordova-app-loader-complete.js",
         "js/templates.js",
@@ -129,9 +134,9 @@
         "js/cinemas.js",
         "js/cinemaslist.js",
         "js/cities.js",
-        "js/controllers.js",
         "js/craigalytics.service.js",
         "js/movies.controller.js",
+        "js/news.controller.js",
         "js/seats.js",
         "js/selectedmovieservice.js",
         "js/services.js",

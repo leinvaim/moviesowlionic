@@ -9,7 +9,7 @@
         console.log('Autoupdate: Service loaded');
 
         var service = {
-            state: 'UP_TO_DATE',
+            state: 'v1.2',
             check: check,
             bootstrapOk: function() {
                 console.log('Autoupdate: Bootstrap Okay');
@@ -80,7 +80,7 @@
                         service.state = 'DOWNLOADING';
                     } else {
                         console.log('its up to date');
-                        service.state = 'UP_TO_DATE';
+                        service.state = 'v1.2';
                     }
                     console.log('Autoupdate: Downloading', updateAvailable);
                     return loader.download(onprogress);
@@ -94,7 +94,7 @@
                     service.state = 'ERROR ' + err;
                     console.error('Auto-update error:', err);
                 }).then(function() {
-                    service.state = 'UP_TO_DATE';
+                    service.state = 'v1.2';
                     console.log('Autoupdate: Update applied');
                 });
         }

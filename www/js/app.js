@@ -9,7 +9,8 @@ angular.module('moviesowlApp', [
     'ionic',
     'config',
     'templates',
-    'angularMoment'])
+    'angularMoment',
+    'ion-affix'])
 
     .run(function ($ionicPlatform, ENV, $rootScope, autoupdate) {
 
@@ -67,6 +68,26 @@ angular.module('moviesowlApp', [
                     }
                 }
             })
+            .state('cities', {
+                parent: 'tab',
+                url: '/cities',
+                views: {
+                    'tab-movies': {
+                        templateUrl: 'templates/cities.html',
+                        controller: 'CitiesController'
+                    }
+                }
+            })
+            .state('cinemas', {
+                parent: 'tab',
+                url: '/cinemas?city',
+                views: {
+                    'tab-movies': {
+                        templateUrl: 'templates/cinemas-page.html',
+                        controller: 'CinemasController'
+                    }
+                }
+            })
             .state('showings', {
                 parent: 'tab',
                 url: '/movies/:movieId',
@@ -84,6 +105,16 @@ angular.module('moviesowlApp', [
                     'tab-movies': {
                         templateUrl: 'templates/seats.html',
                         controller: 'SeatsCtrl'
+                    }
+                }
+            })
+
+            .state('tab.news', {
+                url: '/news',
+                views: {
+                    'tab-news': {
+                        templateUrl: 'templates/tab-news.html',
+                        controller: 'NewsController'
                     }
                 }
             })
@@ -113,26 +144,6 @@ angular.module('moviesowlApp', [
                     'tab-account': {
                         templateUrl: 'templates/tab-account.html',
                         controller: 'AccountController'
-                    }
-                }
-            })
-            .state('cities', {
-                parent: 'tab',
-                url: '/cities',
-                views: {
-                    'tab-account': {
-                        templateUrl: 'templates/cities.html',
-                        controller: 'CitiesController'
-                    }
-                }
-            })
-            .state('cinemas', {
-                parent: 'tab',
-                url: '/cinemas?city',
-                views: {
-                    'tab-account': {
-                        templateUrl: 'templates/cinemas-page.html',
-                        controller: 'CinemasController'
                     }
                 }
             });

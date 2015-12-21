@@ -6,7 +6,7 @@
         .controller('AccountController', AccountController);
 
     /* @ngInject */
-    function AccountController($scope) {
+    function AccountController($scope, autoupdate) {
         /* jshint validthis: true */
         //var vm = this;
 
@@ -15,13 +15,19 @@
 
         activate();
 
+        $scope.$on('$ionicView.enter', function(e) {
+            autoupdate.check();
+        });
+        $scope.autoupdate = autoupdate;
+
+
         ////////////////
 
         function activate() {
-            var cinemaObj = angular.fromJson(localStorage.cinema);
-            if(cinemaObj.location === $scope.cinemaLocation && !force) {
-                return;
+            if(!localStorage.cinema) {
+                $scope.cinemaLocation = 'No cinema';
             }
+            var cinemaObj = angular.fromJson(localStorage.cinema);
             $scope.cinemaLocation = cinemaObj.location;
         }
     }
