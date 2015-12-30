@@ -26,6 +26,7 @@
         function activate() {
             if(!localStorage.cinema) {
                 $scope.cinemaLocation = 'No cinema';
+                return;
             }
             var cinemaObj = angular.fromJson(localStorage.cinema);
             $scope.cinemaLocation = cinemaObj.location;
