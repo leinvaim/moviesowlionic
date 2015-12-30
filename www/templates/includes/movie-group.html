@@ -15,6 +15,7 @@
                          ng-hide="movie.tomato_meter >= 60">
                     {{movie.tomato_meter}}%
                 </span>
+                <span style="font-size: 12px; color: yellow" ng-show="movie.new">New!</span>
             </h2>
             <p>
                 <span ng-repeat="showing in movie.showings.data"
@@ -46,7 +47,7 @@
 
                 <div style="color: white;text-align:center">
                     <p style="margin-bottom: 0; font-weight:bold;">
-                        {{ movie.title }}
+                        {{ movie.title }} <span style="font-size: 12px; color: yellow" ng-show="movie.new">New!</span>
                     </p>
                     <p style="font-size: 12px;color:#aaa">
                         <img src="img/fresh.png" style="width:10px;position:relative; top:0px;"
