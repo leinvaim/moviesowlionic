@@ -18,6 +18,18 @@ $dark:                            #444 !default;
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
 
+$licorice: #313748;
+$crimson: #ff639c;
+$dark: $licorice;
+$positive: $crimson;
+
+//$bar-dark-bg:                     lighten($dark, 10%);
+//$bar-dark-text:                   $button-dark-text !default;
+//$bar-dark-border:                 $button-dark-border !default;
+//$bar-dark-active-bg:              $button-dark-active-bg !default;
+//$bar-dark-active-border:          $button-dark-active-border !default;
+
+
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
 @import "components/item";
@@ -25,3 +37,14 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 @import "components/seating";
 @import "components/small-session-time";
 @import "components/time-human";
+
+
+.tab-item {
+  &.tab-item-active,
+  &.active,
+  &.activated {
+    i {
+      color: $crimson;
+    }
+  }
+}

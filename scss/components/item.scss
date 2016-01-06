@@ -1,24 +1,28 @@
 .item, a.item {
-  background-color: #222;
+  background-color: darken($dark, 10%);
   color: white;
   border-color: black;
 
   &.item-radio .item-content {
-    background-color: #222;
+    background-color: $dark;
     color: white;
     border-color: black;
   }
 }
 
 .item {
-  color: white;
+  color: #ddd;
 
   h1, h2, h3, h4 {
-    color: white;
+    color: #eee;
+    font-weight: bolder;
+  }
+  p {
+    color: #ccc;
   }
   &:active, &.activated {
-    border-color: black;
-    background-color: #333;
+    border-color: darken($dark, 20%);
+    background-color: $dark;
   }
   &.great-movies {
     background-color: $balanced;
