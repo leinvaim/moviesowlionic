@@ -51,7 +51,7 @@ angular.module('moviesowlApp', [
                     // data.registrationId
                     console.log('PN:', data);
                     $http.post(ENV.apiEndpoint + 'devices', {
-                        'device_type': 'ios',
+                        'device_type': window.device.platform,
                         'token': data.registrationId
                     });
                 });
