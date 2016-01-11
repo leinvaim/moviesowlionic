@@ -6,7 +6,7 @@
         },
         "css_ionic.app.css": {
             "filename": "css/ionic.app.css",
-            "version": "4940e9cbcae990af260cb01c6ec89d5f4121092e5b57e6e1336645565a8637d5"
+            "version": "351a20b66227c71ad20c576dc833aae2fd47366d16ad96593ac94b031a689421"
         },
         "lib_ionic_fonts_ionicons.eot": {
             "filename": "lib/ionic/fonts/ionicons.eot",
@@ -50,7 +50,7 @@
         },
         "js_templates.js": {
             "filename": "js/templates.js",
-            "version": "1e179761ee5ac255a406735dfbe142517e060ebf14620d8b674cf4bed3154852"
+            "version": "a0cfc423e4e1ff181cd6c2f4de48454340cd282765fd2b6d7a946810be2bda17"
         },
         "js_configuration.js": {
             "filename": "js/configuration.js",

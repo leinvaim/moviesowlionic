@@ -12,7 +12,12 @@ angular.module('moviesowlApp', [
     'angularMoment',
     'ion-affix'])
 
-    .run(function ($ionicPlatform, ENV, $rootScope, autoupdate) {
+    .run(function ($ionicPlatform,
+                   ENV,
+                   $rootScope,
+                   autoupdate,
+                   $ionicPopup,
+                   $http) {
 
         autoupdate.bootstrapOk();
 
@@ -37,6 +42,39 @@ angular.module('moviesowlApp', [
             }
             if (navigator.splashscreen) {
                 navigator.splashscreen.hide();
+            }
+            if(window.PushNotification) {
+                var push = PushNotification.init({
+                    "ios": {"alert": "true", "badge": "true", "sound": "true"}, "windows": {} } );
+
+                push.on('registration', function(data) {
+                    // data.registrationId
+                    console.log('PN:', data);
+                    $http.post(ENV.apiEndpoint + 'devices', {
+                        'device_type': 'ios',
+                        'token': data.registrationId
+                    });
+                });
+
+                push.on('notification', function(data) {
+                    // data.message,
+                    // data.title,
+                    // data.count,
+                    // data.sound,
+                    // data.image,
+                    // data.additionalData
+                    //console.log(data);
+                    //window.alert(data);
+                    var alertPopup = $ionicPopup.alert({
+                        title: data.title,
+                        template: data.message
+                    });
+                });
+
+                push.on('error', function(e) {
+                    // e.message
+                    console.log('PN error', e);
+                });
             }
         });
     })
