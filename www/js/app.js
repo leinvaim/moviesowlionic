@@ -65,10 +65,10 @@ angular.module('moviesowlApp', [
                     // data.additionalData
                     //console.log(data);
                     //window.alert(data);
-                    var alertPopup = $ionicPopup.alert({
-                        title: data.title,
-                        template: data.message
-                    });
+                    //var alertPopup = $ionicPopup.alert({
+                    //    title: data.title,
+                    //    template: data.message
+                    //});
                 });
 
                 push.on('error', function(e) {

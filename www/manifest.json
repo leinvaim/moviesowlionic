@@ -50,7 +50,7 @@
         },
         "js_templates.js": {
             "filename": "js/templates.js",
-            "version": "a0cfc423e4e1ff181cd6c2f4de48454340cd282765fd2b6d7a946810be2bda17"
+            "version": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
         },
         "js_configuration.js": {
             "filename": "js/configuration.js",
@@ -58,7 +58,7 @@
         },
         "js_app.js": {
             "filename": "js/app.js",
-            "version": "39c2c52396e7126f247a41dd8e9059bf79b2d0b1488b52752405fbe16b741369"
+            "version": "875d8c6c76485d38754bd22a915697d91567b7c9c082d7beab1ff9a3d2b91d60"
         },
         "js_account.controller.js": {
             "filename": "js/account.controller.js",
