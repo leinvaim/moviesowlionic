@@ -17,7 +17,8 @@ angular.module('moviesowlApp', [
                    $rootScope,
                    autoupdate,
                    $ionicPopup,
-                   $http) {
+                   $http,
+                   craigalytics) {
 
         autoupdate.bootstrapOk();
 
@@ -28,6 +29,8 @@ angular.module('moviesowlApp', [
             if (window.cordova) {
                 // Add in app browser open
                 window.open = cordova.InAppBrowser.open;
+                // Register app for craigalytics
+                craigalytics.register();
             }
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
             // for form inputs)
