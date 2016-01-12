@@ -20,6 +20,7 @@ angular.module('moviesowlApp', [
                    $http,
                    craigalytics) {
 
+        // Check for updates
         autoupdate.bootstrapOk();
 
         // Globals

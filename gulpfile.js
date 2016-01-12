@@ -11,12 +11,34 @@ var addsrc = require('gulp-add-src');
 var bowerFiles = require('main-bower-files');
 var ghPages = require('gulp-gh-pages');
 var templateCache = require('gulp-angular-templatecache');
+var args    = require('yargs').argv;
+
 
 var paths = {
     sass: ['./scss/**/*.scss'],
     html: ['./www/**/*.html'],
-    bower: ['./bower.json']
+    bower: ['./bower.json'],
+    corejs: [
+        'lib/ionic/js/ionic.bundle.js',
+        'css/ionic.app.css',
+        'lib/ionic/fonts/*'],
+    appjs: [
+        'js/cordova-app-loader-complete.js', // app loader
+        'js/templates.js', // templates
+        'js/configuration.js', // config
+        'js/app.js', // app
+        'js/**/*.js', // app files
+        '!js/bootstrap.js', // not bootstrap
+    ],
+    devjs: [
+        '!js/config-prod.js', // not configs
+    ],
+    prodjs: [
+        '!js/config-dev.js', // not configs
+    ]
 };
+
+var isProduction = false;
 
 gulp.task('default', ['sass']);
 
@@ -34,6 +56,7 @@ gulp.task('sass', function (done) {
 });
 
 gulp.task('watch', function () {
+    isProduction = false;
     gulp.watch(paths.sass, ['sass']);
     gulp.watch(paths.html, ['templates']);
     gulp.watch(paths.bower, ['templates']);
@@ -70,22 +93,14 @@ gulp.task('templates', function () {
         .pipe(gulp.dest('./www/js'));
 });
 
+
 gulp.task('manifest', function () {
-    return gulp.src([
-        'lib/ionic/js/ionic.bundle.js',
-        'css/ionic.app.css',
-        'lib/ionic/fonts/*'
-    ].concat(
+    // Get the environment from the command line
+    var env = args.env || 'dev';
+
+    return gulp.src(paths.corejs.concat(
         bowerFiles()
-    ).concat([
-            'js/cordova-app-loader-complete.js', // app loader
-            'js/templates.js', // templates
-            'js/configuration.js', // config
-            'js/app.js', // app
-            'js/**/*.js', // app files
-            '!js/bootstrap.js', // not bootstrap
-            '!js/cinema-inject.js' // remove cinema inject code
-        ]), {
+    ).concat(paths.appjs).concat(paths[env + 'js']), {
         cwd: 'www',
         base: 'www'
     }).pipe(calManifest({

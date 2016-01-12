@@ -52,13 +52,9 @@
             "filename": "js/templates.js",
             "version": "a0cfc423e4e1ff181cd6c2f4de48454340cd282765fd2b6d7a946810be2bda17"
         },
-        "js_configuration.js": {
-            "filename": "js/configuration.js",
-            "version": "0bdc536af437133482618c77f4ec2419de6d795b2edd2fe828f5dac3e3babfcf"
-        },
         "js_app.js": {
             "filename": "js/app.js",
-            "version": "3d22de4c6164f87b9d4ac56706decb01c8b4925ae3b52165b84de4187ba99b97"
+            "version": "e01852542ad0e3286b6626498718b6df4392e20205cd6ba5cce326da4eb5b50b"
         },
         "js_account.controller.js": {
             "filename": "js/account.controller.js",
@@ -79,6 +75,10 @@
         "js_cities.js": {
             "filename": "js/cities.js",
             "version": "67daeb7b88771440439d1d1ba0163dc51686aeb3a022b64b105235af49b7660e"
+        },
+        "js_config-prod.js": {
+            "filename": "js/config-prod.js",
+            "version": "3697f72649ebaabffd64b1f7d56045a6a1dc570d37faabe3e18fbfa9d4ac4c9f"
         },
         "js_craigalytics.service.js": {
             "filename": "js/craigalytics.service.js",
@@ -127,13 +127,13 @@
         "lib/angular-moment/angular-moment.js",
         "js/cordova-app-loader-complete.js",
         "js/templates.js",
-        "js/configuration.js",
         "js/app.js",
         "js/account.controller.js",
         "js/autoupdate.service.js",
         "js/cinemas.js",
         "js/cinemaslist.js",
         "js/cities.js",
+        "js/config-prod.js",
         "js/craigalytics.service.js",
         "js/movies.controller.js",
         "js/news.controller.js",
