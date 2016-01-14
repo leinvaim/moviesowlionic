@@ -50,15 +50,15 @@
         },
         "js_templates.js": {
             "filename": "js/templates.js",
-            "version": "a0cfc423e4e1ff181cd6c2f4de48454340cd282765fd2b6d7a946810be2bda17"
+            "version": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
         },
         "js_app.js": {
             "filename": "js/app.js",
-            "version": "e01852542ad0e3286b6626498718b6df4392e20205cd6ba5cce326da4eb5b50b"
+            "version": "e5342e05a3cc75c8c34b87c82f4e67d5f006d4382e999abceb48b714e733ce52"
         },
         "js_account.controller.js": {
             "filename": "js/account.controller.js",
-            "version": "6df221fad62e80958af261266458be0058a687f0a5dbdd9337613935c9347637"
+            "version": "ef0de11922fb8989b31a835a04b3eee5ee8c920d7b4a1a1dadde2dd170e06990"
         },
         "js_autoupdate.service.js": {
             "filename": "js/autoupdate.service.js",
@@ -82,11 +82,11 @@
         },
         "js_craigalytics.service.js": {
             "filename": "js/craigalytics.service.js",
-            "version": "248bd1a526cfe113e41cc114206b2319c8fbd0f849ff6919d0bd9f2ed4dcf0fa"
+            "version": "c6202f80fd847a2aeaeeb6a932ea9659a296fc7cb9ba18170eb7f216d34017f6"
         },
         "js_movies.controller.js": {
             "filename": "js/movies.controller.js",
-            "version": "8a60580de253d87786b0c57a39553e4768572ff019a9401cc13205c64271c3cd"
+            "version": "a854c79cbbbf757ff064a757b16655bbc03fe38990d15b759377ccdca7ebfa0f"
         },
         "js_news.controller.js": {
             "filename": "js/news.controller.js",
@@ -94,7 +94,7 @@
         },
         "js_seats.js": {
             "filename": "js/seats.js",
-            "version": "0a040e0a30aee8afccea098fdc16290df418397d25051ef891c7bb3e08ec8c6f"
+            "version": "ea247d6ef56178539ad2e4aec3eef3159537394875a1b4b41bb6e3cf3890bf6f"
         },
         "js_selectedmovieservice.js": {
             "filename": "js/selectedmovieservice.js",
@@ -106,7 +106,7 @@
         },
         "js_showings.js": {
             "filename": "js/showings.js",
-            "version": "3a1fe3defd2a651989a4b8fbd1a3297866291cbaba6418e742171c5504e7edbc"
+            "version": "3ace320e1a5540dcc8714a234a89fa0b4710a5c6b242082091c407cdda4d6167"
         },
         "js_showingsdataservice.js": {
             "filename": "js/showingsdataservice.js",

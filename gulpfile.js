@@ -56,7 +56,6 @@ gulp.task('sass', function (done) {
 });
 
 gulp.task('watch', function () {
-    isProduction = false;
     gulp.watch(paths.sass, ['sass']);
     gulp.watch(paths.html, ['templates']);
     gulp.watch(paths.bower, ['templates']);
