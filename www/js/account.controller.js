@@ -30,6 +30,8 @@
             }
             var cinemaObj = angular.fromJson(localStorage.cinema);
             $scope.cinemaLocation = cinemaObj.location;
+
+            $scope.deviceName = localStorage.device_name || 'Unknown';
         }
     }
 

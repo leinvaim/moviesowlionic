@@ -30,6 +30,7 @@
                 $http.post('http://128.199.104.251/craigalytics/current/public/api/devices')
                     .then(function (response) {
                         localStorage.device_id = response.data.id;
+                        localStorage.device_name = response.data.name;
                         console.log('Craigalytics: ' + localStorage.device_id);
                         registrationDeferred.resolve();
                     });
