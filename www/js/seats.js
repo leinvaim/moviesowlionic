@@ -9,7 +9,7 @@
  */
 angular.module('moviesowlApp')
     .controller('SeatsCtrl', function(ENV, $scope, $http, $stateParams, showingsDataService, selectedMovieService,
-                                      $timeout) {
+                                      $timeout, craigalytics) {
 
         $scope.doRefresh = doRefresh;
         $scope.movie = selectedMovieService.selectedMovie;
@@ -22,6 +22,9 @@ angular.module('moviesowlApp')
 
         function activate() {
             console.log($scope.movie);
+            craigalytics.send('VIEWED_SEATING', {
+                name: $scope.movie.title
+            });
 
             var seatsData = _.find(showingsDataService.showingsData, function(showing) {
                 return showing.id === parseInt($stateParams.showId);
@@ -51,6 +54,10 @@ angular.module('moviesowlApp')
         }
 
         function buyTickets() {
+            craigalytics.send('BOUGHT_TICKET', {
+                name: $scope.movie.title
+            });
+
             var url = $scope.session.tickets_url;
             url = url.replace('&bookingSource=www|sessions', '');
             var ref = cordova.InAppBrowser.open(url, '_blank', 'location=yes');
@@ -62,6 +69,9 @@ angular.module('moviesowlApp')
         }
 
         function buyTelstraTickets() {
+            craigalytics.send('BOUGHT_TELSTRA_TICKET', {
+                name: $scope.movie.title
+            });
             var url = 'https://www.my.telstra.com.au/myaccount/home?goto=https%3A%2F%2Fwww.my.telstra.com.au%2Fmyaccount%2Floyalty-offers-consumer';
             window.open(url, '_blank');
         }

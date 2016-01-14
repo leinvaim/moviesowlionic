@@ -9,13 +9,16 @@
  */
 angular.module('moviesowlApp')
     .controller('ShowingsCtrl', function(ENV, $scope, $stateParams, $http, selectedMovieService, showingsDataService,
-        $state, $q, $ionicModal, $rootScope, $ionicHistory, $timeout) {
+        $state, $q, $ionicModal, $rootScope, $ionicHistory, $timeout, craigalytics) {
         
         activate();
 
         function activate() {
             getMovie().then(function(movie) {
                 $scope.movie = movie;
+                craigalytics.send('VIEWED_MOVIE', {
+                    name: movie.title
+                });
             }).then(doStuff);
         }
 

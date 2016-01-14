@@ -61,6 +61,10 @@ angular.module('moviesowlApp', [
                 });
 
                 push.on('notification', function(data) {
+                    craigalytics.send('OPENED_APP_AFTER_PUSH_NOTIFICATION', {
+                        title: data.title,
+                        message: data.message
+                    });
                     // data.message,
                     // data.title,
                     // data.count,
