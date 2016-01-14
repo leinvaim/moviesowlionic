@@ -25,6 +25,10 @@ angular.module('moviesowlApp')
         $scope.$on('$ionicView.enter', onEnter);
 
         function onEnter() {
+            if(!localStorage.hasReset) {
+                localStorage.removeItem('cinema');
+                localStorage.hasReset = 1;
+            }
             if(!hasPreferredCinema()) {
                 $ionicHistory.nextViewOptions({
                     disableAnimate: true,
