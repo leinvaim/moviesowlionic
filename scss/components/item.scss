@@ -4,7 +4,7 @@
   border-color: black;
 
   &.item-radio .item-content {
-    background-color: $dark;
+    background-color: darken($dark, 10%);;
     color: white;
     border-color: black;
   }
