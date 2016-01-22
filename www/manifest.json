@@ -6,7 +6,7 @@
         },
         "css_ionic.app.css": {
             "filename": "css/ionic.app.css",
-            "version": "351a20b66227c71ad20c576dc833aae2fd47366d16ad96593ac94b031a689421"
+            "version": "3f088ba2a155951c43c7080f61635e5dc11e58533b3755e72d50d0038457e05e"
         },
         "lib_ionic_fonts_ionicons.eot": {
             "filename": "lib/ionic/fonts/ionicons.eot",
@@ -30,7 +30,7 @@
         },
         "lib_angular_angular.js": {
             "filename": "lib/angular/angular.js",
-            "version": "9a30224971ba19d73b34a1de0ffff57fa3561367f477fe81d62a17ce4b12a5aa"
+            "version": "d86ff5ee1c68df0af8c05d3e4dcad4fe3439e3a573f52189ff06a3a99430dfc1"
         },
         "lib_moment_moment.js": {
             "filename": "lib/moment/moment.js",
@@ -39,6 +39,10 @@
         "lib_ion-affix_ion-affix.js": {
             "filename": "lib/ion-affix/ion-affix.js",
             "version": "4a4359aaca0db754733fbd6cecfc4bde64ae4140732edb3f1e6378c510b18969"
+        },
+        "lib_afkl-lazy-image_release_lazy-image.js": {
+            "filename": "lib/afkl-lazy-image/release/lazy-image.js",
+            "version": "28824607fe5176f7745b5727a813bfc7dc9f1554c407b55deba0fcbe2f92ba34"
         },
         "lib_angular-moment_angular-moment.js": {
             "filename": "lib/angular-moment/angular-moment.js",
@@ -50,11 +54,11 @@
         },
         "js_templates.js": {
             "filename": "js/templates.js",
-            "version": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            "version": "8122079c324880a75b594cb364f63b98bc866d3aa08825f037329656de28eab4"
         },
         "js_app.js": {
             "filename": "js/app.js",
-            "version": "e5342e05a3cc75c8c34b87c82f4e67d5f006d4382e999abceb48b714e733ce52"
+            "version": "fcaee507f476143c7f986c6837ff4829025bd2d0ee2925b700d1d54abeee8fd6"
         },
         "js_account.controller.js": {
             "filename": "js/account.controller.js",
@@ -86,7 +90,7 @@
         },
         "js_movies.controller.js": {
             "filename": "js/movies.controller.js",
-            "version": "a854c79cbbbf757ff064a757b16655bbc03fe38990d15b759377ccdca7ebfa0f"
+            "version": "51ec203dc1ea0a39e92b65f93ae42e75c3fd04699ea9d21cefe6d62781a21d27"
         },
         "js_news.controller.js": {
             "filename": "js/news.controller.js",
@@ -124,6 +128,7 @@
         "lib/angular/angular.js",
         "lib/moment/moment.js",
         "lib/ion-affix/ion-affix.js",
+        "lib/afkl-lazy-image/release/lazy-image.js",
         "lib/angular-moment/angular-moment.js",
         "js/cordova-app-loader-complete.js",
         "js/templates.js",

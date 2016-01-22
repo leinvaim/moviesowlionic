@@ -7,6 +7,11 @@
   "dependencies": {
     "lodash": "~3.10.1",
     "angular-moment": "~0.10.3",
-    "ion-affix": "~1.0.1"
+    "ion-affix": "~1.0.1",
+    "afkl-lazy-image": "~0.2.3"
+  },
+  "resolutions": {
+    "angular": "1.4.3",
+    "angular-animate": "1.4.3"
   }
 }

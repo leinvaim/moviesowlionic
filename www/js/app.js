@@ -10,7 +10,8 @@ angular.module('moviesowlApp', [
     'config',
     'templates',
     'angularMoment',
-    'ion-affix'])
+    'ion-affix',
+    'ngAnimate'])
 
     .run(function ($ionicPlatform,
                    ENV,
