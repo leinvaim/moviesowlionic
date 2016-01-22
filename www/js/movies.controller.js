@@ -9,7 +9,7 @@
  */
 angular.module('moviesowlApp')
     .controller('MoviesController', function(ENV, $scope, $http, $rootScope, $stateParams, selectedMovieService, $state,
-                                       $ionicLoading, $ionicPopup, $ionicModal, cinemasList, $ionicHistory, craigalytics) {
+        $ionicLoading, $ionicPopup, $ionicModal, cinemasList, $ionicHistory, craigalytics) {
 
         console.log('movis conro');
         $scope.doRefresh = doRefresh;
@@ -18,6 +18,7 @@ angular.module('moviesowlApp')
         $scope.showTimesModal = showTimesModal;
         $scope.isStartingSoon = isStartingSoon;
 
+
         $scope.mode = getViewMode();
 
         ///
@@ -25,11 +26,11 @@ angular.module('moviesowlApp')
         $scope.$on('$ionicView.enter', onEnter);
 
         function onEnter() {
-            if(!localStorage.hasReset) {
+            if (!localStorage.hasReset) {
                 localStorage.removeItem('cinema');
                 localStorage.hasReset = 1;
             }
-            if(!hasPreferredCinema()) {
+            if (!hasPreferredCinema()) {
                 $ionicHistory.nextViewOptions({
                     disableAnimate: true,
                     disableBack: true
@@ -59,9 +60,13 @@ angular.module('moviesowlApp')
             return times;
         }
 
+
         function getCurrentTime() {
             return new Date();
         }
+
+
+
 
         function showTimesModal() {
             $scope.times = getPossibleStartingTimes();
@@ -84,17 +89,18 @@ angular.module('moviesowlApp')
         }
 
         function getMoviesForCinema(cinemaId, time) {
-            if(!time) {
+            if (!time) {
                 time = Math.round((new Date()).getTime() / 1000);
             }
             return $http.get(ENV.apiEndpoint + 'cinemas/' + cinemaId +
-            '/movies?starting_after=' + time).then(function(response) {
+                '/movies?starting_after=' + time).then(function(response) {
                 return response.data;
             });
         }
+
         function loadMovies(force, startingAfterTime) {
             var cinemaObj = angular.fromJson(localStorage.cinema);
-            if(cinemaObj.location === $scope.cinemaLocation && !force) {
+            if (cinemaObj.location === $scope.cinemaLocation && !force) {
                 return;
             }
             $scope.cinemaLocation = cinemaObj.location;
@@ -164,6 +170,11 @@ angular.module('moviesowlApp')
             });
         };
 
+        window.fadeIn = function(obj) {
+            console.log(obj);
+            $(obj).fadeIn(1000);
+        }
+
         function doRefresh() {
             console.log('Reloading Movies');
             $scope.startingAfter = getCurrentTime();
@@ -179,8 +190,8 @@ angular.module('moviesowlApp')
         function isStartingSoon(startTime) {
             var date = new Date();
             var currentTime = date.getTime() / 1000;
-            var oneHourBeforeStartTime = startTime - (60*60);
-            return  currentTime > oneHourBeforeStartTime;
+            var oneHourBeforeStartTime = startTime - (60 * 60);
+            return currentTime > oneHourBeforeStartTime;
         }
 
 
@@ -191,7 +202,7 @@ angular.module('moviesowlApp')
         function toggleViewMode() {
             console.log('toggling view mode');
             var mode = '';
-            if($scope.mode === 'list') {
+            if ($scope.mode === 'list') {
                 mode = 'grid';
             } else {
                 mode = 'list';
@@ -216,17 +227,17 @@ angular.module('moviesowlApp')
         function updateFound(e) {
             console.log(e);
             console.log('update found');
-            $scope.$apply(function(){
+            $scope.$apply(function() {
                 $scope.hasUpdate = true;
             });
         }
 
         function getProgress(e) {
             console.log(e);
-            $scope.$apply(function(){
+            $scope.$apply(function() {
                 $scope.progressWidth = e.loaded / e.total * 100;
                 console.log('progress 2', $scope.progressWidth);
-                if($scope.progressWidth === 100) {
+                if ($scope.progressWidth === 100) {
                     $scope.hasUpdate = false;
                     // alert
                     //var confirmPopup = $ionicPopup.confirm({
@@ -245,29 +256,29 @@ angular.module('moviesowlApp')
             });
         }
 
-// Fired after the first cache of the manifest.
+        // Fired after the first cache of the manifest.
         appCache.addEventListener('cached', handleCacheEvent, false);
 
-// Checking for an update. Always the first event fired in the sequence.
+        // Checking for an update. Always the first event fired in the sequence.
         appCache.addEventListener('checking', handleCacheEvent, false);
 
-// An update was found. The browser is fetching resources.
+        // An update was found. The browser is fetching resources.
         appCache.addEventListener('downloading', updateFound, false);
 
-// The manifest returns 404 or 410, the download failed,
-// or the manifest changed while the download was in progress.
+        // The manifest returns 404 or 410, the download failed,
+        // or the manifest changed while the download was in progress.
         appCache.addEventListener('error', handleCacheError, false);
 
-// Fired after the first download of the manifest.
+        // Fired after the first download of the manifest.
         appCache.addEventListener('noupdate', handleCacheEvent, false);
 
-// Fired if the manifest file returns a 404 or 410.
-// This results in the application cache being deleted.
+        // Fired if the manifest file returns a 404 or 410.
+        // This results in the application cache being deleted.
         appCache.addEventListener('obsolete', handleCacheEvent, false);
 
-// Fired for each resource listed in the manifest as it is being fetched.
+        // Fired for each resource listed in the manifest as it is being fetched.
         appCache.addEventListener('progress', getProgress, false);
 
-// Fired when the manifest resources have been newly redownloaded.
+        // Fired when the manifest resources have been newly redownloaded.
         appCache.addEventListener('updateready', handleCacheEvent, false);
     });

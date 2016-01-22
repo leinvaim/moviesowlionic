@@ -1,12 +1,9 @@
 <div class="group" ng-if="group.movies.length > 0">
-    <div class="item item-divider {{ group.style }}" ion-affix data-affix-within-parent-with-class="group"
-         style="border: none; color:white; text-align:center;">
+    <div class="item item-divider {{ group.style }}" ion-affix data-affix-within-parent-with-class="group" style="border: none; color:white; text-align:center;">
         {{ group.name }}
     </div>
-
     <div ng-repeat="row in group.movies" ng-if="mode == 'list'">
-        <div class="item item-icon-right item-text-wrap" ng-repeat="movie in row"
-             ng-click="selectMovie(movie)">
+        <div class="item item-icon-right item-text-wrap" ng-repeat="movie in row" ng-click="selectMovie(movie)">
             <h2>{{ movie.title }}
                 <span style="font-size: 12px;color:#aaa">
                     <img src="img/fresh.png" style="width:10px;position:relative; top:0px;"
@@ -18,46 +15,34 @@
                 <span style="font-size: 12px; color: yellow" ng-show="movie.new">New!</span>
             </h2>
             <p>
-                <span ng-repeat="showing in movie.showings.data"
-                      class="small-session-time"
-                      ng-class="{'soon': isStartingSoon(showing.start_time)}">
+                <span ng-repeat="showing in movie.showings.data" class="small-session-time" ng-class="{'soon': isStartingSoon(showing.start_time)}">
                     {{ showing.start_time * 1000 | date:'shortTime'}}
                 </span>
             </p>
             <i class="icon ion-chevron-right icon-accessory"></i>
         </div>
     </div>
-
     <div ng-repeat="row in group.movies" class="row" ng-if="mode == 'grid'">
-
         <div class="col col-50" ng-repeat="movie in row" style="position:relative;">
             <div style="width:100%; height:100%" ng-click="selectMovie(movie)">
-
-                <div style="position: relative">
-                    <img ng-src="{{ ENV.posterEndpoint }}{{ movie.poster }}" style="width:100%;">
-
-                    <div style="position: absolute;bottom:30px;width:100%;text-align:center">
-                    <span am-time-ago="{{movie.showings.data[0].start_time}}"
-                          am-preprocess="unix"
-                          class="time-human"
-                          ng-class="{'soon': isStartingSoon(movie.showings.data[0].start_time)}">
-                    </span>
-                    </div>
+                <div style="position:relative; margin-bottom:5px; padding-bottom: 150%; /* 16:9 */;height:0;overflow:hidden; background-color: rgba(109, 109, 109, 0.04);
+">
+                    <img ng-src="{{ ENV.posterEndpoint }}{{ movie.poster }}" style="width:100%;" class="poster" onload="this.style.opacity='1';" />
+                    <!-- <img image-lazy-src="{{ ENV.posterEndpoint }}{{ movie.poster }}" image-lazy-loader="ripple" style="width:100%;" lazy-scroll-resize="true"> -->
+                        <div style="position: absolute;bottom:30px;width:100%;text-align:center">
+                            <span am-time-ago="{{movie.showings.data[0].start_time}}" am-preprocess="unix" class="time-human" ng-class="{'soon': isStartingSoon(movie.showings.data[0].start_time)}">
+                            </span>
+                        </div>
                 </div>
-
                 <div style="color: white;text-align:center">
                     <p style="margin-bottom: 0; font-weight:bold;">
                         {{ movie.title }} <span style="font-size: 12px; color: yellow" ng-show="movie.new">New!</span>
                     </p>
                     <p style="font-size: 12px;color:#aaa">
-                        <img src="img/fresh.png" style="width:10px;position:relative; top:0px;"
-                             ng-hide="movie.tomato_meter < 60">
-                        <img src="img/rotten.png" style="width:10px;position:relative; top:0px;"
-                                ng-hide="movie.tomato_meter >= 60">
-                        {{movie.tomato_meter}}%
+                        <img src="img/fresh.png" style="width:10px;position:relative; top:0px;" ng-hide="movie.tomato_meter < 60">
+                        <img src="img/rotten.png" style="width:10px;position:relative; top:0px;" ng-hide="movie.tomato_meter >= 60"> {{movie.tomato_meter}}%
                     </p>
                 </div>
-
             </div>
         </div>
     </div>
