@@ -1,22 +1,29 @@
-<!--  -->
-<ion-modal-view>
+<ion-view title="{{ movie.title }}">
+    <!-- <div class="background-image-two" style="background-image: url({{ ENV.posterEndpoint }}{{ movie.poster }});">
+    </div> -->
     <ion-content>
-        <div class="pickgradient">
+        <!--         <div class="pickgradient">
             <img src="{{ ENV.posterEndpoint }}{{ movie.poster }}" style="width: 100%;">
-        </div>
-        <ion-list>
-            <ion-item class="movieTitleCell">
-                <button class="faux-back button button-clear button-light" ng-click="closeModal()">
+        </div> -->
+        <ion-item class="movieTitleCell">
+            <!--                 <button class="faux-back button button-clear button-light" ng-click="closeModal()">
                     <i class="icon ion-chevron-left"></i>
-                </button>
-                <div style="font-size:11px;margin-bottom: 5px;">
-                    {{movie.run_time}} Minutes
-                </div>
-                <div class="item-text-wrap">
-                    {{movie.title}}
-                </div>
-            </ion-item>
-            <ion-item class="ratingCell" ng-if="movie.tomato_meter >= 0">
+                </button> -->
+            
+            <div class="item-text-wrap">
+                {{movie.title}}
+            </div>
+            <div style="font-size:11px;margin-top: 5px;">
+                {{movie.run_time}} Minutes
+            </div>
+        </ion-item>
+        <ion-item style="padding 0; border: none;">
+            <div class="video-container">
+                <iframe ng-src="{{trustSrc(linkTrailer)}}" frameborder="0" width="560" height="315" allowfullscreen></iframe>
+            </div>
+        </ion-item>
+        <ion-list>
+            <!--             <ion-item class="ratingCell" ng-if="movie.tomato_meter >= 0">
                 <div class="row">
                     <div class="col rating-left">
                         <div style="color:{{textColour}};">{{owlRating}}</div>
@@ -24,34 +31,32 @@
                     </div>
                     <div class="col rating-right">
                         <div style="font-weight: bold;">
-                            <img src="{{rottenLogo}}" style="width:16px;position:relative; top:3px;">
-                            {{movie.tomato_meter}}%
+                            <img src="{{rottenLogo}}" style="width:16px;position:relative; top:3px;"> {{movie.tomato_meter}}%
                         </div>
                         <div class="rottenTomatoText">
                             Rotten Tomatoes
                         </div>
                     </div>
                 </div>
-
-            </ion-item>
-            <div class="item container-details item-darker ">
-                <div class="item-divider movieDetailsHeading">
+            </ion-item> -->
+            <div class="item container-details">
+                <div class="movieDetailsHeading">
                     Directors
                 </div>
                 <div class="wrap movieDetails">
                     {{movie.director}}
                 </div>
             </div>
-            <div class="item container-details item-darker">
-                <div class="item-divider movieDetailsHeading">
+            <div class="item container-details">
+                <div class="movieDetailsHeading">
                     Casts
                 </div>
                 <div class="wrap movieDetails">
                     {{movie.cast}}
                 </div>
             </div>
-            <div class="item container-details item-darker">
-                <div class="item-divider movieDetailsHeading">
+            <div class="item container-details">
+                <div class="movieDetailsHeading">
                     Synopsis
                 </div>
                 <div class="wrap movieDetails">
@@ -59,6 +64,6 @@
                 </div>
             </div>
         </ion-list>
-        <button class="button button-full button-positive" ng-click="closeModal()">Close</button>
+      <!--   <button class="button button-full button-positive" ng-click="closeModal()">Close</button> -->
     </ion-content>
-</ion-modal-view>
+</ion-view>
