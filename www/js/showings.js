@@ -9,8 +9,8 @@
  */
 angular.module('moviesowlApp')
     .controller('ShowingsCtrl', function(ENV, $scope, $stateParams, $http, selectedMovieService, showingsDataService,
-        $state, $q, $ionicModal, $rootScope, $ionicHistory, $timeout, craigalytics) {
-        
+        $state, $q, $ionicModal, $rootScope, $ionicHistory, $timeout, craigalytics, $sce) {
+
         activate();
 
         function activate() {
@@ -67,6 +67,10 @@ angular.module('moviesowlApp')
         }
 
         function doStuff() {
+            $scope.trustSrc = function(src) {
+                return $sce.trustAsResourceUrl(src);
+            }
+
             $scope.showingsData = $scope.movie.showings.data;
             $scope.rottenLogo = getRottenTomatoLogo($scope.movie);
             $scope.owlRating = getOwlRating($scope.movie);
@@ -101,7 +105,21 @@ angular.module('moviesowlApp')
         }
 
 
+        $scope.openTrailer = function() {
+            $scope.menuState = 'closed';
+            console.log('show trailer', $stateParams.movieId);
+            $state.go('movieDetails', {
+                movieId: $stateParams.movieId
+            });
+        }
+
+        $scope.showMovieTitle = true;
+        $scope.showHideMovieTitle = function(){
+            $scope.showMovieTitle = !$scope.showMovieTitle;
+        }
+
         $scope.openSeatView = function(sessionId) {
+            $scope.menuState = 'closed';
             var seatsData = _.find($scope.showingsData, function(showing) {
                 return showing.id === parseInt(sessionId);
             });
@@ -147,6 +165,8 @@ angular.module('moviesowlApp')
         }).then(function(modal) {
             $scope.modal = modal;
         });
+
+
 
         $scope.openModal = function() {
             $scope.modal.show();
