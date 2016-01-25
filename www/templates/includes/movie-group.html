@@ -29,10 +29,10 @@
 ">
                     <img ng-src="{{ ENV.posterEndpoint }}{{ movie.poster }}" style="width:100%;" class="poster" onload="this.style.opacity='1';" />
                     <!-- <img image-lazy-src="{{ ENV.posterEndpoint }}{{ movie.poster }}" image-lazy-loader="ripple" style="width:100%;" lazy-scroll-resize="true"> -->
-                        <div style="position: absolute;bottom:30px;width:100%;text-align:center">
-                            <span am-time-ago="{{movie.showings.data[0].start_time}}" am-preprocess="unix" class="time-human" ng-class="{'soon': isStartingSoon(movie.showings.data[0].start_time)}">
+                    <div style="position: absolute;bottom:30px;width:100%;text-align:center">
+                        <span am-time-ago="{{movie.showings.data[0].start_time}}" am-preprocess="unix" class="time-human" ng-class="{'soon': isStartingSoon(movie.showings.data[0].start_time)}">
                             </span>
-                        </div>
+                    </div>
                 </div>
                 <div style="color: white;text-align:center">
                     <p style="margin-bottom: 0; font-weight:bold;">
