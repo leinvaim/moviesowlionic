@@ -1,0 +1,152 @@
+{
+    "files": {
+        "lib_ionic_js_ionic.bundle.js": {
+            "filename": "lib/ionic/js/ionic.bundle.js",
+            "version": "33984c6af990ace737a1b9c179cb0cf8aad0d7460df34e52bdcdb66fab4a3e52"
+        },
+        "css_ionic.app.css": {
+            "filename": "css/ionic.app.css",
+            "version": "3f088ba2a155951c43c7080f61635e5dc11e58533b3755e72d50d0038457e05e"
+        },
+        "lib_ionic_fonts_ionicons.eot": {
+            "filename": "lib/ionic/fonts/ionicons.eot",
+            "version": "a4803d7bdeb478a5b9238fe74d8aaa98dafe2e8e68fccbd0e3f4dced823f27f0"
+        },
+        "lib_ionic_fonts_ionicons.svg": {
+            "filename": "lib/ionic/fonts/ionicons.svg",
+            "version": "a627d9068c1235d9b3c95c405eb6ecb64a290b159cf5e926c0d96d89b24cd5fc"
+        },
+        "lib_ionic_fonts_ionicons.ttf": {
+            "filename": "lib/ionic/fonts/ionicons.ttf",
+            "version": "2ba7f20b1d8990e17a47fe3d88e4c766628aaa2baf1dd30fca0a0db59836f5f9"
+        },
+        "lib_ionic_fonts_ionicons.woff": {
+            "filename": "lib/ionic/fonts/ionicons.woff",
+            "version": "709f2789daaff440820ebb975d3ae409af45121bdec47e39e83523490b1bc0fc"
+        },
+        "lib_lodash_lodash.js": {
+            "filename": "lib/lodash/lodash.js",
+            "version": "31ef498e961eaee57b5458cf0b6929da737338eb37a371f0fa720e7ba15db0fb"
+        },
+        "lib_angular_angular.js": {
+            "filename": "lib/angular/angular.js",
+            "version": "d86ff5ee1c68df0af8c05d3e4dcad4fe3439e3a573f52189ff06a3a99430dfc1"
+        },
+        "lib_moment_moment.js": {
+            "filename": "lib/moment/moment.js",
+            "version": "330b77f348bc97849800b9f3af7d1fe52fb6e145525ad494149d7a202c0c3cbf"
+        },
+        "lib_ion-affix_ion-affix.js": {
+            "filename": "lib/ion-affix/ion-affix.js",
+            "version": "4a4359aaca0db754733fbd6cecfc4bde64ae4140732edb3f1e6378c510b18969"
+        },
+        "lib_afkl-lazy-image_release_lazy-image.js": {
+            "filename": "lib/afkl-lazy-image/release/lazy-image.js",
+            "version": "28824607fe5176f7745b5727a813bfc7dc9f1554c407b55deba0fcbe2f92ba34"
+        },
+        "lib_angular-moment_angular-moment.js": {
+            "filename": "lib/angular-moment/angular-moment.js",
+            "version": "44c05e91c516897260bd895e828f1349614d4d3ce6ad14ad976d7f461a4fc176"
+        },
+        "js_cordova-app-loader-complete.js": {
+            "filename": "js/cordova-app-loader-complete.js",
+            "version": "76299c410fab485ec88d1e8765d935320fe4d172897d5f675fa410d66bd3f107"
+        },
+        "js_templates.js": {
+            "filename": "js/templates.js",
+            "version": "8122079c324880a75b594cb364f63b98bc866d3aa08825f037329656de28eab4"
+        },
+        "js_app.js": {
+            "filename": "js/app.js",
+            "version": "fcaee507f476143c7f986c6837ff4829025bd2d0ee2925b700d1d54abeee8fd6"
+        },
+        "js_account.controller.js": {
+            "filename": "js/account.controller.js",
+            "version": "ef0de11922fb8989b31a835a04b3eee5ee8c920d7b4a1a1dadde2dd170e06990"
+        },
+        "js_autoupdate.service.js": {
+            "filename": "js/autoupdate.service.js",
+            "version": "f7df3ebb3c73291ad82791d2006d4b6b3c4cd7362166059010a7cef0179e0563"
+        },
+        "js_cinemas.js": {
+            "filename": "js/cinemas.js",
+            "version": "f6523075ee0ca4f4d131e490b6bd859905ef22e468a44de29e0c06d05a20888e"
+        },
+        "js_cinemaslist.js": {
+            "filename": "js/cinemaslist.js",
+            "version": "a7016d559d75f6343e178bdddb300824d36dae624704a8ca25cf66c9fc03c6c2"
+        },
+        "js_cities.js": {
+            "filename": "js/cities.js",
+            "version": "67daeb7b88771440439d1d1ba0163dc51686aeb3a022b64b105235af49b7660e"
+        },
+        "js_config-prod.js": {
+            "filename": "js/config-prod.js",
+            "version": "3697f72649ebaabffd64b1f7d56045a6a1dc570d37faabe3e18fbfa9d4ac4c9f"
+        },
+        "js_craigalytics.service.js": {
+            "filename": "js/craigalytics.service.js",
+            "version": "c6202f80fd847a2aeaeeb6a932ea9659a296fc7cb9ba18170eb7f216d34017f6"
+        },
+        "js_movies.controller.js": {
+            "filename": "js/movies.controller.js",
+            "version": "51ec203dc1ea0a39e92b65f93ae42e75c3fd04699ea9d21cefe6d62781a21d27"
+        },
+        "js_news.controller.js": {
+            "filename": "js/news.controller.js",
+            "version": "5ae41f310fb6672c23f74f11f7d2441494fd088ea2dbcca062716886b2ffaecb"
+        },
+        "js_seats.js": {
+            "filename": "js/seats.js",
+            "version": "ea247d6ef56178539ad2e4aec3eef3159537394875a1b4b41bb6e3cf3890bf6f"
+        },
+        "js_selectedmovieservice.js": {
+            "filename": "js/selectedmovieservice.js",
+            "version": "a8fb2fee949c95eb7970f39937b2429c85bd8f26dd3a95393ddcdb891926b9fe"
+        },
+        "js_services.js": {
+            "filename": "js/services.js",
+            "version": "c25fa9b8ec28d037c9b3a07b7c3ca8fccff35be1afc3843f1703263ee0a85a0e"
+        },
+        "js_showings.js": {
+            "filename": "js/showings.js",
+            "version": "3ace320e1a5540dcc8714a234a89fa0b4710a5c6b242082091c407cdda4d6167"
+        },
+        "js_showingsdataservice.js": {
+            "filename": "js/showingsdataservice.js",
+            "version": "b1ebce291b6813f7f004636cd0ca074c8a9fc4cddedaf6bf161eaaef8d37255b"
+        }
+    },
+    "load": [
+        "lib/ionic/js/ionic.bundle.js",
+        "css/ionic.app.css",
+        "lib/ionic/fonts/ionicons.eot",
+        "lib/ionic/fonts/ionicons.svg",
+        "lib/ionic/fonts/ionicons.ttf",
+        "lib/ionic/fonts/ionicons.woff",
+        "lib/lodash/lodash.js",
+        "lib/angular/angular.js",
+        "lib/moment/moment.js",
+        "lib/ion-affix/ion-affix.js",
+        "lib/afkl-lazy-image/release/lazy-image.js",
+        "lib/angular-moment/angular-moment.js",
+        "js/cordova-app-loader-complete.js",
+        "js/templates.js",
+        "js/app.js",
+        "js/account.controller.js",
+        "js/autoupdate.service.js",
+        "js/cinemas.js",
+        "js/cinemaslist.js",
+        "js/cities.js",
+        "js/config-prod.js",
+        "js/craigalytics.service.js",
+        "js/movies.controller.js",
+        "js/news.controller.js",
+        "js/seats.js",
+        "js/selectedmovieservice.js",
+        "js/services.js",
+        "js/showings.js",
+        "js/showingsdataservice.js"
+    ],
+    "root": "./"
+}

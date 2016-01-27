@@ -1,4 +1,5 @@
 {
-  "name": "moviesowlionic",
-  "app_id": ""
+  "name": "moviesowl-ionic-new-2",
+  "app_id": "",
+  "gulpStartupTasks": ["sass", "watch"]
 }

@@ -1,23 +1,7 @@
-node_modules
-www
-.idea
-.temp
-.sass-cache
-app/bower_components
-coverage
-platforms
-plugins
-*.swp
-*.swo
-*.log
-*.DS_Store
-apk
+# Specifies intentionally untracked files to ignore when using Git
+# http://git-scm.com/docs/gitignore
 
-app/scripts/configuration.js
-
-ionic/node_modules/
-ionic/platforms/
-ionic/plugins/
-ionic/.idea/
-ionic/www/lib/
-.grunt
+node_modules/
+platforms/
+plugins/
+www/lib

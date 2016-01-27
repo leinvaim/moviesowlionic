@@ -1,0 +1,35 @@
+<ion-view view-title="Account">
+    <ion-content>
+        <ion-list>
+            <a class="item item-icon-right" ui-sref="cities">
+                <h2>
+                    {{ cinemaLocation }}
+                </h2>
+                <p>
+                    Your Cinema
+                </p>
+                <i class="icon ion-chevron-right icon-accessory"></i>
+            </a>
+            <a class="item" ng-click="autoupdate.check()">
+                <h2>
+                    {{ autoupdate.state }}
+                </h2>
+                <p>
+                    App Status
+                </p>
+            </a>
+            <div class="item">
+                <h2>
+                    {{ deviceName }}
+                </h2>
+                <p>
+                    Device Name
+                </p>
+            </div>
+            <a class="item item-icon-right item-text-wrap" href="mailto:cmcnamara87+moviesowl@gmail.com?subject=MoviesOwl Ideas!">
+                Got any <strong>ideas or suggestions</strong>? We'd love to hear them!
+                <i class="icon ion-email icon-accessory"></i>
+            </a>
+        </ion-list>
+    </ion-content>
+</ion-view>

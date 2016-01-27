@@ -1,0 +1,39 @@
+.item, a.item {
+  background-color: darken($dark, 10%);
+  color: white;
+  border-color: black;
+
+  &.item-radio .item-content {
+    background-color: darken($dark, 10%);;
+    color: white;
+    border-color: black;
+  }
+}
+
+.item {
+  color: #ddd;
+
+  h1, h2, h3, h4 {
+    color: #eee;
+    font-weight: bolder;
+  }
+  p {
+    color: #ccc;
+  }
+  &:active, &.activated {
+    border-color: darken($dark, 20%);
+    background-color: $dark;
+  }
+  &.great-movies {
+    background-color: $balanced;
+  }
+  &.good-movies {
+    background-color: $energized;
+  }
+  &.bad-movies {
+    background-color: $assertive;
+  }
+  &.no-ratings {
+    background-color: $dark;
+  }
+}
